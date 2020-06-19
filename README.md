@@ -15,7 +15,7 @@ Data:
 
 ### Avallone (Player and Event tracking):
 
-WIP - 
+WIP
 
 ## Setup 
 
