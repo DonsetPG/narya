@@ -2,20 +2,12 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-#
-#
-#
-# hardcode la fonction de preprocessing
-# add inputs shape and an assert?
-#
-#
+import mxnet as mx
+import gluoncv as gcv
 
-import mxnet                as mx
-import gluoncv              as gcv
+from gluoncv.model_zoo import get_model
 
-from gluoncv.model_zoo      import get_model
-
-from ..preprocessing.image  import _build_tracking_preprocessing
+from ..preprocessing.image import _build_tracking_preprocessing
 
 
 class TrackerModel:

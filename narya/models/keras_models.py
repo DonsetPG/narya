@@ -2,14 +2,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tensorflow           as tf
-import segmentation_models  as sm
+import mxnet as mx
 
-from .keras_layers          import pyramid_layer
-from ..preprocessing.image  import (
-    _build_homo_preprocessing,
-    _build_keypoint_preprocessing,
-)
+import numpy as np
+import tensorflow as tf
+import segmentation_models as sm
+from .keras_layers import pyramid_layer
+from ..preprocessing.image import _build_homo_preprocessing
+from ..preprocessing.image import _build_keypoint_preprocessing
 
 #
 #
@@ -67,7 +67,7 @@ class DeepHomoModel:
 
         self.resnet_18 = _build_resnet18()
 
-        inputs = tf.keras.layers.Input(self.input_shape)
+        inputs = tf.keras.layers.Input((self.input_shape[0], self.input_shape[1], 3))
         x = self.resnet_18(inputs)
         outputs = pyramid_layer(x, 2)
 
@@ -80,7 +80,7 @@ class DeepHomoModel:
     def __call__(self, input_img):
 
         img = self.preprocessing(input_img)
-        corners = self.model.predict(img)
+        corners = self.model.predict(np.array([img]))
 
         return corners
 
@@ -122,14 +122,15 @@ class KeypointDetectorModel:
         self.classes = [str(i) for i in range(num_classes)] + ["background"]
         self.backbone = backbone
 
-        n_classes = 1 if len(self.classes) == 1 else (len(self.classes) + 1)
-        activation = "sigmoid" if n_classes == 1 else "softmax"
+        n_classes = len(self.classes)
+        activation = "softmax"
 
         if model_choice == "FPN":
             self.model = sm.FPN(
                 self.backbone,
                 classes=n_classes,
                 activation=activation,
+                input_shape=(input_shape[0], input_shape[1], 3),
                 encoder_weights="imagenet",
             )
         else:
@@ -141,7 +142,7 @@ class KeypointDetectorModel:
     def __call__(self, input_img):
 
         img = self.preprocessing(input_img)
-        pr_mask = self.model.predict(img)
+        pr_mask = self.model.predict(np.array([img]))
         return pr_mask
 
     def load_weights(self, weights_path):

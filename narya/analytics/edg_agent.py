@@ -1,12 +1,20 @@
-import numpy                            as np
+import numpy as np
 
-from gfootball.env.players.ppo2_cnn     import Player
-from ..utils.google_football_utils      import traverse, change
+import tensorflow as tf
+from gfootball.env.players.ppo2_cnn import Player
+from ..utils.google_football_utils import traverse, change
 
 SMM_WIDTH = 96
 SMM_HEIGHT = 72
 
 channel_dimensions = (SMM_WIDTH, SMM_HEIGHT)
+
+EDG_MODEL_PATH = (
+    "https://storage.googleapis.com/narya-bucket-1/models/11_vs_11_selfplay_last"
+)
+EDG_MODEL_NAME = "11_vs_11_selfplay_last"
+EDG_MODEL_TOTAR = False
+
 
 class AgentValue:
     """ Creates a agent that will compute the value of tracking data
@@ -14,7 +22,14 @@ class AgentValue:
       checkpoints: Checkpoint to load the agent from. Can be set to None
       policy: Policy to use with the agent
     """
-    def __init__(self, checkpoints = 'checkpoints/11_vs_11_selfplay_last', policy="gfootball_impala_cnn"):
+
+    def __init__(
+        self, pretrained=True, checkpoints=None, policy="gfootball_impala_cnn"
+    ):
+        if pretrained:
+            checkpoints = tf.keras.utils.get_file(
+                EDG_MODEL_NAME, EDG_MODEL_PATH, EDG_MODEL_TOTAR,
+            )
         player_config = {
             "index": 0,
             "left_players": 1,
@@ -52,7 +67,7 @@ class AgentValue:
     ):
         """ Computes the edg map of the given observation. It considers the entity (player or ball) at the position init_x,init_y,
         and changes its position on the field to compute the edg_map.
-        Args:
+        Arguments:
           observations: A np.array of shape (72,96,16) with the stacked observations
           observations_count: A np.array of shape (72,96,16) with t
           he stacked observations counts. Observations counts stores the
@@ -70,4 +85,4 @@ class AgentValue:
             value = self.get_value(observation)
             map_value[y, x] = value
             x, y = traverse(observation, observation_count, x, y, entity)
-        return map_value 
+        return map_value

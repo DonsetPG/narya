@@ -2,13 +2,13 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import numpy    as np
+import numpy as np
 import kornia
 import torch
 import cv2
 
-from .utils     import hasnan, isnan, to_numpy, to_torch
-from .image     import torch_img_to_np_img, np_img_to_torch_img
+from .utils import hasnan, isnan, to_numpy, to_torch
+from .image import torch_img_to_np_img, np_img_to_torch_img
 
 
 def normalize_homo(h, **kwargs):
@@ -24,7 +24,7 @@ def normalize_homo(h, **kwargs):
     return h / h[2, 2]
 
 
-def HorizontalFlipHomo(h, **kwargs):
+def horizontal_flip_homo(h, **kwargs):
     """Apply a horizontal flip to the homography
 
     Arguments:
@@ -38,7 +38,7 @@ def HorizontalFlipHomo(h, **kwargs):
     return np.matmul(h, flipper)
 
 
-def VerticalFlipHomo(h, **kwargs):
+def vertical_flip_homo(h, **kwargs):
     """Apply a vertical flip to the homography
 
     Arguments:

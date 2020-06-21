@@ -54,7 +54,10 @@ def to_numpy(var):
     Raises:
         
     """
-    return var.numpy()
+    try:
+        return var.numpy()
+    except:
+        return var.detach().numpy()
 
 
 def to_torch(np_array):

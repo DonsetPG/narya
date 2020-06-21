@@ -3,11 +3,11 @@ from __future__ import division
 from __future__ import print_function
 
 import torch
-import numpy                as np
+import numpy as np
 
 from torchvision.transforms import Normalize
 
-from .utils                 import to_numpy, to_torch
+from .utils import to_numpy, to_torch
 
 
 def torch_img_to_np_img(torch_img):
@@ -40,7 +40,7 @@ def torch_img_to_np_img(torch_img):
 
 
 def np_img_to_torch_img(np_img):
-    """Convert a torch image to a numpy image
+    """Convert a np image to a torch image
 
     Arguments:
         np_img: a np.array of shape (B,H,W,C) or (H,W,C)

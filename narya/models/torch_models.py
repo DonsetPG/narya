@@ -2,13 +2,16 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import torch.nn             as nn
+import mxnet as mx
 
-from torchvision            import models
+import torch.nn as nn
+import torch
 
-from .torch_layers          import ClassBlock
-from ..utils.utils          import to_numpy
-from ..preprocessing.image  import _build_reid_preprocessing
+from torchvision import models
+
+from .torch_layers import ClassBlock
+from ..utils.utils import to_numpy
+from ..preprocessing.image import _build_reid_preprocessing
 
 #
 #

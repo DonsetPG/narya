@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import mxnet as mx
 import tensorflow as tf
 
 
@@ -22,8 +23,10 @@ def pyramid_layer(
 
     """
     dense_name_base = "full_" + str(indx)
-    for neuron in nb_neurons:
-        x = tf.keras.layers.Dense(neuron, name=dense_name_base + str(neuron))(x)
+    for indx, neuron in enumerate(nb_neurons):
+        x = tf.keras.layers.Dense(
+            neuron, name=dense_name_base + str(neuron) + "_" + str(indx)
+        )(x)
     x = tf.keras.layers.Dense(output_size, name=dense_name_base + "output")(x)
     output = tf.keras.layers.Activation(activation)(x)
     return output

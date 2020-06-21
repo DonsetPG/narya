@@ -2,18 +2,16 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import numpy                                as np
-import mxnet                                as mx
+import mxnet as mx
+import numpy as np
 import cv2
-import segmentation_models                  as sm
-
-from gluoncv.data.transforms.presets.ssd    import transform_test
-
-from ..utils.image                          import (
-                                                np_img_to_torch_img,
-                                                normalize_single_image_torch,
-                                                torch_img_to_np_img,
-                                            )
+import segmentation_models as sm
+from gluoncv.data.transforms.presets.ssd import transform_test
+from ..utils.image import (
+    np_img_to_torch_img,
+    normalize_single_image_torch,
+    torch_img_to_np_img,
+)
 
 """Builds the preprocessing function for each model. They all use torch/keras/gluoncv functions depending on the model.
 Arguments:
@@ -28,7 +26,7 @@ def _build_reid_preprocessing(input_shape):
 
     """
 
-    def preprocessing(input_img):
+    def preprocessing(input_img, **kwargs):
 
         to_normalize = True if np.percentile(input_img, 98) > 1.0 else False
 
@@ -40,7 +38,7 @@ def _build_reid_preprocessing(input_shape):
         else:
             image = input_img / 255.0 if to_normalize else input_img / 1.0
 
-        image = cv2.resize(image, input_shape)
+        image = cv2.resize(image, (input_shape[1], input_shape[0]))
 
         image = np_img_to_torch_img(image)
         image = normalize_single_image_torch(
@@ -57,17 +55,17 @@ def _build_keypoint_preprocessing(input_shape, backbone):
     """
     sm_preprocessing = sm.get_preprocessing(backbone)
 
-    def preprocessing(input_img):
+    def preprocessing(input_img, **kwargs):
 
-        to_normalize = True if np.percentile(input_img, 98) > 1.0 else False
+        to_normalize = False if np.percentile(input_img, 98) > 1.0 else True
 
         if len(input_img.shape) == 4:
             print(
                 "Only preprocessing single image, we will consider the first one of the batch"
             )
-            image = input_img[0] / 255.0 if to_normalize else input_img[0] / 1.0
+            image = input_img[0] * 255.0 if to_normalize else input_img[0] * 1.0
         else:
-            image = input_img / 255.0 if to_normalize else input_img / 1.0
+            image = input_img * 255.0 if to_normalize else input_img * 1.0
 
         image = cv2.resize(image, input_shape)
         image = sm_preprocessing(image)
@@ -81,7 +79,7 @@ def _build_tracking_preprocessing(input_shape):
 
     """
 
-    def preprocessing(input_img):
+    def preprocessing(input_img, **kwargs):
 
         to_normalize = False if np.percentile(input_img, 98) > 1.0 else True
 
@@ -105,7 +103,7 @@ def _build_homo_preprocessing(input_shape):
 
     """
 
-    def preprocessing(input_img):
+    def preprocessing(input_img, **kwargs):
 
         if len(input_img.shape) == 4:
             print(

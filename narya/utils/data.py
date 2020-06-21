@@ -6,7 +6,7 @@ import six
 from lxml import etree
 
 
-def _parse_xml_file_keypoints(xml_file):
+def _parse_xml_file_keypoints(xml_file, max_size=320):
     """Get the keypoints and their id from a .xml file.
 
     Arguments:
@@ -22,7 +22,8 @@ def _parse_xml_file_keypoints(xml_file):
         id_kp = int(tree.xpath("object/name")[i].text)
         x_kp = int(tree.xpath("object/keypoints/x1")[i].text)
         y_kp = int(tree.xpath("object/keypoints/y1")[i].text)
-
+        x_kp = min(max(x_kp, 0), max_size)
+        y_kp = min(max(y_kp, 0), max_size)
         keypoints[id_kp] = (y_kp, x_kp)
 
     return keypoints

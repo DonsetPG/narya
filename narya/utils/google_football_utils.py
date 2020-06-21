@@ -5,11 +5,11 @@ from __future__ import print_function
 import six
 import os
 import random
-import numpy    as np
-import pandas   as pd
+import numpy as np
+import pandas as pd
 import pickle
 
-from six.moves  import range
+from six.moves import range
 
 SMM_WIDTH = 96
 SMM_HEIGHT = 72
