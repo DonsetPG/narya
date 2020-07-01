@@ -11,13 +11,6 @@ from .keras_layers import pyramid_layer
 from ..preprocessing.image import _build_homo_preprocessing
 from ..preprocessing.image import _build_keypoint_preprocessing
 
-#
-#
-#
-# hardcode la fonction de preprocessing
-#
-#
-
 RESNET_ARCHI_TF_KERAS_PATH = (
     "https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model_1.h5"
 )

@@ -158,16 +158,19 @@ def _get_keypoints_from_mask(mask, treshold=0.9):
     """
     nb_of_mask = mask.shape[-1]
     keypoints = {}
-    for indx in range(nb_of_mask):
-        X, Y = [], []
-        for i in range(mask.shape[0]):
-            for j in range(mask.shape[0]):
-                if mask[..., indx].squeeze()[i][j] > treshold:
-                    X.append(i)
-                    Y.append(j)
-        if len(X) > 0:
-            X, Y = np.array(X), np.array(Y)
-            keypoints[indx] = [np.mean(Y), np.mean(X)]
+    indexes = np.argwhere(mask[:, :, :-1] > treshold)
+    for indx in indexes:
+        id_kp = indx[2]
+        if id_kp in keypoints.keys():
+            keypoints[id_kp][0].append(indx[0])
+            keypoints[id_kp][1].append(indx[1])
+        else:
+            keypoints[id_kp] = [[indx[0]], [indx[1]]]
+
+    for id_kp in keypoints.keys():
+        mean_x = np.mean(np.array(keypoints[id_kp][0]))
+        mean_y = np.mean(np.array(keypoints[id_kp][1]))
+        keypoints[id_kp] = [mean_y, mean_x]
     return keypoints
 
 
@@ -182,10 +185,19 @@ def _points_from_mask(mask, treshold=0.9):
     Raises:
         
     """
+    list_ids = []
     src_pts, dst_pts = [], []
     available_keypoints = _get_keypoints_from_mask(mask, treshold)
     for id_kp, v in six.iteritems(available_keypoints):
         src_pts.append(v)
         dst_pts.append(INIT_HOMO_MAPPER[id_kp])
+        list_ids.append(id_kp)
     src, dst = np.array(src_pts), np.array(dst_pts)
+    test_colinear = False
+    if len(src) == 4:
+        for ids in list_ids:
+            if ids in [10, 11, 12, 25, 26]:
+                test_colinear = True
+    src = np.array([]) if test_colinear else src
+    dst = np.array([]) if test_colinear else dst
     return src, dst

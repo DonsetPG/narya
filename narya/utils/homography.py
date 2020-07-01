@@ -10,6 +10,13 @@ import cv2
 from .utils import hasnan, isnan, to_numpy, to_torch
 from .image import torch_img_to_np_img, np_img_to_torch_img
 
+"""
+
+Torch warping function cloned from https://github.com/vcg-uvic/sportsfield_release
+with some minor modifications
+
+"""
+
 
 def normalize_homo(h, **kwargs):
     """Normalize an homography by setting the last coefficient to 1.0
@@ -120,9 +127,9 @@ def warp_image(img, H, out_shape=None, method="cv"):
         ValueError: If img and H batch sizes are different
     """
     return (
-        warp_image_cv(img, H, out_shape=None)
+        warp_image_cv(img, H, out_shape=out_shape)
         if method == "cv"
-        else warp_image_torch(img, H, out_shape=None)
+        else warp_image_torch(img, H, out_shape=out_shape)
     )
 
 
@@ -161,7 +168,6 @@ def warp_image_torch(img, H, out_shape=None):
     )
     x = x.to(img.device)
     y = y.to(img.device)
-
     x, y = x.flatten(), y.flatten()
 
     # append ones for homogeneous coordinates
@@ -209,8 +215,8 @@ def warp_image_cv(img, H, out_shape=None):
         ValueError: If img and H batch sizes are different
     """
     if out_shape is None:
-        out_shape = img.shape[-3:-1] if len(img.shape == 4) else img.shape[:-1]
-    if len(img.shape == 3):
+        out_shape = img.shape[-3:-1] if len(img.shape) == 4 else img.shape[:-1]
+    if len(img.shape) == 3:
         return cv2.warpPerspective(img, H, dsize=out_shape)
     else:
         if img.shape[0] != H.shape[0]:
@@ -223,6 +229,39 @@ def warp_image_cv(img, H, out_shape=None):
         for img_, H_ in zip(img, H):
             out_img.append(cv2.warpPerspective(img_, H_, dsize=out_shape))
         return np.array(out_img)
+
+
+def warp_point(pts, homography, method="cv"):
+    return (
+        warp_point_cv(pts, homography)
+        if method == "cv"
+        else warp_point_torch(pts, homography)
+    )
+
+
+def warp_point_cv(pts, homography):
+    dst = cv2.perspectiveTransform(np.array(pts).reshape(-1, 1, 2), homography)
+    return dst[0][0]
+
+
+def warp_point_torch(pts, homography):
+    img_test = np.zeros((320, 320, 3))
+    dir_ = [0, -1, 1, -2, 2, 3, -3]
+    for dir_x in dir_:
+        for dir_y in dir_:
+            to_add_x = min(max(0, pts[0] + dir_x), 319)
+            to_add_y = min(max(0, pts[1] + dir_y), 319)
+            for i in range(3):
+                img_test[to_add_y, to_add_x, i] = 1.0
+
+    pred_warp = warp_image(
+        np_img_to_torch_img(img_test), to_torch(homography), method="torch"
+    )
+    pred_warp = torch_img_to_np_img(pred_warp[0])
+    indx = np.argwhere(pred_warp[:, :, 0] > 0.8)
+    x, y = indx[:, 0].mean(), indx[:, 1].mean()
+    dst = np.array([y, x])
+    return dst
 
 
 def get_default_corners(batch_size):

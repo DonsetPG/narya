@@ -5,6 +5,7 @@ from __future__ import print_function
 import numpy as np
 import math
 import matplotlib.patheffects as path_effects
+import cv2
 
 from matplotlib import pyplot as plt
 from matplotlib.patches import Ellipse
@@ -19,6 +20,15 @@ from shapely.geometry import Polygon
 
 from moviepy import editor as mpy
 from moviepy.video.io.bindings import mplfig_to_npimage
+
+"""
+
+Football field vizualization function cloned from https://github.com/Friends-of-Tracking-Data-FoTD
+with some minor modifications to:
+    * add velocity vectors 
+    * ball and possession markers
+
+"""
 
 X_SIZE = 105
 Y_SIZE = 68
@@ -472,3 +482,77 @@ def add_edg_to_fig(fig, ax, edg_map, vmin=None, vmax=None):
     cbar = plt.colorbar(ax)
     cbar.set_label("Value")
     return fig, ax, edg_map
+
+
+def get_color(idx):
+    idx = idx * 3
+    color = ((17 * idx) % 255, (37 * idx) % 255, (29 * idx) % 255)
+
+    return color
+
+
+def plot_tracking(image, tlwhs, obj_ids, scores=None, frame_id=0, fps=0.0, ids2=None):
+    im = np.ascontiguousarray(np.copy(image))
+    im_h, im_w = im.shape[:2]
+
+    text_scale = max(1, image.shape[1] / 1600.0)
+    text_thickness = 1 if text_scale > 1.1 else 1
+    line_thickness = max(1, int(image.shape[1] / 500.0))
+
+    radius = max(5, int(im_w / 140.0))
+    cv2.putText(
+        im,
+        "frame: %d fps: %.2f num: %d" % (frame_id, fps, len(tlwhs)),
+        (0, int(15 * text_scale)),
+        cv2.FONT_HERSHEY_PLAIN,
+        text_scale,
+        (0, 0, 255),
+        thickness=2,
+    )
+
+    for i, tlwh in enumerate(tlwhs):
+        x1, y1, w, h = tlwh
+        intbox = tuple(map(int, (x1, y1, x1 + w, y1 + h)))
+        obj_id = int(obj_ids[i])
+        id_text = "{}".format(int(obj_id))
+        if ids2 is not None:
+            id_text = id_text + ", {}".format(int(ids2[i]))
+        _line_thickness = 1 if obj_id <= 0 else line_thickness
+        color = get_color(abs(obj_id))
+        cv2.rectangle(
+            im, intbox[0:2], intbox[2:4], color=color, thickness=line_thickness
+        )
+        cv2.putText(
+            im,
+            id_text,
+            (intbox[0], intbox[1] + 30),
+            cv2.FONT_HERSHEY_PLAIN,
+            text_scale,
+            (0, 0, 255),
+            thickness=text_thickness,
+        )
+    return im
+
+
+def rgb_template_to_coord_conv_template(rgb_template):
+    assert isinstance(rgb_template, np.ndarray)
+    assert rgb_template.min() >= 0.0
+    assert rgb_template.max() <= 1.0
+    rgb_template = np.mean(rgb_template, 2)
+    x_coord, y_coord = np.meshgrid(
+        np.linspace(0, 1, num=rgb_template.shape[1]),
+        np.linspace(0, 1, num=rgb_template.shape[0]),
+    )
+    coord_conv_template = np.stack((rgb_template, x_coord, y_coord), axis=2)
+    return coord_conv_template
+
+
+def merge_template(img, warped_template):
+    valid_index = warped_template[:, :, 0] > 0.0
+    overlay = (
+        img[valid_index].astype("float32")
+        + warped_template[valid_index].astype("float32")
+    ) / 2
+    new_image = np.copy(img)
+    new_image[valid_index] = overlay
+    return new_image

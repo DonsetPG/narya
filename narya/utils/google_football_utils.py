@@ -132,7 +132,7 @@ def _build_obs_stacked(tab, i):
 
 
 # For each play, we add to ball coordinates at each frame and for each player :
-def _add_ball_coordinates(dataframe: pd.DataFrame) -> pd.DataFrame:
+def _add_ball_coordinates(dataframe: pd.DataFrame, id_ball=-1) -> pd.DataFrame:
     """ Adds the ball coordinates at each row
     Arguments:
       dataframe: pd.DataFrame with player tracking data
@@ -145,7 +145,7 @@ def _add_ball_coordinates(dataframe: pd.DataFrame) -> pd.DataFrame:
     # First, a function to compute this for one play at a time :
     def _add_coord(df):
         # Getting the balls infos:
-        df_ball = df[df["edgecolor"] == 0]
+        df_ball = df[df["id"] == id_ball]
 
         df_ball = df_ball[["frame", "x", "y", "z"]]
         df_ball.rename(
@@ -173,7 +173,7 @@ def _add_ball_coordinates(dataframe: pd.DataFrame) -> pd.DataFrame:
 
 
 # We now add a boolean to mark the possession of the ball by a player
-def _add_possession(dataframe: pd.DataFrame) -> pd.DataFrame:
+def _add_possession(dataframe: pd.DataFrame, indx_color=4) -> pd.DataFrame:
     """Add a boolean to mark which player has the ball
     Arguments:
       dataframe: pd.DataFrame with player tracking data
@@ -188,12 +188,50 @@ def _add_possession(dataframe: pd.DataFrame) -> pd.DataFrame:
     for line in tab:
         # Not ocmputing for the ball :
         if line[4] != 0:
-            if (line[8] - line[11]) ** 2 + (line[9] - line[12]) ** 2 < 1:
+            if (line[8] - line[11]) ** 2 + (line[9] - line[12]) ** 2 < 2:
                 line[-1] = True
                 # Test to display later :
-                line[4] = "black"
+                line[indx_color] = "black"
 
     dataframe = pd.DataFrame(tab, columns=columns)
+    return dataframe
+
+
+def _prepare_dataset(
+    dataframe: pd.DataFrame, bgcolor_mapping, team_mapping, ball_mapping
+) -> pd.DataFrame:
+    dataframe["bgcolor"] = dataframe["id"]
+    dataframe["bgcolor"] = dataframe["bgcolor"].replace(bgcolor_mapping)
+    dataframe["team"] = dataframe["id"]
+    dataframe["team"] = dataframe["team"].replace(team_mapping)
+    dataframe["id"] = dataframe["id"].replace(ball_mapping)
+    dataframe["player"] = dataframe["player"].replace(ball_mapping)
+    dataframe["dx"] = 0
+    dataframe["dy"] = 0
+    dataframe["z"] = 0
+    dataframe["ball_z"] = 0
+    dataframe["play"] = "RM_VS_BARCA_BUT_3"
+    dataframe = dataframe.drop(columns=["index", "id"])
+
+    ordered_cols = [
+        "bgcolor",
+        "dx",
+        "dy",
+        "edgecolor",
+        "player",
+        "player_num",
+        "team",
+        "x",
+        "y",
+        "z",
+        "ball_x",
+        "ball_y",
+        "ball_z",
+        "play",
+        "possession",
+    ]
+
+    dataframe = dataframe[ordered_cols]
     return dataframe
 
 
@@ -268,7 +306,7 @@ def _save_data(df, filename):
                 dx, dy = next_ball_x - ball_x, next_ball_y - ball_y
                 ball_z = line[13]
 
-                ball_position = [ball_x, ball_y, ball_z]
+                ball_position = [ball_x, ball_y, 0.0]
                 ball_velocity = [dx, dy, 0.0]
 
         for indx, line in enumerate(right_df.values):

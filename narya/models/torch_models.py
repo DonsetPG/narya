@@ -3,23 +3,16 @@ from __future__ import division
 from __future__ import print_function
 
 import mxnet as mx
-
+import numpy as np
 import torch.nn as nn
 import torch
+import cv2
 
 from torchvision import models
 
 from .torch_layers import ClassBlock
 from ..utils.utils import to_numpy
 from ..preprocessing.image import _build_reid_preprocessing
-
-#
-#
-#
-# hardcode la fonction de preprocessing
-# to_numpy a define
-#
-#
 
 
 class ft_net(nn.Module):
@@ -80,6 +73,7 @@ class ReIdModel:
         self.model = ft_net(class_num=class_num, pretrained=pretrained)
         self.input_shape = input_shape
         self.preprocessing = _build_reid_preprocessing(input_shape)
+        self.class_num = class_num
 
     def __call__(self, input_img):
 
@@ -101,3 +95,21 @@ class ReIdModel:
                     weights_path, orig_weights
                 )
             )
+
+    def _get_embeddings(self, image, bbox, score, cid, score_tresh, input_shape):
+        nb_samples = bbox.shape[1]
+        id_feature = np.ones((1, nb_samples, self.class_num))
+        resized_image = cv2.resize(image, (512, 512))
+        for i in range(nb_samples):
+            x_1 = int(bbox[0][i][0])
+            y_1 = int(bbox[0][i][1])
+            x_2 = int(bbox[0][i][2])
+            y_2 = int(bbox[0][i][3])
+            player_img = resized_image[y_1:y_2, x_1:x_2]
+            valid_img = player_img.size > 0
+            if score[0][i][0] > 0.4 and valid_img:
+                embedding = self(player_img)[0]
+                id_feature[0][i] = embedding
+            else:
+                id_feature[0][i] = np.zeros((self.class_num,))
+        return id_feature
