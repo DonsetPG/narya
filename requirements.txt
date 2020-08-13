@@ -1,0 +1,8 @@
+tensorflow==2.2.0
+torch==1.5.0
+torchvision==0.6.0
+mxnet==1.6.0
+gluoncv==0.7.0
+Keras==2.3.1
+segmentation-models==1.0.1
+progressbar==3.47.0

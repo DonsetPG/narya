@@ -1,34 +1,120 @@
 # Narya
 
-The Narya API allows you to use a Google Football DRL agent to compute the value of football game. 
-At the moment, we provide the following : 
+The Narya API allows you track soccer player from camera inputs, and evaluate them with an Expected Discounted Goal (EDG) Agent. This repository contains the implementation of the [following paper](https://). We also make available all of our pretrained agents, and the datasets we used as well. 
 
-### EDG (Expected Discounted Goal):
+The goal of this repository is to allow anyone without any access to soccer data to produce its own and to analyse them with powerfull tools. We also hope that by releasing our training procedures and datasets, better models will emerge and make this tool better iteratively. 
 
-Tools: 
-  * Functions to compute the value of an action at a certain time, overtime, and EDG maps 
-  * Vizualisation tools
-  
-Data:
-  * Checkpoints from pre-trained agents 
-  * LastRow tracking data from Liverpool games
+# Installation
 
-### Avallone (Player and Event tracking):
+You can either install narya with pip: 
 
-WIP
+```pip3 install --user narya```
 
-## Setup 
+or from source:
 
-WIP
+```git clone && cd narya && python3 setup.py```
 
-## How to use it 
+## Player tracking: 
 
-We provide two notebooks in the /edg folder, to learn how to use an agent with tracking data. We will extend this base of notebooks overtime. 
-The main way to use this is to: 
-* Convert your tracking data to a google format, using the utils functions 
+The installed version is directly compatible with the player tracking models. However, it seems that some errors might occur with ```keras.load_model``` when the architecture of the model is contained in the .h5 file. In doubt, Python 3.7 is always working with our installation.
+
+## EDG: 
+
+As Google Football API is currently not supporting Tensorflow 2, you need to manually downgrade its version in order to use our EDG agent: 
+
+```pip3 install tensorflow==1.13.1```
+```pip3 install tensorflow_probability==0.5.0```
+
+### Models & Datasets:
+
+The models will be downloaded automatically with the library. If needed, they can be access at the end of the readme. The datasets are also available below.
+
+# Tracking Players Models:
+
+Each model can be accessed on its own, or you can use the full tracking itself.
+
+## Single Model 
+
+Each pretrained model is built on the same architecture to allow for the easier utilisation possible: you import it, and you use it. The processing function, or different frameworks, are handled internaly.
+
+Let's import an image:
+
+```
+import numpy as np
+import cv2
+image = cv2.imread('test_image.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+```
+
+Now, let's create our models:
 
 ```python3
-data_google = utils._save_data(df,'test_temo.dump')
+from narya.models.keras_models import DeepHomoModel
+from narya.models.keras_models import KeypointDetectorModel
+from narya.models.gluon_models import TrackerModel
+
+direct_homography_model = DeepHomoModel()
+
+keypoint_model = KeypointDetectorModel(
+    backbone='efficientnetb3', num_classes=29, input_shape=(320, 320),
+)
+
+tracking_model = TrackerModel(pretrained=True, backbone='ssd_512_resnet50_v1_coco')
+```
+
+We can now directly make predictions: 
+
+```
+homography_1 = direct_homography_model(image)
+keypoints_masks = keypoint_model(image)
+cid, score, bbox = tracking_model(image)
+```
+
+### Processing: 
+
+We can now vizualise or use each of this predictions.
+For example, visualize the predicted keypoints: 
+
+```
+from narya.utils.vizualization import visualize
+visualize(
+        image=denormalize(image.squeeze()),
+        pr_mask=keypoints_masks[..., -1].squeeze(),
+    )
+```
+
+## Full Tracker: 
+
+Given a list of images, one can easily apply our tracking algorithm: 
+
+```
+from narya.tracker.full_tracker import FootballTracker
+```
+
+This tracker contains the 3 models seen above, and the tracking/ReIdentification model. 
+You can create it by specifying your frame rate, and the size of the memory frames buffer:
+
+```
+tracker = FootballTracker(frame_rate=24.7,track_buffer = 60)
+```
+
+Given a list of image, the full tracking is computed using:
+
+```
+trajectories = tracker(img_list,split_size = 512, save_tracking_folder = 'test_tracking/',
+                        template = template,skip_homo = None)
+```
+
+We also built post processing functions to handle the mistakes the tracker can make, and also visualization tools to plot the data.
+
+# EDG:
+
+The best way to use our EDG agent is to first convert your tracking data to a google format, using the utils functions: 
+
+```python3
+from narya.utils.google_football_utils import _save_data, _build_obs_stacked
+
+data_google = _save_data(df,'test_temo.dump')
 observations = {
     'frame_count':[],
     'obs':[],
@@ -36,48 +122,58 @@ observations = {
     'value':[]
 }
 for i in range(len(data_google)):
-    obs,obs_count = utils._build_obs_stacked(data_google,i)
+    obs,obs_count = _build_obs_stacked(data_google,i)
     observations['frame_count'].append(i)
     observations['obs'].append(obs)
     observations['obs_count'].append(obs_count)
 ```
-* Use an agent 
+
+You can now easily load a pretrained agent, and use it to get the value of any action with:
 
 ```python3
+from narya.analytics.edg_agent import AgentValue
+
 agent = AgentValue(checkpoints = checkpoints)
 value = agent.get_value([obs])
 ```
 
-to compute the value of an action. 
+## Processing:
 
-### The google format :
+You can use these values to plot the value of an action, or plot map of values at a given time.
+You can use: 
 
-The agent takes the tracking data in a very particular format : 
-
-```
-The observation is composed of 4 planes of size 'channel_dimensions'.
-Its size is then 'channel_dimensions'x4 (or 'channel_dimensions'x16 when
-stacked is True).
-The first plane P holds the position of players on the left
-team, P[y,x] is 255 if there is a player at position (x,y), otherwise,
-its value is 0.
-The second plane holds in the same way the position of players
-on the right team.
-The third plane holds the position of the ball.
-The last plane holds the active player.
+```python3 
+add example
 ```
 
-To convert them, you need to place your coordinates in a (-1,-1) - (1,1) format, and then place them in the frames mentioned above. At the moment, we provide such transcription only from the LastRow tracking data format.
+# Open Source
 
-## In the future 
+Our goal with this project was to both build a powerful tool to analyse soccer plays. This led us to build a soccer player tracking model on top of it. We hope that by releasing our codes, weights, and datasets, more people will be able to perform amazing projects related to soccer/sport analysis.
 
-* We plan to add transcription method from other tracking data format. 
-* We will also extend this project with open source models to compute the tracking data directly from video stream.
-* While the agents are trained purely against bots or with selfplay, we will release methods to fine tune the agent with real world data (tracking data as inputs, events data as actions). Thanks to this, the agents will be able to model much better real players.
-* We will add checkpoints for multi-agent models. 
+If you find any bug, please open an issue. If you see any improvements, or trained a model you want to share, please open a pull request!
 
 # Thanks
 
-A special thanks to [Last Row](https://twitter.com/lastrowview), for providing some tracking data, and to [Soccermatics](https://twitter.com/Soccermatics) for providing Vizualisation tools (and some motivation to start this project).
+A special thanks to [Last Row](https://twitter.com/lastrowview), for providing some tracking data at the beginning, to try our agent, and to [Soccermatics](https://twitter.com/Soccermatics) for providing Vizualisation tools (and some motivation to start this project).
+
+# Links:
+
+| Model                  | Description                               | Link                                                                        |
+|------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
+| 11_vs_11_selfplay_last | EDG agent                                 | https://storage.googleapis.com/narya-bucket-1/models/11_vs_11_selfplay_last |
+| deep_homo_model.h5     | Direct Homography estimation Architecture | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model.h5     |
+| deep_homo_model_1.h5   | Direct Homography estimation Weights      | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model_1.h5   |
+| keypoint_detector.h5   | Keypoints detection Weights               | https://storage.googleapis.com/narya-bucket-1/models/keypoint_detector.h5   |
+| player_reid.pth        | Player Embedding Weights                  | https://storage.googleapis.com/narya-bucket-1/models/player_reid.pth        |
+| player_tracker.params  | Player & Ball detection Weights           | https://storage.googleapis.com/narya-bucket-1/models/player_tracker.params  |
+
+The datasets can be downloaded at: 
+
+| Dataset                | Description                                                             | Link                                                                         |
+|------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| homography_dataset.zip | Homography Dataset (image,homography)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/homography_dataset.zip |
+| keypoints_dataset.zip  | Keypoint Dataset (image,list of mask)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/keypoints_dataset.zip  |
+| tracking_dataset.zip   | Tracking Dataset in VOC format (image, bounding boxes for players/ball) | https://storage.googleapis.com/narya-bucket-1/dataset/tracking_dataset.zip   |
+
 
 

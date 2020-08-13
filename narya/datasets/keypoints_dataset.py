@@ -17,8 +17,7 @@ from ..utils.utils import round_clip_0_1
 from ..utils.data import _parse_xml_file_keypoints
 from ..utils.masks import _build_mask, _flip_keypoint
 
-CLASSES = [str(i) for i in range(29)] + ["background"]
-
+CLASSES = [str(i) for i in range(29)]# + ["background"]
 
 class Dataset:
     """Class for a keypoint dataset. Allows to load pairs of image, keypoints, and
@@ -67,7 +66,7 @@ class Dataset:
             image = cv2.flip(image, 1)
             new_keypoints = {}
             for id_kp, v in six.iteritems(keypoints):
-                new_id_kp, x_kp, y_kp = _flip_keypoint(id_kp, v[0], v[1])
+                new_id_kp, x_kp, y_kp = _flip_keypoint(id_kp, min(v[0],image.shape[0]-1), min(v[1],image.shape[1]-1))
                 new_keypoints[new_id_kp] = (x_kp, y_kp)
             keypoints = new_keypoints
 
@@ -238,3 +237,5 @@ class KeyPointDatasetBuilder:
 
     def _get_dataloader(self):
         return self.train_dataloader, self.valid_dataloader
+
+

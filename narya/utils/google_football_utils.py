@@ -22,8 +22,8 @@ SMM_LAYERS = ["left_team", "right_team", "ball", "active"]
 # Normalized minimap coordinates
 MINIMAP_NORM_X_MIN = -1.0
 MINIMAP_NORM_X_MAX = 1.0
-MINIMAP_NORM_Y_MIN = -1.0 / 2.25
-MINIMAP_NORM_Y_MAX = 1.0 / 2.25
+MINIMAP_NORM_Y_MIN = -1.0 
+MINIMAP_NORM_Y_MAX = 1.0 
 
 _MARKER_VALUE = 255
 

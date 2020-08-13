@@ -9,7 +9,6 @@ import torch.nn as nn
 
 from torch.nn import init
 
-
 def weights_init_kaiming(m):
     """Torch Weights initializer"""
     classname = m.__class__.__name__
