@@ -4,6 +4,15 @@ The Narya API allows you track soccer player from camera inputs, and evaluate th
 
 The goal of this repository is to allow anyone without any access to soccer data to produce its own and to analyse them with powerfull tools. We also hope that by releasing our training procedures and datasets, better models will emerge and make this tool better iteratively. 
 
+We also built 4 notebooks to explain how to use our models: 
+
+- [Each tracking model](https://github.com/DonsetPG/narya/blob/master/models_examples.ipynb)
+- [Complete Tracker](https://github.com/DonsetPG/narya/blob/master/full-tracking.ipynb)
+- [EDG DRL Agent](https://github.com/DonsetPG/narya/blob/master/data-analysis.ipynb)
+- [Datasets and Training](https://github.com/DonsetPG/narya/blob/master/training.ipynb)
+
+We also released of blog post version of these notebooks [here](https://donsetpg.github.io/blog/2020/08/20/Narya/).
+
 # Installation
 
 You can either install narya with pip: 
