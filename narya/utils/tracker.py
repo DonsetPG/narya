@@ -81,8 +81,9 @@ def build_df_per_id(trajectories):
     Raises:
     """
     df_per_id = {}
+    full_trajectories = add_nan_trajectories(trajectories, max_frame=50)
     for ids in trajectories.keys():
-        x, y, frame = get_trajectory_from_id(ids)
+        x, y, frame = get_trajectory_from_id(full_trajectories,ids)
         results_ids = {"x": [], "y": [], "frame": []}
         for x_, y_, frame_ in zip(x, y, frame):
             results_ids["x"].append(x_)
@@ -92,7 +93,7 @@ def build_df_per_id(trajectories):
     return df_per_id
 
 
-def fill_nan_trajectories(df_per_id):
+def fill_nan_trajectories(df_per_id,window_size=21):
     """Fill each trajectory, and apply a savgol filter
     Arguments:
         df_per_id: dict mapping each id to a dataframe with its trajectory
@@ -111,8 +112,8 @@ def fill_nan_trajectories(df_per_id):
         test["y"] = test["y"].interpolate(
             method="pad", limit_direction="forward", limit_area="outside"
         )
-        test["x"] = savgol_filter(test["x"], 21, 3)
-        test["y"] = savgol_filter(test["y"], 21, 3)
+        test["x"] = savgol_filter(test["x"], window_size, 3) if len(test["x"]) > 3 else test["x"]
+        test["y"] = savgol_filter(test["y"], window_size, 3) if len(test["y"]) > 3 else test["y"]
         df_per_id[ids] = test
     return df_per_id
 

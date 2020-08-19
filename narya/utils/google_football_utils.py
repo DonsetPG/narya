@@ -22,11 +22,16 @@ SMM_LAYERS = ["left_team", "right_team", "ball", "active"]
 # Normalized minimap coordinates
 MINIMAP_NORM_X_MIN = -1.0
 MINIMAP_NORM_X_MAX = 1.0
-MINIMAP_NORM_Y_MIN = -1.0 
-MINIMAP_NORM_Y_MAX = 1.0 
+MINIMAP_NORM_Y_MIN = -1.0 / 2.25
+MINIMAP_NORM_Y_MAX = 1.0 / 2.25
 
 _MARKER_VALUE = 255
 
+SMM_WIDTH = 96
+SMM_HEIGHT = 72
+
+def _get_values():
+    return MINIMAP_NORM_Y_MIN
 
 def mark_points(frame, frame_cnt, points):
     """Draw dots corresponding to 'points'.
