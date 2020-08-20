@@ -11,7 +11,15 @@ We also built 4 notebooks to explain how to use our models:
 - [EDG DRL Agent](https://github.com/DonsetPG/narya/blob/master/data-analysis.ipynb)
 - [Datasets and Training](https://github.com/DonsetPG/narya/blob/master/training.ipynb)
 
-We also released of blog post version of these notebooks [here](https://donsetpg.github.io/blog/2020/08/20/Narya/).
+and released of blog post version of these notebooks [here](https://donsetpg.github.io/blog/2020/08/20/Narya/).
+
+We tried to make everything easy to reuse, we hope anyone will be able to:
+
+* Use our datasets to train other models
+* Finetune some of our trained models
+* Use our trackers
+* Evaluate players with our EDG Agent
+* and much more
 
 # Installation
 
@@ -152,8 +160,23 @@ You can use these values to plot the value of an action, or plot map of values a
 You can use: 
 
 ```python3 
-add example
+map_value = agent.get_edg_map(observations['obs'][20],observations['obs_count'][20],79,57,entity = 'ball')
 ```
+
+and
+
+```python3
+for indx,obs in enumerate(observations['obs']):
+    value = agent.get_value([obs])
+    observations['value'].append(value)
+df_dict = {
+    'frame_count':observations['frame_count'],
+    'value':observations['value']
+}
+df_ = pd.DataFrame(df_dict)
+```
+
+to compute an EDG map and the EDG overtime of an action.
 
 # Open Source
 
