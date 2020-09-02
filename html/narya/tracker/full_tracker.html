@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>narya.tracker.full_tracker API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>narya.tracker.full_tracker</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import mxnet as mx
+import numpy as np
+import progressbar
+import six
+
+from scipy.signal import savgol_filter
+
+from .homography_estimator import HomographyEstimator
+from .player_ball_tracker import PlayerBallTracker
+
+
+class FootballTracker:
+    &#34;&#34;&#34;Class for the full Football Tracker. Given a list of images, it allows to track and id each player as well as the ball.
+    It also computes the homography at each given frame, and apply it to each player coordinates. 
+
+    Arguments:
+        pretrained: Boolean, if the homography and tracking models should be pretrained with our weights or not.
+        weights_homo: Path to weight for the homography model
+        weights_keypoints: Path to weight for the keypoints model
+        shape_in: Shape of the input image
+        shape_out: Shape of the ouput image
+        conf_tresh: Confidence treshold to keep tracked bouding boxes
+        track_buffer: Number of frame to keep in memory for tracking reIdentification
+        K: Number of boxes to keep at each frames
+        frame_rate: -
+    Call arguments:
+        imgs: List of np.array (images) to track
+        split_size: if None, apply the tracking model to the full image. If its an int, the image shape must be divisible by this int.
+                    We then split the image to create n smaller images of shape (split_size,split_size), and apply the model
+                    to those.
+                    We then reconstruct the full images and the full predictions.
+        results: list of previous results, to resume tracking
+        begin_frame: int, starting frame, if you want to resume tracking 
+        verbose: Boolean, to display tracking at each frame or not
+        save_tracking_folder: Foler to save the tracking images
+        template: Football field, to warp it with the computed homographies on to the saved images
+        skip_homo: List of int. e.g.: [4,10] will not compute homography for frame 4 and 10, and reuse the computed homography
+                    at frame 3 and 9.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        pretrained=True,
+        weights_homo=None,
+        weights_keypoints=None,
+        shape_in=512.0,
+        shape_out=320.0,
+        conf_tresh=0.5,
+        track_buffer=30,
+        K=100,
+        frame_rate=30,
+    ):
+
+        self.player_ball_tracker = PlayerBallTracker(
+            conf_tresh=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate
+        )
+
+        self.homo_estimator = HomographyEstimator(
+            pretrained=pretrained,
+            weights_homo=weights_homo,
+            weights_keypoints=weights_keypoints,
+            shape_in=shape_in,
+            shape_out=shape_out,
+        )
+
+    def __call__(
+        self,
+        imgs,
+        split_size=None,
+        results=[],
+        begin_frame=0,
+        verbose=True,
+        save_tracking_folder=None,
+        template=None,
+        skip_homo=[],
+    ):
+
+        frame_to_homo = {}
+        pred_homo, method = np.ones((3, 3)), &#34;cv&#34;
+        for indx, input_img in progressbar.progressbar(enumerate(imgs)):
+            if indx in skip_homo:
+                frame_to_homo[indx + 1] = (pred_homo, method)
+            else:
+                pred_homo, method = self.homo_estimator(input_img)
+                frame_to_homo[indx + 1] = (pred_homo, method)
+
+        results, frame_id = self.player_ball_tracker.get_tracking(
+            imgs,
+            results=results,
+            begin_frame=begin_frame,
+            verbose=verbose,
+            split_size=split_size,
+            save_tracking_folder=save_tracking_folder,
+            template=template,
+            frame_to_homo=frame_to_homo,
+        )
+
+        last_known_pos = {}
+        trajectories = {}
+        for result in progressbar.progressbar(results):
+            frame, bboxes, id_entities = result[0], result[1], result[2]
+            pred_homo, method = frame_to_homo[frame]
+
+            for bbox, id_entity in zip(bboxes, id_entities):
+                dst = self.homo_estimator.get_field_coordinates(bbox, pred_homo, method)
+                if np.isnan(dst[0]) or np.isnan(dst[1]):
+                    if id_entity in last_known_pos.keys():
+                        dst = last_known_pos[id_entity]
+                    else:
+                        dst = None
+                if dst is not None:
+                    last_known_pos[id_entity] = [dst[0], dst[1]]
+                    if id_entity in trajectories.keys():
+                        trajectories[id_entity].append((dst[0], dst[1], frame))
+                    else:
+                        trajectories[id_entity] = [(dst[0], dst[1], frame)]
+
+        return trajectories</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="narya.tracker.full_tracker.FootballTracker"><code class="flex name class">
+<span>class <span class="ident">FootballTracker</span></span>
+<span>(</span><span>pretrained=True, weights_homo=None, weights_keypoints=None, shape_in=512.0, shape_out=320.0, conf_tresh=0.5, track_buffer=30, K=100, frame_rate=30)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class for the full Football Tracker. Given a list of images, it allows to track and id each player as well as the ball.
+It also computes the homography at each given frame, and apply it to each player coordinates. </p>
+<h2 id="arguments">Arguments</h2>
+<p>pretrained: Boolean, if the homography and tracking models should be pretrained with our weights or not.
+weights_homo: Path to weight for the homography model
+weights_keypoints: Path to weight for the keypoints model
+shape_in: Shape of the input image
+shape_out: Shape of the ouput image
+conf_tresh: Confidence treshold to keep tracked bouding boxes
+track_buffer: Number of frame to keep in memory for tracking reIdentification
+K: Number of boxes to keep at each frames
+frame_rate: -
+Call arguments:
+imgs: List of np.array (images) to track
+split_size: if None, apply the tracking model to the full image. If its an int, the image shape must be divisible by this int.
+We then split the image to create n smaller images of shape (split_size,split_size), and apply the model
+to those.
+We then reconstruct the full images and the full predictions.
+results: list of previous results, to resume tracking
+begin_frame: int, starting frame, if you want to resume tracking
+verbose: Boolean, to display tracking at each frame or not
+save_tracking_folder: Foler to save the tracking images
+template: Football field, to warp it with the computed homographies on to the saved images
+skip_homo: List of int. e.g.: [4,10] will not compute homography for frame 4 and 10, and reuse the computed homography
+at frame 3 and 9.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FootballTracker:
+    &#34;&#34;&#34;Class for the full Football Tracker. Given a list of images, it allows to track and id each player as well as the ball.
+    It also computes the homography at each given frame, and apply it to each player coordinates. 
+
+    Arguments:
+        pretrained: Boolean, if the homography and tracking models should be pretrained with our weights or not.
+        weights_homo: Path to weight for the homography model
+        weights_keypoints: Path to weight for the keypoints model
+        shape_in: Shape of the input image
+        shape_out: Shape of the ouput image
+        conf_tresh: Confidence treshold to keep tracked bouding boxes
+        track_buffer: Number of frame to keep in memory for tracking reIdentification
+        K: Number of boxes to keep at each frames
+        frame_rate: -
+    Call arguments:
+        imgs: List of np.array (images) to track
+        split_size: if None, apply the tracking model to the full image. If its an int, the image shape must be divisible by this int.
+                    We then split the image to create n smaller images of shape (split_size,split_size), and apply the model
+                    to those.
+                    We then reconstruct the full images and the full predictions.
+        results: list of previous results, to resume tracking
+        begin_frame: int, starting frame, if you want to resume tracking 
+        verbose: Boolean, to display tracking at each frame or not
+        save_tracking_folder: Foler to save the tracking images
+        template: Football field, to warp it with the computed homographies on to the saved images
+        skip_homo: List of int. e.g.: [4,10] will not compute homography for frame 4 and 10, and reuse the computed homography
+                    at frame 3 and 9.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        pretrained=True,
+        weights_homo=None,
+        weights_keypoints=None,
+        shape_in=512.0,
+        shape_out=320.0,
+        conf_tresh=0.5,
+        track_buffer=30,
+        K=100,
+        frame_rate=30,
+    ):
+
+        self.player_ball_tracker = PlayerBallTracker(
+            conf_tresh=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate
+        )
+
+        self.homo_estimator = HomographyEstimator(
+            pretrained=pretrained,
+            weights_homo=weights_homo,
+            weights_keypoints=weights_keypoints,
+            shape_in=shape_in,
+            shape_out=shape_out,
+        )
+
+    def __call__(
+        self,
+        imgs,
+        split_size=None,
+        results=[],
+        begin_frame=0,
+        verbose=True,
+        save_tracking_folder=None,
+        template=None,
+        skip_homo=[],
+    ):
+
+        frame_to_homo = {}
+        pred_homo, method = np.ones((3, 3)), &#34;cv&#34;
+        for indx, input_img in progressbar.progressbar(enumerate(imgs)):
+            if indx in skip_homo:
+                frame_to_homo[indx + 1] = (pred_homo, method)
+            else:
+                pred_homo, method = self.homo_estimator(input_img)
+                frame_to_homo[indx + 1] = (pred_homo, method)
+
+        results, frame_id = self.player_ball_tracker.get_tracking(
+            imgs,
+            results=results,
+            begin_frame=begin_frame,
+            verbose=verbose,
+            split_size=split_size,
+            save_tracking_folder=save_tracking_folder,
+            template=template,
+            frame_to_homo=frame_to_homo,
+        )
+
+        last_known_pos = {}
+        trajectories = {}
+        for result in progressbar.progressbar(results):
+            frame, bboxes, id_entities = result[0], result[1], result[2]
+            pred_homo, method = frame_to_homo[frame]
+
+            for bbox, id_entity in zip(bboxes, id_entities):
+                dst = self.homo_estimator.get_field_coordinates(bbox, pred_homo, method)
+                if np.isnan(dst[0]) or np.isnan(dst[1]):
+                    if id_entity in last_known_pos.keys():
+                        dst = last_known_pos[id_entity]
+                    else:
+                        dst = None
+                if dst is not None:
+                    last_known_pos[id_entity] = [dst[0], dst[1]]
+                    if id_entity in trajectories.keys():
+                        trajectories[id_entity].append((dst[0], dst[1], frame))
+                    else:
+                        trajectories[id_entity] = [(dst[0], dst[1], frame)]
+
+        return trajectories</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="narya.tracker" href="index.html">narya.tracker</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="narya.tracker.full_tracker.FootballTracker" href="#narya.tracker.full_tracker.FootballTracker">FootballTracker</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>

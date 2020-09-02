@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>narya.utils.tracker API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>narya.utils.tracker</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import mxnet as mx
+from scipy.signal import savgol_filter
+import pandas as pd
+import numpy as np
+
+
+def add_nan_trajectories(trajectories, max_frame):
+    &#34;&#34;&#34;Add np.nan to frame where the x,y coordinates are missing
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+        max_frame: Max number of frame
+    Returns:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+    Raises:
+    &#34;&#34;&#34;
+    frame_range = [i for i in range(1, max_frame)]
+    full_trajectories = {}
+    for ids in trajectories.keys():
+        traj = trajectories[ids]
+        full_trajectories[ids] = []
+        cnt = 0
+        for x_, y_, frame_ in traj:
+            if cnt == 0:
+                full_trajectories[ids].append([x_, y_, frame_])
+                last_x, last_y, last_frame = x_, y_, frame_
+                cnt += 1
+            else:
+                nb_fake_data_to_add = frame_ - last_frame
+                for i in range(nb_fake_data_to_add - 1):
+                    full_trajectories[ids].append([np.nan, np.nan, last_frame + i + 1])
+                full_trajectories[ids].append([x_, y_, frame_])
+                last_x, last_y, last_frame = x_, y_, frame_
+                cnt += 1
+        last_frame = frame_
+        if last_frame &lt; frame_range[-1]:
+            for i in range(last_frame + 1, frame_range[-1] + 1):
+                full_trajectories[ids].append([np.nan, np.nan, i])
+        return full_trajectories
+
+
+def get_trajectory_from_id(trajectories, id_):
+    &#34;&#34;&#34;Get the trajectory of an id, and map them to lastRow data format.
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+        id_: the id of the trajectory we want
+    Returns:
+        x,y, frames: List of x,y coordinates with frames
+    Raises:
+    &#34;&#34;&#34;
+    tab = trajectories[id_]
+    x = []
+    y = []
+    frames = []
+    for data_points in tab:
+        x_, y_, fr = data_points[0], data_points[1], data_points[2]
+        if np.isnan(x_):
+            x.append(x_)
+            y.append(y_)
+        else:
+            new_x = x_ * (100.0 / 320.0)
+            new_y = y_ * (100.0 / 320.0)
+            new_y = 100.0 - new_y
+
+            x.append(new_x)
+            y.append(new_y)
+        frames.append(fr)
+
+    return x, y, frames
+
+
+def build_df_per_id(trajectories):
+    &#34;&#34;&#34;Build one dataframe per id
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+    Returns:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Raises:
+    &#34;&#34;&#34;
+    df_per_id = {}
+    full_trajectories = add_nan_trajectories(trajectories, max_frame=50)
+    for ids in trajectories.keys():
+        x, y, frame = get_trajectory_from_id(full_trajectories,ids)
+        results_ids = {&#34;x&#34;: [], &#34;y&#34;: [], &#34;frame&#34;: []}
+        for x_, y_, frame_ in zip(x, y, frame):
+            results_ids[&#34;x&#34;].append(x_)
+            results_ids[&#34;y&#34;].append(y_)
+            results_ids[&#34;frame&#34;].append(frame_)
+        df_per_id[int(ids)] = pd.DataFrame(results_ids)
+    return df_per_id
+
+
+def fill_nan_trajectories(df_per_id,window_size=21):
+    &#34;&#34;&#34;Fill each trajectory, and apply a savgol filter
+    Arguments:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Returns:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Raises:
+    &#34;&#34;&#34;
+    for ids in df_per_id.keys():
+        df_id = df_per_id[ids]
+        test = df_id.set_index(&#34;frame&#34;)
+        test[&#34;x&#34;] = test[&#34;x&#34;].interpolate(method=&#34;slinear&#34;, limit_direction=&#34;both&#34;)
+        test[&#34;y&#34;] = test[&#34;y&#34;].interpolate(method=&#34;slinear&#34;, limit_direction=&#34;both&#34;)
+        test[&#34;x&#34;] = test[&#34;x&#34;].interpolate(
+            method=&#34;pad&#34;, limit_direction=&#34;forward&#34;, limit_area=&#34;outside&#34;
+        )
+        test[&#34;y&#34;] = test[&#34;y&#34;].interpolate(
+            method=&#34;pad&#34;, limit_direction=&#34;forward&#34;, limit_area=&#34;outside&#34;
+        )
+        test[&#34;x&#34;] = savgol_filter(test[&#34;x&#34;], window_size, 3) if len(test[&#34;x&#34;]) &gt; 3 else test[&#34;x&#34;]
+        test[&#34;y&#34;] = savgol_filter(test[&#34;y&#34;], window_size, 3) if len(test[&#34;y&#34;]) &gt; 3 else test[&#34;y&#34;]
+        df_per_id[ids] = test
+    return df_per_id
+
+
+def get_full_results(df_per_id):
+    &#34;&#34;&#34;Build a dataframe of tracking data, in the same format as Last Row
+    Arguments:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Returns:
+        full_results: A dataframe with each coordinates at each frame
+    Raises:
+    &#34;&#34;&#34;
+    full_results = {&#34;frame&#34;: [], &#34;id&#34;: [], &#34;x&#34;: [], &#34;y&#34;: []}
+    for ids in df_per_id.keys():
+        df_id = df_per_id[ids].reset_index()
+        for line in df_id.values:
+            full_results[&#34;frame&#34;].append(int(line[0]))
+            full_results[&#34;x&#34;].append(line[1])
+            full_results[&#34;y&#34;].append(line[2])
+            full_results[&#34;id&#34;].append(ids)
+    return pd.DataFrame(full_results).set_index(&#34;frame&#34;)
+
+
+def _get_max_id(traj):
+    &#34;&#34;&#34;Get the biggest id within a trajectory
+    &#34;&#34;&#34;
+    return max([int(ids) for ids in traj.keys()])
+
+
+def _remove_coords(traj, ids, frame):
+    &#34;&#34;&#34;Remove the x,y coordinates of an id at a given frame
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        ids: the id to target
+        frame: int, the frame we want to remove
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    new_traj = []
+    for data_points in traj[ids]:
+        if data_points[2] != frame:
+            new_traj.append(data_points)
+    traj[ids] = new_traj
+    return traj
+
+
+def _remove_ids(traj, list_ids):
+    &#34;&#34;&#34;Remove ids from a trajectory
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        list_ids: List of id
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    for t in list_ids:
+        traj.pop(t, None)
+    return traj
+
+
+def add_entity(traj, entity_id, entity_traj):
+    &#34;&#34;&#34;Adds a new id with a trajectory 
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        entity_id: the id to add
+        entity_traj: the trajectory linked to entity_id we want to add
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    assert (
+        entity_id not in traj.keys()
+    ), &#34;This id is already present in the trajectory, find another one&#34;
+    traj[entity_id] = entity_traj
+    return traj
+
+
+def add_entity_coords(traj, entity_id, entity_traj, max_frame):
+    &#34;&#34;&#34;Add some coordinates to the trajectory of a given id
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        entity_id: the id to target
+        entity_traj: List of (x,y,frame) to add to the trajectory of entity_id
+        max_frame: int, the maximum number of frame in trajectories
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    # entity_traj with shape list of (x,y,frame)
+    assert entity_id in traj.keys(), &#34;This id is not present in the trajectory&#34;
+
+    traj_to_add = {frame: [x, y] for x, y, frame in entity_traj}
+
+    traj_ = {
+        data_point[2]: [data_point[0], data_point[1]] for data_point in traj[entity_id]
+    }
+
+    temp_traj = []
+    for frame in range(1, max_frame):
+        if frame in traj_to_add.keys():
+            temp_traj.append([traj_to_add[frame][0], traj_to_add[frame][1], frame])
+        elif frame in traj_.keys():
+            temp_traj.append([traj_[frame][0], traj_[frame][1], frame])
+
+    traj[entity_id] = temp_traj
+    return traj
+
+
+def merge_id(traj, list_ids_frame):
+    &#34;&#34;&#34;Merge trajectories of different ids. 
+    e.g.: (10,0,110),(12,110,300) will merge the trajectory of 10 between frame 0 and 110 to the 
+        trajectory of 12 between frame 110 and 300.
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        list_ids_frame: List of (id,frame_start,frame_end)
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    # list_ids: sort by order of appearance
+    # with the shape : list of (id,frame_start,frame_end)
+    new_traj = []
+    for ids, frame_start, frame_end in list_ids_frame:
+        for data_points in traj[ids]:
+            x, y, frame = data_points[0], data_points[1], data_points[2]
+            if frame &gt;= frame_start and frame &lt; frame_end:
+                new_traj.append([x, y, frame])
+    for ids, _, _ in list_ids_frame:
+        traj.pop(ids, None)
+    traj[list_ids_frame[0][0]] = new_traj
+    return traj
+
+
+def merge_2_trajectories(traj1, traj2, id_mapper, max_frame_traj1):
+    &#34;&#34;&#34;Merge 2 dict of trajectories, if you want to merge the results of 2 tracking
+    Arguments:
+        traj1: Dict mapping each id to a list of trajectory
+        traj2: Dict mapping each id to a list of trajectory
+        id_mapper: A dict mapping each id in traj1 to id in traj2
+        max_frame_traj1: Maximum number of frame in the first trajectory
+    Returns:
+        traj1: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    for id_1 in id_mapper.keys():
+        id_2 = id_mapper[id_1]
+        traj_id1 = traj1[id_1]
+        traj_id2 = traj2[id_2]
+        for data_points in traj_id2:
+            x, y, frame = data_points[0], data_points[1], data_points[2]
+            frame += max_frame_traj1
+            traj_id1.append([x, y, frame])
+    for id_2 in traj2.keys():
+        if id_2 not in traj1.keys():
+            traj_id2 = traj2[id_2]
+            new_traj = []
+            for data_points in traj_id2:
+                x, y, frame = data_points[0], data_points[1], data_points[2]
+                frame += max_frame_traj1
+                new_traj.append([x, y, frame])
+            traj1[id_2] = new_traj
+    return traj1</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="narya.utils.tracker.add_entity"><code class="name flex">
+<span>def <span class="ident">add_entity</span></span>(<span>traj, entity_id, entity_traj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds a new id with a trajectory </p>
+<h2 id="arguments">Arguments</h2>
+<p>traj: Dict mapping each id to a list of trajectory
+entity_id: the id to add
+entity_traj: the trajectory linked to entity_id we want to add</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>traj</code></dt>
+<dd>Dict mapping each id to a list of trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_entity(traj, entity_id, entity_traj):
+    &#34;&#34;&#34;Adds a new id with a trajectory 
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        entity_id: the id to add
+        entity_traj: the trajectory linked to entity_id we want to add
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    assert (
+        entity_id not in traj.keys()
+    ), &#34;This id is already present in the trajectory, find another one&#34;
+    traj[entity_id] = entity_traj
+    return traj</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.add_entity_coords"><code class="name flex">
+<span>def <span class="ident">add_entity_coords</span></span>(<span>traj, entity_id, entity_traj, max_frame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add some coordinates to the trajectory of a given id</p>
+<h2 id="arguments">Arguments</h2>
+<p>traj: Dict mapping each id to a list of trajectory
+entity_id: the id to target
+entity_traj: List of (x,y,frame) to add to the trajectory of entity_id
+max_frame: int, the maximum number of frame in trajectories</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>traj</code></dt>
+<dd>Dict mapping each id to a list of trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_entity_coords(traj, entity_id, entity_traj, max_frame):
+    &#34;&#34;&#34;Add some coordinates to the trajectory of a given id
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        entity_id: the id to target
+        entity_traj: List of (x,y,frame) to add to the trajectory of entity_id
+        max_frame: int, the maximum number of frame in trajectories
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    # entity_traj with shape list of (x,y,frame)
+    assert entity_id in traj.keys(), &#34;This id is not present in the trajectory&#34;
+
+    traj_to_add = {frame: [x, y] for x, y, frame in entity_traj}
+
+    traj_ = {
+        data_point[2]: [data_point[0], data_point[1]] for data_point in traj[entity_id]
+    }
+
+    temp_traj = []
+    for frame in range(1, max_frame):
+        if frame in traj_to_add.keys():
+            temp_traj.append([traj_to_add[frame][0], traj_to_add[frame][1], frame])
+        elif frame in traj_.keys():
+            temp_traj.append([traj_[frame][0], traj_[frame][1], frame])
+
+    traj[entity_id] = temp_traj
+    return traj</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.add_nan_trajectories"><code class="name flex">
+<span>def <span class="ident">add_nan_trajectories</span></span>(<span>trajectories, max_frame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add np.nan to frame where the x,y coordinates are missing</p>
+<h2 id="arguments">Arguments</h2>
+<p>trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+max_frame: Max number of frame</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>trajectories</code></dt>
+<dd>Dict mapping each id to a list of tuple (x,y,frame)</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_nan_trajectories(trajectories, max_frame):
+    &#34;&#34;&#34;Add np.nan to frame where the x,y coordinates are missing
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+        max_frame: Max number of frame
+    Returns:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+    Raises:
+    &#34;&#34;&#34;
+    frame_range = [i for i in range(1, max_frame)]
+    full_trajectories = {}
+    for ids in trajectories.keys():
+        traj = trajectories[ids]
+        full_trajectories[ids] = []
+        cnt = 0
+        for x_, y_, frame_ in traj:
+            if cnt == 0:
+                full_trajectories[ids].append([x_, y_, frame_])
+                last_x, last_y, last_frame = x_, y_, frame_
+                cnt += 1
+            else:
+                nb_fake_data_to_add = frame_ - last_frame
+                for i in range(nb_fake_data_to_add - 1):
+                    full_trajectories[ids].append([np.nan, np.nan, last_frame + i + 1])
+                full_trajectories[ids].append([x_, y_, frame_])
+                last_x, last_y, last_frame = x_, y_, frame_
+                cnt += 1
+        last_frame = frame_
+        if last_frame &lt; frame_range[-1]:
+            for i in range(last_frame + 1, frame_range[-1] + 1):
+                full_trajectories[ids].append([np.nan, np.nan, i])
+        return full_trajectories</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.build_df_per_id"><code class="name flex">
+<span>def <span class="ident">build_df_per_id</span></span>(<span>trajectories)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build one dataframe per id</p>
+<h2 id="arguments">Arguments</h2>
+<p>trajectories: Dict mapping each id to a list of tuple (x,y,frame)</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>df_per_id</code></dt>
+<dd>dict mapping each id to a dataframe with its trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_df_per_id(trajectories):
+    &#34;&#34;&#34;Build one dataframe per id
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+    Returns:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Raises:
+    &#34;&#34;&#34;
+    df_per_id = {}
+    full_trajectories = add_nan_trajectories(trajectories, max_frame=50)
+    for ids in trajectories.keys():
+        x, y, frame = get_trajectory_from_id(full_trajectories,ids)
+        results_ids = {&#34;x&#34;: [], &#34;y&#34;: [], &#34;frame&#34;: []}
+        for x_, y_, frame_ in zip(x, y, frame):
+            results_ids[&#34;x&#34;].append(x_)
+            results_ids[&#34;y&#34;].append(y_)
+            results_ids[&#34;frame&#34;].append(frame_)
+        df_per_id[int(ids)] = pd.DataFrame(results_ids)
+    return df_per_id</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.fill_nan_trajectories"><code class="name flex">
+<span>def <span class="ident">fill_nan_trajectories</span></span>(<span>df_per_id, window_size=21)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fill each trajectory, and apply a savgol filter</p>
+<h2 id="arguments">Arguments</h2>
+<p>df_per_id: dict mapping each id to a dataframe with its trajectory</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>df_per_id</code></dt>
+<dd>dict mapping each id to a dataframe with its trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fill_nan_trajectories(df_per_id,window_size=21):
+    &#34;&#34;&#34;Fill each trajectory, and apply a savgol filter
+    Arguments:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Returns:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Raises:
+    &#34;&#34;&#34;
+    for ids in df_per_id.keys():
+        df_id = df_per_id[ids]
+        test = df_id.set_index(&#34;frame&#34;)
+        test[&#34;x&#34;] = test[&#34;x&#34;].interpolate(method=&#34;slinear&#34;, limit_direction=&#34;both&#34;)
+        test[&#34;y&#34;] = test[&#34;y&#34;].interpolate(method=&#34;slinear&#34;, limit_direction=&#34;both&#34;)
+        test[&#34;x&#34;] = test[&#34;x&#34;].interpolate(
+            method=&#34;pad&#34;, limit_direction=&#34;forward&#34;, limit_area=&#34;outside&#34;
+        )
+        test[&#34;y&#34;] = test[&#34;y&#34;].interpolate(
+            method=&#34;pad&#34;, limit_direction=&#34;forward&#34;, limit_area=&#34;outside&#34;
+        )
+        test[&#34;x&#34;] = savgol_filter(test[&#34;x&#34;], window_size, 3) if len(test[&#34;x&#34;]) &gt; 3 else test[&#34;x&#34;]
+        test[&#34;y&#34;] = savgol_filter(test[&#34;y&#34;], window_size, 3) if len(test[&#34;y&#34;]) &gt; 3 else test[&#34;y&#34;]
+        df_per_id[ids] = test
+    return df_per_id</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.get_full_results"><code class="name flex">
+<span>def <span class="ident">get_full_results</span></span>(<span>df_per_id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build a dataframe of tracking data, in the same format as Last Row</p>
+<h2 id="arguments">Arguments</h2>
+<p>df_per_id: dict mapping each id to a dataframe with its trajectory</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>full_results</code></dt>
+<dd>A dataframe with each coordinates at each frame</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_full_results(df_per_id):
+    &#34;&#34;&#34;Build a dataframe of tracking data, in the same format as Last Row
+    Arguments:
+        df_per_id: dict mapping each id to a dataframe with its trajectory
+    Returns:
+        full_results: A dataframe with each coordinates at each frame
+    Raises:
+    &#34;&#34;&#34;
+    full_results = {&#34;frame&#34;: [], &#34;id&#34;: [], &#34;x&#34;: [], &#34;y&#34;: []}
+    for ids in df_per_id.keys():
+        df_id = df_per_id[ids].reset_index()
+        for line in df_id.values:
+            full_results[&#34;frame&#34;].append(int(line[0]))
+            full_results[&#34;x&#34;].append(line[1])
+            full_results[&#34;y&#34;].append(line[2])
+            full_results[&#34;id&#34;].append(ids)
+    return pd.DataFrame(full_results).set_index(&#34;frame&#34;)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.get_trajectory_from_id"><code class="name flex">
+<span>def <span class="ident">get_trajectory_from_id</span></span>(<span>trajectories, id_)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the trajectory of an id, and map them to lastRow data format.</p>
+<h2 id="arguments">Arguments</h2>
+<p>trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+id_: the id of the trajectory we want</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>x,y, frames</code></dt>
+<dd>List of x,y coordinates with frames</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_trajectory_from_id(trajectories, id_):
+    &#34;&#34;&#34;Get the trajectory of an id, and map them to lastRow data format.
+    Arguments:
+        trajectories: Dict mapping each id to a list of tuple (x,y,frame)
+        id_: the id of the trajectory we want
+    Returns:
+        x,y, frames: List of x,y coordinates with frames
+    Raises:
+    &#34;&#34;&#34;
+    tab = trajectories[id_]
+    x = []
+    y = []
+    frames = []
+    for data_points in tab:
+        x_, y_, fr = data_points[0], data_points[1], data_points[2]
+        if np.isnan(x_):
+            x.append(x_)
+            y.append(y_)
+        else:
+            new_x = x_ * (100.0 / 320.0)
+            new_y = y_ * (100.0 / 320.0)
+            new_y = 100.0 - new_y
+
+            x.append(new_x)
+            y.append(new_y)
+        frames.append(fr)
+
+    return x, y, frames</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.merge_2_trajectories"><code class="name flex">
+<span>def <span class="ident">merge_2_trajectories</span></span>(<span>traj1, traj2, id_mapper, max_frame_traj1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Merge 2 dict of trajectories, if you want to merge the results of 2 tracking</p>
+<h2 id="arguments">Arguments</h2>
+<p>traj1: Dict mapping each id to a list of trajectory
+traj2: Dict mapping each id to a list of trajectory
+id_mapper: A dict mapping each id in traj1 to id in traj2
+max_frame_traj1: Maximum number of frame in the first trajectory</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>traj1</code></dt>
+<dd>Dict mapping each id to a list of trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def merge_2_trajectories(traj1, traj2, id_mapper, max_frame_traj1):
+    &#34;&#34;&#34;Merge 2 dict of trajectories, if you want to merge the results of 2 tracking
+    Arguments:
+        traj1: Dict mapping each id to a list of trajectory
+        traj2: Dict mapping each id to a list of trajectory
+        id_mapper: A dict mapping each id in traj1 to id in traj2
+        max_frame_traj1: Maximum number of frame in the first trajectory
+    Returns:
+        traj1: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    for id_1 in id_mapper.keys():
+        id_2 = id_mapper[id_1]
+        traj_id1 = traj1[id_1]
+        traj_id2 = traj2[id_2]
+        for data_points in traj_id2:
+            x, y, frame = data_points[0], data_points[1], data_points[2]
+            frame += max_frame_traj1
+            traj_id1.append([x, y, frame])
+    for id_2 in traj2.keys():
+        if id_2 not in traj1.keys():
+            traj_id2 = traj2[id_2]
+            new_traj = []
+            for data_points in traj_id2:
+                x, y, frame = data_points[0], data_points[1], data_points[2]
+                frame += max_frame_traj1
+                new_traj.append([x, y, frame])
+            traj1[id_2] = new_traj
+    return traj1</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.tracker.merge_id"><code class="name flex">
+<span>def <span class="ident">merge_id</span></span>(<span>traj, list_ids_frame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Merge trajectories of different ids.
+e.g.: (10,0,110),(12,110,300) will merge the trajectory of 10 between frame 0 and 110 to the
+trajectory of 12 between frame 110 and 300.</p>
+<h2 id="arguments">Arguments</h2>
+<p>traj: Dict mapping each id to a list of trajectory
+list_ids_frame: List of (id,frame_start,frame_end)</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>traj</code></dt>
+<dd>Dict mapping each id to a list of trajectory</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def merge_id(traj, list_ids_frame):
+    &#34;&#34;&#34;Merge trajectories of different ids. 
+    e.g.: (10,0,110),(12,110,300) will merge the trajectory of 10 between frame 0 and 110 to the 
+        trajectory of 12 between frame 110 and 300.
+    Arguments:
+        traj: Dict mapping each id to a list of trajectory
+        list_ids_frame: List of (id,frame_start,frame_end)
+    Returns:
+        traj: Dict mapping each id to a list of trajectory
+    Raises:
+    &#34;&#34;&#34;
+    # list_ids: sort by order of appearance
+    # with the shape : list of (id,frame_start,frame_end)
+    new_traj = []
+    for ids, frame_start, frame_end in list_ids_frame:
+        for data_points in traj[ids]:
+            x, y, frame = data_points[0], data_points[1], data_points[2]
+            if frame &gt;= frame_start and frame &lt; frame_end:
+                new_traj.append([x, y, frame])
+    for ids, _, _ in list_ids_frame:
+        traj.pop(ids, None)
+    traj[list_ids_frame[0][0]] = new_traj
+    return traj</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="narya.utils" href="index.html">narya.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="narya.utils.tracker.add_entity" href="#narya.utils.tracker.add_entity">add_entity</a></code></li>
+<li><code><a title="narya.utils.tracker.add_entity_coords" href="#narya.utils.tracker.add_entity_coords">add_entity_coords</a></code></li>
+<li><code><a title="narya.utils.tracker.add_nan_trajectories" href="#narya.utils.tracker.add_nan_trajectories">add_nan_trajectories</a></code></li>
+<li><code><a title="narya.utils.tracker.build_df_per_id" href="#narya.utils.tracker.build_df_per_id">build_df_per_id</a></code></li>
+<li><code><a title="narya.utils.tracker.fill_nan_trajectories" href="#narya.utils.tracker.fill_nan_trajectories">fill_nan_trajectories</a></code></li>
+<li><code><a title="narya.utils.tracker.get_full_results" href="#narya.utils.tracker.get_full_results">get_full_results</a></code></li>
+<li><code><a title="narya.utils.tracker.get_trajectory_from_id" href="#narya.utils.tracker.get_trajectory_from_id">get_trajectory_from_id</a></code></li>
+<li><code><a title="narya.utils.tracker.merge_2_trajectories" href="#narya.utils.tracker.merge_2_trajectories">merge_2_trajectories</a></code></li>
+<li><code><a title="narya.utils.tracker.merge_id" href="#narya.utils.tracker.merge_id">merge_id</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>

@@ -21,15 +21,17 @@ We tried to make everything easy to reuse, we hope anyone will be able to:
 * Evaluate players with our EDG Agent
 * and much more
 
-# Installation
+# Installation  
 
-You can either install narya with pip: 
+You can either install narya from source:
 
-```pip3 install --user narya```
+```git clone && cd narya && pip3 install -r requirements.txt```
 
-or from source:
+### Google Football: 
 
-```git clone && cd narya && python3 setup.py```
+Google Football needs to be installed differently. Please see their repo to take care of it.
+
+[Google Football Repo](https://github.com/google-research/football)
 
 ## Player tracking: 
 

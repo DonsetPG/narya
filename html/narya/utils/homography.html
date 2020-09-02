@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>narya.utils.homography API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>narya.utils.homography</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import numpy as np
+import kornia
+import torch
+import cv2
+
+from .utils import hasnan, isnan, to_numpy, to_torch
+from .image import torch_img_to_np_img, np_img_to_torch_img
+
+&#34;&#34;&#34;
+
+Torch warping function cloned from https://github.com/vcg-uvic/sportsfield_release
+with some minor modifications
+
+&#34;&#34;&#34;
+
+
+def normalize_homo(h, **kwargs):
+    &#34;&#34;&#34;Normalize an homography by setting the last coefficient to 1.0
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the normalized homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    return h / h[2, 2]
+
+
+def horizontal_flip_homo(h, **kwargs):
+    &#34;&#34;&#34;Apply a horizontal flip to the homography
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the horizontally flipped homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    flipper = np.array([[-1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    return np.matmul(h, flipper)
+
+
+def vertical_flip_homo(h, **kwargs):
+    &#34;&#34;&#34;Apply a vertical flip to the homography
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the vertically flipped homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    flipper = np.array([[1.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, 1.0]])
+    return np.matmul(h, flipper)
+
+
+def get_perspective_transform_torch(src, dst):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: Tensor of shape (B,4,2), the four original points per image
+        dst: Tensor of shape (B,4,2), the four corresponding points per image
+    Returns:
+        A tensor of shape (B,3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    return kornia.get_perspective_transform(src, dst)
+
+
+def get_perspective_transform_cv(src, dst):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: np.array of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+        dst: np.array of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image
+    Returns:
+        M: np.array of shape (B,3,3) or (3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    if len(src.shape) == 2:
+        M, _ = cv2.findHomography(src, dst, cv2.RANSAC, 5)
+    else:
+        M = []
+        for src_, dst_ in zip(src, dst):
+            M.append(cv2.findHomography(src_, dst_, cv2.RANSAC, 5)[0])
+        M = np.array(M)
+    return M
+
+
+def get_perspective_transform(src, dst, method=&#34;cv&#34;):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: Matrix of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+        dst: Matrix of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image
+        method: String in {&#39;cv&#39;,&#39;torch&#39;} to choose which function to use
+    Returns:
+        M: Matrix of shape (B,3,3) or (3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    return (
+        get_perspective_transform_cv(src, dst)
+        if method == &#34;cv&#34;
+        else get_perspective_transform_torch(src, dst)
+    )
+
+
+def warp_image(img, H, out_shape=None, method=&#34;cv&#34;):
+    &#34;&#34;&#34;Apply an homography to a Matrix
+
+    Arguments:
+        img: Matrix of shape (B,C,H,W) or (C,H,W)
+        H: Matrix of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+        method: String in {&#39;cv&#39;,&#39;torch&#39;} to choose which function to use
+    Returns:
+        A Matrix of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    return (
+        warp_image_cv(img, H, out_shape=out_shape)
+        if method == &#34;cv&#34;
+        else warp_image_torch(img, H, out_shape=out_shape)
+    )
+
+
+def warp_image_torch(img, H, out_shape=None):
+    &#34;&#34;&#34;Apply an homography to a torch Tensor
+
+    Arguments:
+        img: Tensor of shape (B,C,H,W) or (C,H,W)
+        H: Tensor of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+    Returns:
+        A Tensor of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    if out_shape is None:
+        out_shape = img.shape[-2:]
+    if len(img.shape) &lt; 4:
+        img = img[None]
+    if len(H.shape) &lt; 3:
+        H = H[None]
+    if img.shape[0] != H.shape[0]:
+        raise ValueError(
+            &#34;batch size of images ({}) do not match the batch size of homographies ({})&#34;.format(
+                img.shape[0], H.shape[0]
+            )
+        )
+    batchsize = img.shape[0]
+    # create grid for interpolation (in frame coordinates)
+
+    y, x = torch.meshgrid(
+        [
+            torch.linspace(-0.5, 0.5, steps=out_shape[-2]),
+            torch.linspace(-0.5, 0.5, steps=out_shape[-1]),
+        ]
+    )
+    x = x.to(img.device)
+    y = y.to(img.device)
+    x, y = x.flatten(), y.flatten()
+
+    # append ones for homogeneous coordinates
+    xy = torch.stack([x, y, torch.ones_like(x)])
+    xy = xy.repeat([batchsize, 1, 1])  # shape: (B, 3, N)
+    # warp points to model coordinates
+    xy_warped = torch.matmul(H, xy)  # H.bmm(xy)
+    xy_warped, z_warped = xy_warped.split(2, dim=1)
+
+    # we multiply by 2, since our homographies map to
+    # coordinates in the range [-0.5, 0.5] (the ones in our GT datasets)
+    xy_warped = 2.0 * xy_warped / (z_warped + 1e-8)
+    x_warped, y_warped = torch.unbind(xy_warped, dim=1)
+    # build grid
+    grid = torch.stack(
+        [
+            x_warped.view(batchsize, *out_shape[-2:]),
+            y_warped.view(batchsize, *out_shape[-2:]),
+        ],
+        dim=-1,
+    )
+
+    # sample warped image
+    warped_img = torch.nn.functional.grid_sample(
+        img, grid, mode=&#34;bilinear&#34;, padding_mode=&#34;zeros&#34;
+    )
+
+    if hasnan(warped_img):
+        print(&#34;nan value in warped image! set to zeros&#34;)
+        warped_img[isnan(warped_img)] = 0
+
+    return warped_img
+
+
+def warp_image_cv(img, H, out_shape=None):
+    &#34;&#34;&#34;Apply an homography to a np.array
+
+    Arguments:
+        img: np.array of shape (B,H,W,C) or (H,W,C)
+        H: Tensor of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+    Returns:
+        A np.array of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    if out_shape is None:
+        out_shape = img.shape[-3:-1] if len(img.shape) == 4 else img.shape[:-1]
+    if len(img.shape) == 3:
+        return cv2.warpPerspective(img, H, dsize=out_shape)
+    else:
+        if img.shape[0] != H.shape[0]:
+            raise ValueError(
+                &#34;batch size of images ({}) do not match the batch size of homographies ({})&#34;.format(
+                    img.shape[0], H.shape[0]
+                )
+            )
+        out_img = []
+        for img_, H_ in zip(img, H):
+            out_img.append(cv2.warpPerspective(img_, H_, dsize=out_shape))
+        return np.array(out_img)
+
+
+def warp_point(pts, homography, method=&#34;cv&#34;):
+    return (
+        warp_point_cv(pts, homography)
+        if method == &#34;cv&#34;
+        else warp_point_torch(pts, homography)
+    )
+
+
+def warp_point_cv(pts, homography):
+    dst = cv2.perspectiveTransform(np.array(pts).reshape(-1, 1, 2), homography)
+    return dst[0][0]
+
+
+def warp_point_torch(pts, homography):
+    img_test = np.zeros((320, 320, 3))
+    dir_ = [0, -1, 1, -2, 2, 3, -3]
+    for dir_x in dir_:
+        for dir_y in dir_:
+            to_add_x = min(max(0, pts[0] + dir_x), 319)
+            to_add_y = min(max(0, pts[1] + dir_y), 319)
+            for i in range(3):
+                img_test[to_add_y, to_add_x, i] = 1.0
+
+    pred_warp = warp_image(
+        np_img_to_torch_img(img_test), to_torch(homography), method=&#34;torch&#34;
+    )
+    pred_warp = torch_img_to_np_img(pred_warp[0])
+    indx = np.argwhere(pred_warp[:, :, 0] &gt; 0.8)
+    x, y = indx[:, 0].mean(), indx[:, 1].mean()
+    dst = np.array([y, x])
+    return dst
+
+
+def get_default_corners(batch_size):
+    &#34;&#34;&#34;Get coordinates of the default corners in a soccer field
+
+    Arguments:
+        batch_size: Integer, the number of time we need the corners
+    Returns:
+        orig_corners: a np.array of len(batch_size)
+    Raises:
+        
+    &#34;&#34;&#34;
+    orig_corners = np.array(
+        [[-0.5, 0.1], [-0.5, 0.5], [0.5, 0.5], [0.5, 0.1]], dtype=np.float32
+    )
+    orig_corners = np.tile(orig_corners, (batch_size, 1, 1))
+    return orig_corners
+
+
+def get_corners_from_nn(batch_corners_pred):
+    &#34;&#34;&#34;Gets the corners in the right shape, from a DeepHomoModel
+
+    Arguments:
+        batch_corners_pred: np.array of shape (B,8) with the predictions
+    Returns:
+        corners: np.array of shape (B,4,2) with the corners in the right shape
+    Raises:
+        
+    &#34;&#34;&#34;
+    batch_size = batch_corners_pred.shape[0]
+    corners = np.reshape(batch_corners_pred, (-1, 2, 4))
+    corners = np.transpose(corners, axes=(0, 2, 1))
+    corners = np.reshape(corners, (batch_size, 4, 2))
+    return corners
+
+
+def compute_homography(batch_corners_pred):
+    &#34;&#34;&#34;Compute the homography from the predictions of DeepHomoModel
+
+    Arguments:
+        batch_corners_pred: np.array of shape (B,8) with the predictions
+    Returns:
+        np.array of shape (B,3,3) with the homographies
+    Raises:
+        
+    &#34;&#34;&#34;
+    batch_size = batch_corners_pred.shape[0]
+    corners = get_corners_from_nn(batch_corners_pred)
+    orig_corners = get_default_corners(batch_size)
+    homography = get_perspective_transform_torch(
+        to_torch(orig_corners), to_torch(corners)
+    )
+    return to_numpy(homography)
+
+
+def get_four_corners(homo_mat):
+    &#34;&#34;&#34;Inverse operation of compute_homography. Gets the 4 corners from an homography.
+
+    Arguments:
+        homo_mat: Matrix of shape (B,3,3) or (3,3), homographies
+    Returns:
+        xy_warped: np.array of shape (B,4,2) with the corners
+    Raises:
+        ValueError: If the homographies are not of shape (3,3)
+    &#34;&#34;&#34;
+    if isinstance(homo_mat, np.ndarray):
+        homo_mat = to_torch(homo_mat)
+
+    if homo_mat.shape == (3, 3):
+        homo_mat = homo_mat[None]
+    if homo_mat.shape[1:] != (3, 3):
+        raise ValueError(
+            &#34;The shape of the homography is {}, not (3,3)&#34;.format(homo_mat.shape[1:])
+        )
+
+    canon4pts = to_torch(
+        np.array([[-0.5, 0.1], [-0.5, 0.5], [0.5, 0.5], [0.5, 0.1]], dtype=np.float32)
+    )
+
+    assert canon4pts.shape == (4, 2)
+    x, y = canon4pts[:, 0], canon4pts[:, 1]
+    xy = torch.stack([x, y, torch.ones_like(x)])
+    # warp points to model coordinates
+    xy_warped = torch.matmul(homo_mat, xy)  # H.bmm(xy)
+    xy_warped, z_warped = xy_warped.split(2, dim=1)
+    xy_warped = xy_warped / (z_warped + 1e-8)
+    xy_warped = to_numpy(xy_warped)
+    return xy_warped</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="narya.utils.homography.compute_homography"><code class="name flex">
+<span>def <span class="ident">compute_homography</span></span>(<span>batch_corners_pred)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the homography from the predictions of DeepHomoModel</p>
+<h2 id="arguments">Arguments</h2>
+<p>batch_corners_pred: np.array of shape (B,8) with the predictions</p>
+<h2 id="returns">Returns</h2>
+<p>np.array of shape (B,3,3) with the homographies
+Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_homography(batch_corners_pred):
+    &#34;&#34;&#34;Compute the homography from the predictions of DeepHomoModel
+
+    Arguments:
+        batch_corners_pred: np.array of shape (B,8) with the predictions
+    Returns:
+        np.array of shape (B,3,3) with the homographies
+    Raises:
+        
+    &#34;&#34;&#34;
+    batch_size = batch_corners_pred.shape[0]
+    corners = get_corners_from_nn(batch_corners_pred)
+    orig_corners = get_default_corners(batch_size)
+    homography = get_perspective_transform_torch(
+        to_torch(orig_corners), to_torch(corners)
+    )
+    return to_numpy(homography)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_corners_from_nn"><code class="name flex">
+<span>def <span class="ident">get_corners_from_nn</span></span>(<span>batch_corners_pred)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the corners in the right shape, from a DeepHomoModel</p>
+<h2 id="arguments">Arguments</h2>
+<p>batch_corners_pred: np.array of shape (B,8) with the predictions</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>corners</code></dt>
+<dd>np.array of shape (B,4,2) with the corners in the right shape</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_corners_from_nn(batch_corners_pred):
+    &#34;&#34;&#34;Gets the corners in the right shape, from a DeepHomoModel
+
+    Arguments:
+        batch_corners_pred: np.array of shape (B,8) with the predictions
+    Returns:
+        corners: np.array of shape (B,4,2) with the corners in the right shape
+    Raises:
+        
+    &#34;&#34;&#34;
+    batch_size = batch_corners_pred.shape[0]
+    corners = np.reshape(batch_corners_pred, (-1, 2, 4))
+    corners = np.transpose(corners, axes=(0, 2, 1))
+    corners = np.reshape(corners, (batch_size, 4, 2))
+    return corners</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_default_corners"><code class="name flex">
+<span>def <span class="ident">get_default_corners</span></span>(<span>batch_size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get coordinates of the default corners in a soccer field</p>
+<h2 id="arguments">Arguments</h2>
+<p>batch_size: Integer, the number of time we need the corners</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>orig_corners</code></dt>
+<dd>a np.array of len(batch_size)</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_default_corners(batch_size):
+    &#34;&#34;&#34;Get coordinates of the default corners in a soccer field
+
+    Arguments:
+        batch_size: Integer, the number of time we need the corners
+    Returns:
+        orig_corners: a np.array of len(batch_size)
+    Raises:
+        
+    &#34;&#34;&#34;
+    orig_corners = np.array(
+        [[-0.5, 0.1], [-0.5, 0.5], [0.5, 0.5], [0.5, 0.1]], dtype=np.float32
+    )
+    orig_corners = np.tile(orig_corners, (batch_size, 1, 1))
+    return orig_corners</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_four_corners"><code class="name flex">
+<span>def <span class="ident">get_four_corners</span></span>(<span>homo_mat)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Inverse operation of compute_homography. Gets the 4 corners from an homography.</p>
+<h2 id="arguments">Arguments</h2>
+<p>homo_mat: Matrix of shape (B,3,3) or (3,3), homographies</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>xy_warped</code></dt>
+<dd>np.array of shape (B,4,2) with the corners</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the homographies are not of shape (3,3)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_four_corners(homo_mat):
+    &#34;&#34;&#34;Inverse operation of compute_homography. Gets the 4 corners from an homography.
+
+    Arguments:
+        homo_mat: Matrix of shape (B,3,3) or (3,3), homographies
+    Returns:
+        xy_warped: np.array of shape (B,4,2) with the corners
+    Raises:
+        ValueError: If the homographies are not of shape (3,3)
+    &#34;&#34;&#34;
+    if isinstance(homo_mat, np.ndarray):
+        homo_mat = to_torch(homo_mat)
+
+    if homo_mat.shape == (3, 3):
+        homo_mat = homo_mat[None]
+    if homo_mat.shape[1:] != (3, 3):
+        raise ValueError(
+            &#34;The shape of the homography is {}, not (3,3)&#34;.format(homo_mat.shape[1:])
+        )
+
+    canon4pts = to_torch(
+        np.array([[-0.5, 0.1], [-0.5, 0.5], [0.5, 0.5], [0.5, 0.1]], dtype=np.float32)
+    )
+
+    assert canon4pts.shape == (4, 2)
+    x, y = canon4pts[:, 0], canon4pts[:, 1]
+    xy = torch.stack([x, y, torch.ones_like(x)])
+    # warp points to model coordinates
+    xy_warped = torch.matmul(homo_mat, xy)  # H.bmm(xy)
+    xy_warped, z_warped = xy_warped.split(2, dim=1)
+    xy_warped = xy_warped / (z_warped + 1e-8)
+    xy_warped = to_numpy(xy_warped)
+    return xy_warped</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_perspective_transform"><code class="name flex">
+<span>def <span class="ident">get_perspective_transform</span></span>(<span>src, dst, method='cv')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the homography matrix between src and dst</p>
+<h2 id="arguments">Arguments</h2>
+<p>src: Matrix of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+dst: Matrix of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image
+method: String in {'cv','torch'} to choose which function to use</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>M</code></dt>
+<dd>Matrix of shape (B,3,3) or (3,3), each homography per image</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_perspective_transform(src, dst, method=&#34;cv&#34;):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: Matrix of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+        dst: Matrix of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image
+        method: String in {&#39;cv&#39;,&#39;torch&#39;} to choose which function to use
+    Returns:
+        M: Matrix of shape (B,3,3) or (3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    return (
+        get_perspective_transform_cv(src, dst)
+        if method == &#34;cv&#34;
+        else get_perspective_transform_torch(src, dst)
+    )</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_perspective_transform_cv"><code class="name flex">
+<span>def <span class="ident">get_perspective_transform_cv</span></span>(<span>src, dst)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the homography matrix between src and dst</p>
+<h2 id="arguments">Arguments</h2>
+<p>src: np.array of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+dst: np.array of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>M</code></dt>
+<dd>np.array of shape (B,3,3) or (3,3), each homography per image</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_perspective_transform_cv(src, dst):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: np.array of shape (B,X,2) or (X,2), the X&gt;3 original points per image
+        dst: np.array of shape (B,X,2) or (X,2), the X&gt;3 corresponding points per image
+    Returns:
+        M: np.array of shape (B,3,3) or (3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    if len(src.shape) == 2:
+        M, _ = cv2.findHomography(src, dst, cv2.RANSAC, 5)
+    else:
+        M = []
+        for src_, dst_ in zip(src, dst):
+            M.append(cv2.findHomography(src_, dst_, cv2.RANSAC, 5)[0])
+        M = np.array(M)
+    return M</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.get_perspective_transform_torch"><code class="name flex">
+<span>def <span class="ident">get_perspective_transform_torch</span></span>(<span>src, dst)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the homography matrix between src and dst</p>
+<h2 id="arguments">Arguments</h2>
+<p>src: Tensor of shape (B,4,2), the four original points per image
+dst: Tensor of shape (B,4,2), the four corresponding points per image</p>
+<h2 id="returns">Returns</h2>
+<p>A tensor of shape (B,3,3), each homography per image
+Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_perspective_transform_torch(src, dst):
+    &#34;&#34;&#34;Get the homography matrix between src and dst
+
+    Arguments:
+        src: Tensor of shape (B,4,2), the four original points per image
+        dst: Tensor of shape (B,4,2), the four corresponding points per image
+    Returns:
+        A tensor of shape (B,3,3), each homography per image
+    Raises:
+
+    &#34;&#34;&#34;
+    return kornia.get_perspective_transform(src, dst)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.horizontal_flip_homo"><code class="name flex">
+<span>def <span class="ident">horizontal_flip_homo</span></span>(<span>h, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply a horizontal flip to the homography</p>
+<h2 id="arguments">Arguments</h2>
+<p>h: np.array of shape (3,3), the homography</p>
+<h2 id="returns">Returns</h2>
+<p>A np.array of shape (3,3) representing the horizontally flipped homography
+Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def horizontal_flip_homo(h, **kwargs):
+    &#34;&#34;&#34;Apply a horizontal flip to the homography
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the horizontally flipped homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    flipper = np.array([[-1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    return np.matmul(h, flipper)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.normalize_homo"><code class="name flex">
+<span>def <span class="ident">normalize_homo</span></span>(<span>h, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize an homography by setting the last coefficient to 1.0</p>
+<h2 id="arguments">Arguments</h2>
+<p>h: np.array of shape (3,3), the homography</p>
+<h2 id="returns">Returns</h2>
+<p>A np.array of shape (3,3) representing the normalized homography
+Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normalize_homo(h, **kwargs):
+    &#34;&#34;&#34;Normalize an homography by setting the last coefficient to 1.0
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the normalized homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    return h / h[2, 2]</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.vertical_flip_homo"><code class="name flex">
+<span>def <span class="ident">vertical_flip_homo</span></span>(<span>h, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply a vertical flip to the homography</p>
+<h2 id="arguments">Arguments</h2>
+<p>h: np.array of shape (3,3), the homography</p>
+<h2 id="returns">Returns</h2>
+<p>A np.array of shape (3,3) representing the vertically flipped homography
+Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vertical_flip_homo(h, **kwargs):
+    &#34;&#34;&#34;Apply a vertical flip to the homography
+
+    Arguments:
+        h: np.array of shape (3,3), the homography
+    Returns:
+        A np.array of shape (3,3) representing the vertically flipped homography
+    Raises:
+        
+    &#34;&#34;&#34;
+    flipper = np.array([[1.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, 1.0]])
+    return np.matmul(h, flipper)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_image"><code class="name flex">
+<span>def <span class="ident">warp_image</span></span>(<span>img, H, out_shape=None, method='cv')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply an homography to a Matrix</p>
+<h2 id="arguments">Arguments</h2>
+<p>img: Matrix of shape (B,C,H,W) or (C,H,W)
+H: Matrix of shape (B,3,3) or (3,3), the homography
+out_shape: Tuple, the wanted shape of the out image
+method: String in {'cv','torch'} to choose which function to use</p>
+<h2 id="returns">Returns</h2>
+<p>A Matrix of shape (B) x (out_shape) or (B) x (img.shape), the warped image </p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If img and H batch sizes are different</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_image(img, H, out_shape=None, method=&#34;cv&#34;):
+    &#34;&#34;&#34;Apply an homography to a Matrix
+
+    Arguments:
+        img: Matrix of shape (B,C,H,W) or (C,H,W)
+        H: Matrix of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+        method: String in {&#39;cv&#39;,&#39;torch&#39;} to choose which function to use
+    Returns:
+        A Matrix of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    return (
+        warp_image_cv(img, H, out_shape=out_shape)
+        if method == &#34;cv&#34;
+        else warp_image_torch(img, H, out_shape=out_shape)
+    )</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_image_cv"><code class="name flex">
+<span>def <span class="ident">warp_image_cv</span></span>(<span>img, H, out_shape=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply an homography to a np.array</p>
+<h2 id="arguments">Arguments</h2>
+<p>img: np.array of shape (B,H,W,C) or (H,W,C)
+H: Tensor of shape (B,3,3) or (3,3), the homography
+out_shape: Tuple, the wanted shape of the out image</p>
+<h2 id="returns">Returns</h2>
+<p>A np.array of shape (B) x (out_shape) or (B) x (img.shape), the warped image </p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If img and H batch sizes are different</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_image_cv(img, H, out_shape=None):
+    &#34;&#34;&#34;Apply an homography to a np.array
+
+    Arguments:
+        img: np.array of shape (B,H,W,C) or (H,W,C)
+        H: Tensor of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+    Returns:
+        A np.array of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    if out_shape is None:
+        out_shape = img.shape[-3:-1] if len(img.shape) == 4 else img.shape[:-1]
+    if len(img.shape) == 3:
+        return cv2.warpPerspective(img, H, dsize=out_shape)
+    else:
+        if img.shape[0] != H.shape[0]:
+            raise ValueError(
+                &#34;batch size of images ({}) do not match the batch size of homographies ({})&#34;.format(
+                    img.shape[0], H.shape[0]
+                )
+            )
+        out_img = []
+        for img_, H_ in zip(img, H):
+            out_img.append(cv2.warpPerspective(img_, H_, dsize=out_shape))
+        return np.array(out_img)</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_image_torch"><code class="name flex">
+<span>def <span class="ident">warp_image_torch</span></span>(<span>img, H, out_shape=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply an homography to a torch Tensor</p>
+<h2 id="arguments">Arguments</h2>
+<p>img: Tensor of shape (B,C,H,W) or (C,H,W)
+H: Tensor of shape (B,3,3) or (3,3), the homography
+out_shape: Tuple, the wanted shape of the out image</p>
+<h2 id="returns">Returns</h2>
+<p>A Tensor of shape (B) x (out_shape) or (B) x (img.shape), the warped image </p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If img and H batch sizes are different</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_image_torch(img, H, out_shape=None):
+    &#34;&#34;&#34;Apply an homography to a torch Tensor
+
+    Arguments:
+        img: Tensor of shape (B,C,H,W) or (C,H,W)
+        H: Tensor of shape (B,3,3) or (3,3), the homography
+        out_shape: Tuple, the wanted shape of the out image
+    Returns:
+        A Tensor of shape (B) x (out_shape) or (B) x (img.shape), the warped image 
+    Raises:
+        ValueError: If img and H batch sizes are different
+    &#34;&#34;&#34;
+    if out_shape is None:
+        out_shape = img.shape[-2:]
+    if len(img.shape) &lt; 4:
+        img = img[None]
+    if len(H.shape) &lt; 3:
+        H = H[None]
+    if img.shape[0] != H.shape[0]:
+        raise ValueError(
+            &#34;batch size of images ({}) do not match the batch size of homographies ({})&#34;.format(
+                img.shape[0], H.shape[0]
+            )
+        )
+    batchsize = img.shape[0]
+    # create grid for interpolation (in frame coordinates)
+
+    y, x = torch.meshgrid(
+        [
+            torch.linspace(-0.5, 0.5, steps=out_shape[-2]),
+            torch.linspace(-0.5, 0.5, steps=out_shape[-1]),
+        ]
+    )
+    x = x.to(img.device)
+    y = y.to(img.device)
+    x, y = x.flatten(), y.flatten()
+
+    # append ones for homogeneous coordinates
+    xy = torch.stack([x, y, torch.ones_like(x)])
+    xy = xy.repeat([batchsize, 1, 1])  # shape: (B, 3, N)
+    # warp points to model coordinates
+    xy_warped = torch.matmul(H, xy)  # H.bmm(xy)
+    xy_warped, z_warped = xy_warped.split(2, dim=1)
+
+    # we multiply by 2, since our homographies map to
+    # coordinates in the range [-0.5, 0.5] (the ones in our GT datasets)
+    xy_warped = 2.0 * xy_warped / (z_warped + 1e-8)
+    x_warped, y_warped = torch.unbind(xy_warped, dim=1)
+    # build grid
+    grid = torch.stack(
+        [
+            x_warped.view(batchsize, *out_shape[-2:]),
+            y_warped.view(batchsize, *out_shape[-2:]),
+        ],
+        dim=-1,
+    )
+
+    # sample warped image
+    warped_img = torch.nn.functional.grid_sample(
+        img, grid, mode=&#34;bilinear&#34;, padding_mode=&#34;zeros&#34;
+    )
+
+    if hasnan(warped_img):
+        print(&#34;nan value in warped image! set to zeros&#34;)
+        warped_img[isnan(warped_img)] = 0
+
+    return warped_img</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_point"><code class="name flex">
+<span>def <span class="ident">warp_point</span></span>(<span>pts, homography, method='cv')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_point(pts, homography, method=&#34;cv&#34;):
+    return (
+        warp_point_cv(pts, homography)
+        if method == &#34;cv&#34;
+        else warp_point_torch(pts, homography)
+    )</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_point_cv"><code class="name flex">
+<span>def <span class="ident">warp_point_cv</span></span>(<span>pts, homography)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_point_cv(pts, homography):
+    dst = cv2.perspectiveTransform(np.array(pts).reshape(-1, 1, 2), homography)
+    return dst[0][0]</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.homography.warp_point_torch"><code class="name flex">
+<span>def <span class="ident">warp_point_torch</span></span>(<span>pts, homography)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def warp_point_torch(pts, homography):
+    img_test = np.zeros((320, 320, 3))
+    dir_ = [0, -1, 1, -2, 2, 3, -3]
+    for dir_x in dir_:
+        for dir_y in dir_:
+            to_add_x = min(max(0, pts[0] + dir_x), 319)
+            to_add_y = min(max(0, pts[1] + dir_y), 319)
+            for i in range(3):
+                img_test[to_add_y, to_add_x, i] = 1.0
+
+    pred_warp = warp_image(
+        np_img_to_torch_img(img_test), to_torch(homography), method=&#34;torch&#34;
+    )
+    pred_warp = torch_img_to_np_img(pred_warp[0])
+    indx = np.argwhere(pred_warp[:, :, 0] &gt; 0.8)
+    x, y = indx[:, 0].mean(), indx[:, 1].mean()
+    dst = np.array([y, x])
+    return dst</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="narya.utils" href="index.html">narya.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="narya.utils.homography.compute_homography" href="#narya.utils.homography.compute_homography">compute_homography</a></code></li>
+<li><code><a title="narya.utils.homography.get_corners_from_nn" href="#narya.utils.homography.get_corners_from_nn">get_corners_from_nn</a></code></li>
+<li><code><a title="narya.utils.homography.get_default_corners" href="#narya.utils.homography.get_default_corners">get_default_corners</a></code></li>
+<li><code><a title="narya.utils.homography.get_four_corners" href="#narya.utils.homography.get_four_corners">get_four_corners</a></code></li>
+<li><code><a title="narya.utils.homography.get_perspective_transform" href="#narya.utils.homography.get_perspective_transform">get_perspective_transform</a></code></li>
+<li><code><a title="narya.utils.homography.get_perspective_transform_cv" href="#narya.utils.homography.get_perspective_transform_cv">get_perspective_transform_cv</a></code></li>
+<li><code><a title="narya.utils.homography.get_perspective_transform_torch" href="#narya.utils.homography.get_perspective_transform_torch">get_perspective_transform_torch</a></code></li>
+<li><code><a title="narya.utils.homography.horizontal_flip_homo" href="#narya.utils.homography.horizontal_flip_homo">horizontal_flip_homo</a></code></li>
+<li><code><a title="narya.utils.homography.normalize_homo" href="#narya.utils.homography.normalize_homo">normalize_homo</a></code></li>
+<li><code><a title="narya.utils.homography.vertical_flip_homo" href="#narya.utils.homography.vertical_flip_homo">vertical_flip_homo</a></code></li>
+<li><code><a title="narya.utils.homography.warp_image" href="#narya.utils.homography.warp_image">warp_image</a></code></li>
+<li><code><a title="narya.utils.homography.warp_image_cv" href="#narya.utils.homography.warp_image_cv">warp_image_cv</a></code></li>
+<li><code><a title="narya.utils.homography.warp_image_torch" href="#narya.utils.homography.warp_image_torch">warp_image_torch</a></code></li>
+<li><code><a title="narya.utils.homography.warp_point" href="#narya.utils.homography.warp_point">warp_point</a></code></li>
+<li><code><a title="narya.utils.homography.warp_point_cv" href="#narya.utils.homography.warp_point_cv">warp_point_cv</a></code></li>
+<li><code><a title="narya.utils.homography.warp_point_torch" href="#narya.utils.homography.warp_point_torch">warp_point_torch</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>

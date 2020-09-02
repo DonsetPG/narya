@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>narya.utils.vizualization API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>narya.utils.vizualization</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import numpy as np
+import math
+import matplotlib.patheffects as path_effects
+import cv2
+
+from matplotlib import pyplot as plt
+from matplotlib.patches import Ellipse
+from matplotlib.pyplot import arrow
+from matplotlib.collections import PatchCollection, LineCollection
+from matplotlib import colors
+
+from scipy.signal import savgol_filter
+from scipy.spatial import Voronoi
+
+from shapely.geometry import Polygon
+
+from moviepy import editor as mpy
+from moviepy.video.io.bindings import mplfig_to_npimage
+
+&#34;&#34;&#34;
+
+Football field vizualization function cloned from https://github.com/Friends-of-Tracking-Data-FoTD
+with some minor modifications to:
+    * add velocity vectors 
+    * ball and possession markers
+
+&#34;&#34;&#34;
+
+X_SIZE = 105
+Y_SIZE = 68
+
+BOX_HEIGHT = (16.5 * 2 + 7.32) / Y_SIZE * 100
+BOX_WIDTH = 16.5 / X_SIZE * 100
+
+GOAL = 7.32 / Y_SIZE * 100
+
+GOAL_AREA_HEIGHT = 5.4864 * 2 / Y_SIZE * 100 + GOAL
+GOAL_AREA_WIDTH = 5.4864 / X_SIZE * 100
+
+SCALERS = np.array([X_SIZE / 100, Y_SIZE / 100])
+pitch_polygon = Polygon(((0, 0), (0, 100), (100, 100), (100, 0)))
+
+
+def visualize(**images):
+    &#34;&#34;&#34;PLot images in one row.
+
+    Arguments:
+        **images: images to plot
+    Returns:
+        
+    Raises:
+        
+    &#34;&#34;&#34;
+    n = len(images)
+    plt.figure(figsize=(16, 5))
+    for i, (name, image) in enumerate(images.items()):
+        plt.subplot(1, n, i + 1)
+        plt.xticks([])
+        plt.yticks([])
+        plt.title(&#34; &#34;.join(name.split(&#34;_&#34;)).title())
+        plt.imshow(image)
+    plt.show()
+
+
+def draw_pitch(dpi=100, pitch_color=&#34;#a8bc95&#34;):
+    &#34;&#34;&#34;Sets up field.
+    Arguments:
+      dpi: Dots per inch in the field
+      pitch_color: Color of the field
+    Returns:
+      fig,axes: matplotlib fig and axes objects.
+    Raises:
+    &#34;&#34;&#34;
+    fig = plt.figure(figsize=(12.8, 7.2), dpi=dpi)
+    fig.patch.set_facecolor(pitch_color)
+
+    axes = fig.add_subplot(1, 1, 1)
+    axes.set_axis_off()
+    axes.set_facecolor(pitch_color)
+    axes.xaxis.set_visible(False)
+    axes.yaxis.set_visible(False)
+
+    axes.set_xlim(0, 100)
+    axes.set_ylim(0, 100)
+
+    plt.xlim([-13.32, 113.32])
+    plt.ylim([-5, 105])
+
+    fig.tight_layout(pad=3)
+
+    draw_patches(axes)
+
+    return fig, axes
+
+
+def draw_patches(axes):
+    &#34;&#34;&#34;Draws basic field shapes on an axes
+    Arguments:
+      axes: matplotlib axes objects.
+    Returns:
+      axes: matplotlib axes objects.
+    Raises:
+    &#34;&#34;&#34;
+    # pitch
+    axes.add_patch(plt.Rectangle((0, 0), 100, 100, edgecolor=&#34;white&#34;, facecolor=&#34;none&#34;))
+
+    # half-way line
+    axes.add_line(plt.Line2D([50, 50], [100, 0], c=&#34;w&#34;))
+
+    # penalty areas
+    axes.add_patch(
+        plt.Rectangle(
+            (100 - BOX_WIDTH, (100 - BOX_HEIGHT) / 2),
+            BOX_WIDTH,
+            BOX_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+    axes.add_patch(
+        plt.Rectangle(
+            (0, (100 - BOX_HEIGHT) / 2), BOX_WIDTH, BOX_HEIGHT, ec=&#34;w&#34;, fc=&#34;none&#34;
+        )
+    )
+
+    # goal areas
+    axes.add_patch(
+        plt.Rectangle(
+            (100 - GOAL_AREA_WIDTH, (100 - GOAL_AREA_HEIGHT) / 2),
+            GOAL_AREA_WIDTH,
+            GOAL_AREA_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+    axes.add_patch(
+        plt.Rectangle(
+            (0, (100 - GOAL_AREA_HEIGHT) / 2),
+            GOAL_AREA_WIDTH,
+            GOAL_AREA_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+
+    # goals
+    axes.add_patch(plt.Rectangle((100, (100 - GOAL) / 2), 1, GOAL, ec=&#34;w&#34;, fc=&#34;none&#34;))
+    axes.add_patch(plt.Rectangle((0, (100 - GOAL) / 2), -1, GOAL, ec=&#34;w&#34;, fc=&#34;none&#34;))
+
+    # halfway circle
+    axes.add_patch(
+        Ellipse(
+            (50, 50),
+            2 * 9.15 / X_SIZE * 100,
+            2 * 9.15 / Y_SIZE * 100,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+
+    return axes
+
+
+def draw_frame(
+    df,
+    t,
+    dpi=100,
+    fps=20,
+    add_vector=False,
+    display_num=False,
+    display_time=False,
+    show_players=True,
+    highlight_color=None,
+    highlight_player=None,
+    shadow_player=None,
+    text_color=&#34;white&#34;,
+    flip=False,
+    **anim_args
+):
+    &#34;&#34;&#34;
+    Draws players from time t (in seconds) from a DataFrame df
+    &#34;&#34;&#34;
+    fig, ax = draw_pitch(dpi=dpi)
+
+    dfFrame = get_frame(df, t, fps=fps)
+
+    if show_players:
+        for pid in dfFrame.index:
+            if pid == 0:
+                # se for bola
+                try:
+                    z = dfFrame.loc[pid][&#34;z&#34;]
+                except:
+                    z = 0
+                size = 1.2 + z
+                lw = 0.9
+                color = &#34;black&#34;
+                edge = &#34;white&#34;
+                zorder = 100
+            else:
+                # se for jogador
+                size = 3
+                lw = 2
+                edge = dfFrame.loc[pid][&#34;edgecolor&#34;]
+
+                if pid == highlight_player:
+                    color = highlight_color
+                else:
+                    color = dfFrame.loc[pid][&#34;bgcolor&#34;]
+                if dfFrame.loc[pid][&#34;team&#34;] == &#34;attack&#34;:
+                    zorder = 21
+                else:
+                    zorder = 20
+
+            ax.add_artist(
+                Ellipse(
+                    (dfFrame.loc[pid][&#34;x&#34;], dfFrame.loc[pid][&#34;y&#34;]),
+                    size / X_SIZE * 100,
+                    size / Y_SIZE * 100,
+                    edgecolor=edge,
+                    linewidth=lw,
+                    facecolor=color,
+                    alpha=0.8,
+                    zorder=zorder,
+                )
+            )
+
+            if add_vector:
+
+                arrow_length = (
+                    math.sqrt(
+                        (dfFrame.loc[pid][&#34;dx&#34;] ** 2 + dfFrame.loc[pid][&#34;dy&#34;] ** 2)
+                    )
+                    * 20
+                )
+                color_arrow = &#34;white&#34; if pid == 0 else color
+                plt.arrow(
+                    x=dfFrame.loc[pid][&#34;x&#34;],
+                    y=dfFrame.loc[pid][&#34;y&#34;],
+                    dx=dfFrame.loc[pid][&#34;dx&#34;] * 20,
+                    dy=dfFrame.loc[pid][&#34;dy&#34;] * 20,
+                    length_includes_head=True,
+                    color=color_arrow,
+                    edgecolor=edge,
+                    head_width=1,
+                    head_length=arrow_length / 4.0,
+                )
+
+            try:
+                s = str(int(dfFrame.loc[pid][&#34;player_num&#34;]))
+            except ValueError:
+                s = &#34;&#34;
+            text = plt.text(
+                dfFrame.loc[pid][&#34;x&#34;],
+                dfFrame.loc[pid][&#34;y&#34;],
+                s,
+                horizontalalignment=&#34;center&#34;,
+                verticalalignment=&#34;center&#34;,
+                fontsize=8,
+                color=text_color,
+                zorder=22,
+                alpha=0.8,
+            )
+
+            text.set_path_effects(
+                [
+                    path_effects.Stroke(linewidth=1, foreground=text_color, alpha=0.8),
+                    path_effects.Normal(),
+                ]
+            )
+
+    return fig, ax, dfFrame
+
+
+def add_voronoi_to_fig(fig, ax, dfFrame):
+    &#34;&#34;&#34; Adds a voronoi diagram to the field, according to the players positions
+    Arguments:
+      fig,ax: matplotlib fig and axes objects.
+      dfFrame: pd.DataFrame with player tracking data
+    Returns:
+      fig,ax: matplotlib fig and axes objects.
+      dfFrame: pd.DataFrame with player tracking data
+    Raises:
+    &#34;&#34;&#34;
+    polygons = {}
+    vor, dfVor = calculate_voronoi(dfFrame)
+    for index, region in enumerate(vor.regions):
+        if not -1 in region:
+            if len(region) &gt; 0:
+                try:
+                    pl = dfVor[dfVor[&#34;region&#34;] == index]
+                    polygon = Polygon(
+                        [vor.vertices[i] for i in region] / SCALERS
+                    ).intersection(pitch_polygon)
+                    polygons[pl.index[0]] = polygon
+                    color = pl[&#34;bgcolor&#34;].values[0]
+                    x, y = polygon.exterior.xy
+                    plt.fill(x, y, c=color, alpha=0.30)
+                except IndexError:
+                    pass
+                except AttributeError:
+                    pass
+
+    plt.scatter(dfVor[&#34;x&#34;], dfVor[&#34;y&#34;], c=dfVor[&#34;bgcolor&#34;], alpha=0.2)
+
+    return fig, ax, dfFrame
+
+
+def calculate_voronoi(dfFrame):
+    &#34;&#34;&#34; Computes the voronoi diagram for the players positions
+    Arguments:
+      dfFrame: pd.DataFrame with player tracking data
+    Returns:
+      vor: Voronoi dataframe (region for each coordinates)
+      dfFrame: pd.DataFrame with player tracking data
+    Raises:
+    &#34;&#34;&#34;
+    dfTemp = dfFrame.copy().drop(0, errors=&#34;ignore&#34;)
+
+    values = np.vstack(
+        (
+            dfTemp[[&#34;x&#34;, &#34;y&#34;]].values * SCALERS,
+            [-1000, -1000],
+            [+1000, +1000],
+            [+1000, -1000],
+            [-1000, +1000],
+        )
+    )
+
+    vor = Voronoi(values)
+
+    dfTemp[&#34;region&#34;] = vor.point_region[:-4]
+
+    return vor, dfTemp
+
+
+def get_frame(df, t, fps=20):
+    &#34;&#34;&#34;Gets the player data from the right frame
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      t: timestamp of the play
+      fps: frame per second
+    Returns:
+      dfFrame: pd.DataFrame with player tracking data from timestamp t
+    Raises:
+    &#34;&#34;&#34;
+    dfFrame = df.loc[int(t * fps)].set_index(&#34;player&#34;)
+    dfFrame.player_num = dfFrame.player_num.fillna(&#34;&#34;)
+    return dfFrame
+
+
+def draw_frame_x(df, t, fps, voronoi=True):
+    &#34;&#34;&#34;Draw field, player and voronoi on the same image
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      t: timestamp of the play
+      fps: frame per second
+      voronoi : If we draw the voronoi diagram or not
+    Returns:
+      image: Image of the field, players, ball, and eventually voronoi diagram.
+    Raises:
+    &#34;&#34;&#34;
+    fig, ax, dfFrame = draw_frame(df, t=t, fps=fps, add_vector=True)
+    if voronoi:
+        fig, ax, dfFrame = add_voronoi_to_fig(fig, ax, dfFrame)
+    image = mplfig_to_npimage(fig)
+    plt.close()
+    return image
+
+
+def make_animation(df, fps=20, voronoi=True):
+    &#34;&#34;&#34;Makes a clip from the entire dataset
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      fps: frame per second
+      voronoi : If we draw the voronoi diagram or not
+    Returns:
+      clip: mpy Clip object
+    Raises:
+    &#34;&#34;&#34;
+    # calculated variables
+    length = (df.index.max() + 20) / fps
+    clip = mpy.VideoClip(
+        lambda x: draw_frame_x(df, t=x, fps=fps, voronoi=voronoi), duration=length - 1
+    ).set_fps(fps)
+    return clip
+
+
+def draw_line(df_value, t, fps, smooth=True, show=True):
+    &#34;&#34;&#34; Draw the value function overtime, and add a marker at the wanted frame
+    Arguments:
+      df_value: pd.Dataframe with the value of each frame
+      t: timestamp of the play to mark the value function
+      fps: frame per second
+      smooth : If we smooth the value function or not
+      show: If we show the plot (otherwise return it as an image)
+    Returns:
+      image, fig,ax: show or image of the plot
+    Raises:
+    &#34;&#34;&#34;
+    fig = plt.figure(figsize=(19.2, 10.8), dpi=100)
+    ax = fig.add_subplot(111)
+    if smooth:
+        df_value[&#34;Value_smooth&#34;] = savgol_filter(df_value[&#34;value&#34;], 21, 3)
+    else:
+        df_value[&#34;Value_smooth&#34;] = df_value[&#34;value&#34;]
+    x = df_value[&#34;frame_count&#34;].values
+    y = df_value[&#34;Value_smooth&#34;].values
+
+    vmin = df_value[&#34;Value_smooth&#34;].min()
+    vmax = df_value[&#34;Value_smooth&#34;].max()
+    norm = colors.Normalize(vmin=vmin, vmax=vmax)
+    points = np.array([x, y]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    lc = LineCollection(segments, cmap=&#34;cool&#34;, norm=norm)
+    lc.set_array(y)
+    lc.set_linewidth(2)
+    line = ax.add_collection(lc)
+    fig.colorbar(line, ax=ax)
+    ax.scatter(
+        df_value.values[int(t * fps)][0],
+        df_value.values[int(t * fps)][2],
+        color=&#34;green&#34;,
+        marker=&#34;o&#34;,
+        linewidths=4,
+    )
+    if show:
+        return fig, ax
+    else:
+        image = mplfig_to_npimage(fig)
+        plt.close()
+        return image
+
+
+def make_animation_value(df, fps=20):
+    &#34;&#34;&#34;Makes a clip from the entire dataset of the value function
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      fps: frame per second
+    Returns:
+      clip: mpy Clip object
+    Raises:
+    &#34;&#34;&#34;
+    # calculated variables
+    length = (df.index.max() + 20) / fps
+    clip = mpy.VideoClip(
+        lambda x: draw_line(df, t=x, fps=fps), duration=length - 1
+    ).set_fps(fps)
+    return clip
+
+
+def add_edg_to_fig(fig, ax, edg_map, vmin=None, vmax=None):
+    &#34;&#34;&#34;Adds an edg_map to a field
+    Arguments:
+      fig,ax : Matplotlib object from draw_frame
+      edg_map: edg_map from agent.py
+      vmin,vmax : min and max value of the edg_map
+    Returns:
+      fig,ax: Matplotlib object from draw_frame, with the map on top
+      edg_map: edg_map from agent.py
+    Raises:
+    &#34;&#34;&#34;
+    cmap = &#34;bwr&#34;
+    if vmin is None:
+        vmin = np.min(edg_map)
+    if vmax is None:
+        vmax = np.max(edg_map)
+    ax = ax.imshow(
+        edg_map,
+        extent=(0, 100, 0, 100),
+        aspect=&#34;auto&#34;,
+        interpolation=&#34;mitchell&#34;,
+        vmin=vmin,
+        vmax=vmax,
+        cmap=cmap,
+        alpha=0.5,
+    )
+    cbar = plt.colorbar(ax)
+    cbar.set_label(&#34;Value&#34;)
+    return fig, ax, edg_map
+
+
+def get_color(idx):
+    idx = idx * 3
+    color = ((17 * idx) % 255, (37 * idx) % 255, (29 * idx) % 255)
+
+    return color
+
+
+def plot_tracking(image, tlwhs, obj_ids, scores=None, frame_id=0, fps=0.0, ids2=None):
+    im = np.ascontiguousarray(np.copy(image))
+    im_h, im_w = im.shape[:2]
+
+    text_scale = max(1, image.shape[1] / 1600.0)
+    text_thickness = 1 if text_scale &gt; 1.1 else 1
+    line_thickness = max(1, int(image.shape[1] / 500.0))
+
+    radius = max(5, int(im_w / 140.0))
+    cv2.putText(
+        im,
+        &#34;frame: %d fps: %.2f num: %d&#34; % (frame_id, fps, len(tlwhs)),
+        (0, int(15 * text_scale)),
+        cv2.FONT_HERSHEY_PLAIN,
+        text_scale,
+        (0, 0, 255),
+        thickness=2,
+    )
+
+    for i, tlwh in enumerate(tlwhs):
+        x1, y1, w, h = tlwh
+        intbox = tuple(map(int, (x1, y1, x1 + w, y1 + h)))
+        obj_id = int(obj_ids[i])
+        id_text = &#34;{}&#34;.format(int(obj_id))
+        if ids2 is not None:
+            id_text = id_text + &#34;, {}&#34;.format(int(ids2[i]))
+        _line_thickness = 1 if obj_id &lt;= 0 else line_thickness
+        color = get_color(abs(obj_id))
+        cv2.rectangle(
+            im, intbox[0:2], intbox[2:4], color=color, thickness=line_thickness
+        )
+        cv2.putText(
+            im,
+            id_text,
+            (intbox[0], intbox[1] + 30),
+            cv2.FONT_HERSHEY_PLAIN,
+            text_scale,
+            (0, 0, 255),
+            thickness=text_thickness,
+        )
+    return im
+
+
+def rgb_template_to_coord_conv_template(rgb_template):
+    assert isinstance(rgb_template, np.ndarray)
+    assert rgb_template.min() &gt;= 0.0
+    assert rgb_template.max() &lt;= 1.0
+    rgb_template = np.mean(rgb_template, 2)
+    x_coord, y_coord = np.meshgrid(
+        np.linspace(0, 1, num=rgb_template.shape[1]),
+        np.linspace(0, 1, num=rgb_template.shape[0]),
+    )
+    coord_conv_template = np.stack((rgb_template, x_coord, y_coord), axis=2)
+    return coord_conv_template
+
+
+def merge_template(img, warped_template):
+    valid_index = warped_template[:, :, 0] &gt; 0.0
+    overlay = (
+        img[valid_index].astype(&#34;float32&#34;)
+        + warped_template[valid_index].astype(&#34;float32&#34;)
+    ) / 2
+    new_image = np.copy(img)
+    new_image[valid_index] = overlay
+    return new_image</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="narya.utils.vizualization.add_edg_to_fig"><code class="name flex">
+<span>def <span class="ident">add_edg_to_fig</span></span>(<span>fig, ax, edg_map, vmin=None, vmax=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds an edg_map to a field</p>
+<h2 id="arguments">Arguments</h2>
+<p>fig,ax : Matplotlib object from draw_frame
+edg_map: edg_map from agent.py
+vmin,vmax : min and max value of the edg_map</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>fig,ax</code></dt>
+<dd>Matplotlib object from draw_frame, with the map on top</dd>
+<dt><code>edg_map</code></dt>
+<dd>edg_map from agent.py</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_edg_to_fig(fig, ax, edg_map, vmin=None, vmax=None):
+    &#34;&#34;&#34;Adds an edg_map to a field
+    Arguments:
+      fig,ax : Matplotlib object from draw_frame
+      edg_map: edg_map from agent.py
+      vmin,vmax : min and max value of the edg_map
+    Returns:
+      fig,ax: Matplotlib object from draw_frame, with the map on top
+      edg_map: edg_map from agent.py
+    Raises:
+    &#34;&#34;&#34;
+    cmap = &#34;bwr&#34;
+    if vmin is None:
+        vmin = np.min(edg_map)
+    if vmax is None:
+        vmax = np.max(edg_map)
+    ax = ax.imshow(
+        edg_map,
+        extent=(0, 100, 0, 100),
+        aspect=&#34;auto&#34;,
+        interpolation=&#34;mitchell&#34;,
+        vmin=vmin,
+        vmax=vmax,
+        cmap=cmap,
+        alpha=0.5,
+    )
+    cbar = plt.colorbar(ax)
+    cbar.set_label(&#34;Value&#34;)
+    return fig, ax, edg_map</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.add_voronoi_to_fig"><code class="name flex">
+<span>def <span class="ident">add_voronoi_to_fig</span></span>(<span>fig, ax, dfFrame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds a voronoi diagram to the field, according to the players positions</p>
+<h2 id="arguments">Arguments</h2>
+<p>fig,ax: matplotlib fig and axes objects.
+dfFrame: pd.DataFrame with player tracking data</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>fig,ax</code></dt>
+<dd>matplotlib fig and axes objects.</dd>
+<dt><code>dfFrame</code></dt>
+<dd>pd.DataFrame with player tracking data</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_voronoi_to_fig(fig, ax, dfFrame):
+    &#34;&#34;&#34; Adds a voronoi diagram to the field, according to the players positions
+    Arguments:
+      fig,ax: matplotlib fig and axes objects.
+      dfFrame: pd.DataFrame with player tracking data
+    Returns:
+      fig,ax: matplotlib fig and axes objects.
+      dfFrame: pd.DataFrame with player tracking data
+    Raises:
+    &#34;&#34;&#34;
+    polygons = {}
+    vor, dfVor = calculate_voronoi(dfFrame)
+    for index, region in enumerate(vor.regions):
+        if not -1 in region:
+            if len(region) &gt; 0:
+                try:
+                    pl = dfVor[dfVor[&#34;region&#34;] == index]
+                    polygon = Polygon(
+                        [vor.vertices[i] for i in region] / SCALERS
+                    ).intersection(pitch_polygon)
+                    polygons[pl.index[0]] = polygon
+                    color = pl[&#34;bgcolor&#34;].values[0]
+                    x, y = polygon.exterior.xy
+                    plt.fill(x, y, c=color, alpha=0.30)
+                except IndexError:
+                    pass
+                except AttributeError:
+                    pass
+
+    plt.scatter(dfVor[&#34;x&#34;], dfVor[&#34;y&#34;], c=dfVor[&#34;bgcolor&#34;], alpha=0.2)
+
+    return fig, ax, dfFrame</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.calculate_voronoi"><code class="name flex">
+<span>def <span class="ident">calculate_voronoi</span></span>(<span>dfFrame)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the voronoi diagram for the players positions</p>
+<h2 id="arguments">Arguments</h2>
+<p>dfFrame: pd.DataFrame with player tracking data</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>vor</code></dt>
+<dd>Voronoi dataframe (region for each coordinates)</dd>
+<dt><code>dfFrame</code></dt>
+<dd>pd.DataFrame with player tracking data</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate_voronoi(dfFrame):
+    &#34;&#34;&#34; Computes the voronoi diagram for the players positions
+    Arguments:
+      dfFrame: pd.DataFrame with player tracking data
+    Returns:
+      vor: Voronoi dataframe (region for each coordinates)
+      dfFrame: pd.DataFrame with player tracking data
+    Raises:
+    &#34;&#34;&#34;
+    dfTemp = dfFrame.copy().drop(0, errors=&#34;ignore&#34;)
+
+    values = np.vstack(
+        (
+            dfTemp[[&#34;x&#34;, &#34;y&#34;]].values * SCALERS,
+            [-1000, -1000],
+            [+1000, +1000],
+            [+1000, -1000],
+            [-1000, +1000],
+        )
+    )
+
+    vor = Voronoi(values)
+
+    dfTemp[&#34;region&#34;] = vor.point_region[:-4]
+
+    return vor, dfTemp</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.draw_frame"><code class="name flex">
+<span>def <span class="ident">draw_frame</span></span>(<span>df, t, dpi=100, fps=20, add_vector=False, display_num=False, display_time=False, show_players=True, highlight_color=None, highlight_player=None, shadow_player=None, text_color='white', flip=False, **anim_args)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws players from time t (in seconds) from a DataFrame df</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_frame(
+    df,
+    t,
+    dpi=100,
+    fps=20,
+    add_vector=False,
+    display_num=False,
+    display_time=False,
+    show_players=True,
+    highlight_color=None,
+    highlight_player=None,
+    shadow_player=None,
+    text_color=&#34;white&#34;,
+    flip=False,
+    **anim_args
+):
+    &#34;&#34;&#34;
+    Draws players from time t (in seconds) from a DataFrame df
+    &#34;&#34;&#34;
+    fig, ax = draw_pitch(dpi=dpi)
+
+    dfFrame = get_frame(df, t, fps=fps)
+
+    if show_players:
+        for pid in dfFrame.index:
+            if pid == 0:
+                # se for bola
+                try:
+                    z = dfFrame.loc[pid][&#34;z&#34;]
+                except:
+                    z = 0
+                size = 1.2 + z
+                lw = 0.9
+                color = &#34;black&#34;
+                edge = &#34;white&#34;
+                zorder = 100
+            else:
+                # se for jogador
+                size = 3
+                lw = 2
+                edge = dfFrame.loc[pid][&#34;edgecolor&#34;]
+
+                if pid == highlight_player:
+                    color = highlight_color
+                else:
+                    color = dfFrame.loc[pid][&#34;bgcolor&#34;]
+                if dfFrame.loc[pid][&#34;team&#34;] == &#34;attack&#34;:
+                    zorder = 21
+                else:
+                    zorder = 20
+
+            ax.add_artist(
+                Ellipse(
+                    (dfFrame.loc[pid][&#34;x&#34;], dfFrame.loc[pid][&#34;y&#34;]),
+                    size / X_SIZE * 100,
+                    size / Y_SIZE * 100,
+                    edgecolor=edge,
+                    linewidth=lw,
+                    facecolor=color,
+                    alpha=0.8,
+                    zorder=zorder,
+                )
+            )
+
+            if add_vector:
+
+                arrow_length = (
+                    math.sqrt(
+                        (dfFrame.loc[pid][&#34;dx&#34;] ** 2 + dfFrame.loc[pid][&#34;dy&#34;] ** 2)
+                    )
+                    * 20
+                )
+                color_arrow = &#34;white&#34; if pid == 0 else color
+                plt.arrow(
+                    x=dfFrame.loc[pid][&#34;x&#34;],
+                    y=dfFrame.loc[pid][&#34;y&#34;],
+                    dx=dfFrame.loc[pid][&#34;dx&#34;] * 20,
+                    dy=dfFrame.loc[pid][&#34;dy&#34;] * 20,
+                    length_includes_head=True,
+                    color=color_arrow,
+                    edgecolor=edge,
+                    head_width=1,
+                    head_length=arrow_length / 4.0,
+                )
+
+            try:
+                s = str(int(dfFrame.loc[pid][&#34;player_num&#34;]))
+            except ValueError:
+                s = &#34;&#34;
+            text = plt.text(
+                dfFrame.loc[pid][&#34;x&#34;],
+                dfFrame.loc[pid][&#34;y&#34;],
+                s,
+                horizontalalignment=&#34;center&#34;,
+                verticalalignment=&#34;center&#34;,
+                fontsize=8,
+                color=text_color,
+                zorder=22,
+                alpha=0.8,
+            )
+
+            text.set_path_effects(
+                [
+                    path_effects.Stroke(linewidth=1, foreground=text_color, alpha=0.8),
+                    path_effects.Normal(),
+                ]
+            )
+
+    return fig, ax, dfFrame</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.draw_frame_x"><code class="name flex">
+<span>def <span class="ident">draw_frame_x</span></span>(<span>df, t, fps, voronoi=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draw field, player and voronoi on the same image</p>
+<h2 id="arguments">Arguments</h2>
+<p>df: pd.DataFrame with player tracking data
+t: timestamp of the play
+fps: frame per second
+voronoi : If we draw the voronoi diagram or not</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>image</code></dt>
+<dd>Image of the field, players, ball, and eventually voronoi diagram.</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_frame_x(df, t, fps, voronoi=True):
+    &#34;&#34;&#34;Draw field, player and voronoi on the same image
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      t: timestamp of the play
+      fps: frame per second
+      voronoi : If we draw the voronoi diagram or not
+    Returns:
+      image: Image of the field, players, ball, and eventually voronoi diagram.
+    Raises:
+    &#34;&#34;&#34;
+    fig, ax, dfFrame = draw_frame(df, t=t, fps=fps, add_vector=True)
+    if voronoi:
+        fig, ax, dfFrame = add_voronoi_to_fig(fig, ax, dfFrame)
+    image = mplfig_to_npimage(fig)
+    plt.close()
+    return image</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.draw_line"><code class="name flex">
+<span>def <span class="ident">draw_line</span></span>(<span>df_value, t, fps, smooth=True, show=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draw the value function overtime, and add a marker at the wanted frame</p>
+<h2 id="arguments">Arguments</h2>
+<p>df_value: pd.Dataframe with the value of each frame
+t: timestamp of the play to mark the value function
+fps: frame per second
+smooth : If we smooth the value function or not
+show: If we show the plot (otherwise return it as an image)</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>image, fig,ax</code></dt>
+<dd>show or image of the plot</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_line(df_value, t, fps, smooth=True, show=True):
+    &#34;&#34;&#34; Draw the value function overtime, and add a marker at the wanted frame
+    Arguments:
+      df_value: pd.Dataframe with the value of each frame
+      t: timestamp of the play to mark the value function
+      fps: frame per second
+      smooth : If we smooth the value function or not
+      show: If we show the plot (otherwise return it as an image)
+    Returns:
+      image, fig,ax: show or image of the plot
+    Raises:
+    &#34;&#34;&#34;
+    fig = plt.figure(figsize=(19.2, 10.8), dpi=100)
+    ax = fig.add_subplot(111)
+    if smooth:
+        df_value[&#34;Value_smooth&#34;] = savgol_filter(df_value[&#34;value&#34;], 21, 3)
+    else:
+        df_value[&#34;Value_smooth&#34;] = df_value[&#34;value&#34;]
+    x = df_value[&#34;frame_count&#34;].values
+    y = df_value[&#34;Value_smooth&#34;].values
+
+    vmin = df_value[&#34;Value_smooth&#34;].min()
+    vmax = df_value[&#34;Value_smooth&#34;].max()
+    norm = colors.Normalize(vmin=vmin, vmax=vmax)
+    points = np.array([x, y]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    lc = LineCollection(segments, cmap=&#34;cool&#34;, norm=norm)
+    lc.set_array(y)
+    lc.set_linewidth(2)
+    line = ax.add_collection(lc)
+    fig.colorbar(line, ax=ax)
+    ax.scatter(
+        df_value.values[int(t * fps)][0],
+        df_value.values[int(t * fps)][2],
+        color=&#34;green&#34;,
+        marker=&#34;o&#34;,
+        linewidths=4,
+    )
+    if show:
+        return fig, ax
+    else:
+        image = mplfig_to_npimage(fig)
+        plt.close()
+        return image</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.draw_patches"><code class="name flex">
+<span>def <span class="ident">draw_patches</span></span>(<span>axes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws basic field shapes on an axes</p>
+<h2 id="arguments">Arguments</h2>
+<p>axes: matplotlib axes objects.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>axes</code></dt>
+<dd>matplotlib axes objects.</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_patches(axes):
+    &#34;&#34;&#34;Draws basic field shapes on an axes
+    Arguments:
+      axes: matplotlib axes objects.
+    Returns:
+      axes: matplotlib axes objects.
+    Raises:
+    &#34;&#34;&#34;
+    # pitch
+    axes.add_patch(plt.Rectangle((0, 0), 100, 100, edgecolor=&#34;white&#34;, facecolor=&#34;none&#34;))
+
+    # half-way line
+    axes.add_line(plt.Line2D([50, 50], [100, 0], c=&#34;w&#34;))
+
+    # penalty areas
+    axes.add_patch(
+        plt.Rectangle(
+            (100 - BOX_WIDTH, (100 - BOX_HEIGHT) / 2),
+            BOX_WIDTH,
+            BOX_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+    axes.add_patch(
+        plt.Rectangle(
+            (0, (100 - BOX_HEIGHT) / 2), BOX_WIDTH, BOX_HEIGHT, ec=&#34;w&#34;, fc=&#34;none&#34;
+        )
+    )
+
+    # goal areas
+    axes.add_patch(
+        plt.Rectangle(
+            (100 - GOAL_AREA_WIDTH, (100 - GOAL_AREA_HEIGHT) / 2),
+            GOAL_AREA_WIDTH,
+            GOAL_AREA_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+    axes.add_patch(
+        plt.Rectangle(
+            (0, (100 - GOAL_AREA_HEIGHT) / 2),
+            GOAL_AREA_WIDTH,
+            GOAL_AREA_HEIGHT,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+
+    # goals
+    axes.add_patch(plt.Rectangle((100, (100 - GOAL) / 2), 1, GOAL, ec=&#34;w&#34;, fc=&#34;none&#34;))
+    axes.add_patch(plt.Rectangle((0, (100 - GOAL) / 2), -1, GOAL, ec=&#34;w&#34;, fc=&#34;none&#34;))
+
+    # halfway circle
+    axes.add_patch(
+        Ellipse(
+            (50, 50),
+            2 * 9.15 / X_SIZE * 100,
+            2 * 9.15 / Y_SIZE * 100,
+            ec=&#34;w&#34;,
+            fc=&#34;none&#34;,
+        )
+    )
+
+    return axes</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.draw_pitch"><code class="name flex">
+<span>def <span class="ident">draw_pitch</span></span>(<span>dpi=100, pitch_color='#a8bc95')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets up field.</p>
+<h2 id="arguments">Arguments</h2>
+<p>dpi: Dots per inch in the field
+pitch_color: Color of the field</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>fig,axes</code></dt>
+<dd>matplotlib fig and axes objects.</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_pitch(dpi=100, pitch_color=&#34;#a8bc95&#34;):
+    &#34;&#34;&#34;Sets up field.
+    Arguments:
+      dpi: Dots per inch in the field
+      pitch_color: Color of the field
+    Returns:
+      fig,axes: matplotlib fig and axes objects.
+    Raises:
+    &#34;&#34;&#34;
+    fig = plt.figure(figsize=(12.8, 7.2), dpi=dpi)
+    fig.patch.set_facecolor(pitch_color)
+
+    axes = fig.add_subplot(1, 1, 1)
+    axes.set_axis_off()
+    axes.set_facecolor(pitch_color)
+    axes.xaxis.set_visible(False)
+    axes.yaxis.set_visible(False)
+
+    axes.set_xlim(0, 100)
+    axes.set_ylim(0, 100)
+
+    plt.xlim([-13.32, 113.32])
+    plt.ylim([-5, 105])
+
+    fig.tight_layout(pad=3)
+
+    draw_patches(axes)
+
+    return fig, axes</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.get_color"><code class="name flex">
+<span>def <span class="ident">get_color</span></span>(<span>idx)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_color(idx):
+    idx = idx * 3
+    color = ((17 * idx) % 255, (37 * idx) % 255, (29 * idx) % 255)
+
+    return color</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.get_frame"><code class="name flex">
+<span>def <span class="ident">get_frame</span></span>(<span>df, t, fps=20)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the player data from the right frame</p>
+<h2 id="arguments">Arguments</h2>
+<p>df: pd.DataFrame with player tracking data
+t: timestamp of the play
+fps: frame per second</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dfFrame</code></dt>
+<dd>pd.DataFrame with player tracking data from timestamp t</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_frame(df, t, fps=20):
+    &#34;&#34;&#34;Gets the player data from the right frame
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      t: timestamp of the play
+      fps: frame per second
+    Returns:
+      dfFrame: pd.DataFrame with player tracking data from timestamp t
+    Raises:
+    &#34;&#34;&#34;
+    dfFrame = df.loc[int(t * fps)].set_index(&#34;player&#34;)
+    dfFrame.player_num = dfFrame.player_num.fillna(&#34;&#34;)
+    return dfFrame</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.make_animation"><code class="name flex">
+<span>def <span class="ident">make_animation</span></span>(<span>df, fps=20, voronoi=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a clip from the entire dataset</p>
+<h2 id="arguments">Arguments</h2>
+<p>df: pd.DataFrame with player tracking data
+fps: frame per second
+voronoi : If we draw the voronoi diagram or not</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>clip</code></dt>
+<dd>mpy Clip object</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_animation(df, fps=20, voronoi=True):
+    &#34;&#34;&#34;Makes a clip from the entire dataset
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      fps: frame per second
+      voronoi : If we draw the voronoi diagram or not
+    Returns:
+      clip: mpy Clip object
+    Raises:
+    &#34;&#34;&#34;
+    # calculated variables
+    length = (df.index.max() + 20) / fps
+    clip = mpy.VideoClip(
+        lambda x: draw_frame_x(df, t=x, fps=fps, voronoi=voronoi), duration=length - 1
+    ).set_fps(fps)
+    return clip</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.make_animation_value"><code class="name flex">
+<span>def <span class="ident">make_animation_value</span></span>(<span>df, fps=20)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes a clip from the entire dataset of the value function</p>
+<h2 id="arguments">Arguments</h2>
+<p>df: pd.DataFrame with player tracking data
+fps: frame per second</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>clip</code></dt>
+<dd>mpy Clip object</dd>
+</dl>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_animation_value(df, fps=20):
+    &#34;&#34;&#34;Makes a clip from the entire dataset of the value function
+    Arguments:
+      df: pd.DataFrame with player tracking data
+      fps: frame per second
+    Returns:
+      clip: mpy Clip object
+    Raises:
+    &#34;&#34;&#34;
+    # calculated variables
+    length = (df.index.max() + 20) / fps
+    clip = mpy.VideoClip(
+        lambda x: draw_line(df, t=x, fps=fps), duration=length - 1
+    ).set_fps(fps)
+    return clip</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.merge_template"><code class="name flex">
+<span>def <span class="ident">merge_template</span></span>(<span>img, warped_template)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def merge_template(img, warped_template):
+    valid_index = warped_template[:, :, 0] &gt; 0.0
+    overlay = (
+        img[valid_index].astype(&#34;float32&#34;)
+        + warped_template[valid_index].astype(&#34;float32&#34;)
+    ) / 2
+    new_image = np.copy(img)
+    new_image[valid_index] = overlay
+    return new_image</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.plot_tracking"><code class="name flex">
+<span>def <span class="ident">plot_tracking</span></span>(<span>image, tlwhs, obj_ids, scores=None, frame_id=0, fps=0.0, ids2=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_tracking(image, tlwhs, obj_ids, scores=None, frame_id=0, fps=0.0, ids2=None):
+    im = np.ascontiguousarray(np.copy(image))
+    im_h, im_w = im.shape[:2]
+
+    text_scale = max(1, image.shape[1] / 1600.0)
+    text_thickness = 1 if text_scale &gt; 1.1 else 1
+    line_thickness = max(1, int(image.shape[1] / 500.0))
+
+    radius = max(5, int(im_w / 140.0))
+    cv2.putText(
+        im,
+        &#34;frame: %d fps: %.2f num: %d&#34; % (frame_id, fps, len(tlwhs)),
+        (0, int(15 * text_scale)),
+        cv2.FONT_HERSHEY_PLAIN,
+        text_scale,
+        (0, 0, 255),
+        thickness=2,
+    )
+
+    for i, tlwh in enumerate(tlwhs):
+        x1, y1, w, h = tlwh
+        intbox = tuple(map(int, (x1, y1, x1 + w, y1 + h)))
+        obj_id = int(obj_ids[i])
+        id_text = &#34;{}&#34;.format(int(obj_id))
+        if ids2 is not None:
+            id_text = id_text + &#34;, {}&#34;.format(int(ids2[i]))
+        _line_thickness = 1 if obj_id &lt;= 0 else line_thickness
+        color = get_color(abs(obj_id))
+        cv2.rectangle(
+            im, intbox[0:2], intbox[2:4], color=color, thickness=line_thickness
+        )
+        cv2.putText(
+            im,
+            id_text,
+            (intbox[0], intbox[1] + 30),
+            cv2.FONT_HERSHEY_PLAIN,
+            text_scale,
+            (0, 0, 255),
+            thickness=text_thickness,
+        )
+    return im</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.rgb_template_to_coord_conv_template"><code class="name flex">
+<span>def <span class="ident">rgb_template_to_coord_conv_template</span></span>(<span>rgb_template)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rgb_template_to_coord_conv_template(rgb_template):
+    assert isinstance(rgb_template, np.ndarray)
+    assert rgb_template.min() &gt;= 0.0
+    assert rgb_template.max() &lt;= 1.0
+    rgb_template = np.mean(rgb_template, 2)
+    x_coord, y_coord = np.meshgrid(
+        np.linspace(0, 1, num=rgb_template.shape[1]),
+        np.linspace(0, 1, num=rgb_template.shape[0]),
+    )
+    coord_conv_template = np.stack((rgb_template, x_coord, y_coord), axis=2)
+    return coord_conv_template</code></pre>
+</details>
+</dd>
+<dt id="narya.utils.vizualization.visualize"><code class="name flex">
+<span>def <span class="ident">visualize</span></span>(<span>**images)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>PLot images in one row.</p>
+<h2 id="arguments">Arguments</h2>
+<p>**images: images to plot</p>
+<h2 id="returns">Returns</h2>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def visualize(**images):
+    &#34;&#34;&#34;PLot images in one row.
+
+    Arguments:
+        **images: images to plot
+    Returns:
+        
+    Raises:
+        
+    &#34;&#34;&#34;
+    n = len(images)
+    plt.figure(figsize=(16, 5))
+    for i, (name, image) in enumerate(images.items()):
+        plt.subplot(1, n, i + 1)
+        plt.xticks([])
+        plt.yticks([])
+        plt.title(&#34; &#34;.join(name.split(&#34;_&#34;)).title())
+        plt.imshow(image)
+    plt.show()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="narya.utils" href="index.html">narya.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="narya.utils.vizualization.add_edg_to_fig" href="#narya.utils.vizualization.add_edg_to_fig">add_edg_to_fig</a></code></li>
+<li><code><a title="narya.utils.vizualization.add_voronoi_to_fig" href="#narya.utils.vizualization.add_voronoi_to_fig">add_voronoi_to_fig</a></code></li>
+<li><code><a title="narya.utils.vizualization.calculate_voronoi" href="#narya.utils.vizualization.calculate_voronoi">calculate_voronoi</a></code></li>
+<li><code><a title="narya.utils.vizualization.draw_frame" href="#narya.utils.vizualization.draw_frame">draw_frame</a></code></li>
+<li><code><a title="narya.utils.vizualization.draw_frame_x" href="#narya.utils.vizualization.draw_frame_x">draw_frame_x</a></code></li>
+<li><code><a title="narya.utils.vizualization.draw_line" href="#narya.utils.vizualization.draw_line">draw_line</a></code></li>
+<li><code><a title="narya.utils.vizualization.draw_patches" href="#narya.utils.vizualization.draw_patches">draw_patches</a></code></li>
+<li><code><a title="narya.utils.vizualization.draw_pitch" href="#narya.utils.vizualization.draw_pitch">draw_pitch</a></code></li>
+<li><code><a title="narya.utils.vizualization.get_color" href="#narya.utils.vizualization.get_color">get_color</a></code></li>
+<li><code><a title="narya.utils.vizualization.get_frame" href="#narya.utils.vizualization.get_frame">get_frame</a></code></li>
+<li><code><a title="narya.utils.vizualization.make_animation" href="#narya.utils.vizualization.make_animation">make_animation</a></code></li>
+<li><code><a title="narya.utils.vizualization.make_animation_value" href="#narya.utils.vizualization.make_animation_value">make_animation_value</a></code></li>
+<li><code><a title="narya.utils.vizualization.merge_template" href="#narya.utils.vizualization.merge_template">merge_template</a></code></li>
+<li><code><a title="narya.utils.vizualization.plot_tracking" href="#narya.utils.vizualization.plot_tracking">plot_tracking</a></code></li>
+<li><code><a title="narya.utils.vizualization.rgb_template_to_coord_conv_template" href="#narya.utils.vizualization.rgb_template_to_coord_conv_template">rgb_template_to_coord_conv_template</a></code></li>
+<li><code><a title="narya.utils.vizualization.visualize" href="#narya.utils.vizualization.visualize">visualize</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>

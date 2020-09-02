@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.4" />
+<title>narya.linker.multitracker API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>narya.linker.multitracker</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+&#34;&#34;&#34;
+
+Cloned from https://github.com/Zhongdao/Towards-Realtime-MOT,
+with some modifications to :
+    * the tracking of the ball
+    * the dual tracking - embedding models 
+
+&#34;&#34;&#34;
+
+import mxnet as mx
+from collections import deque
+
+import numpy as np
+import torch
+import torch.nn.functional as F
+import tensorflow as tf
+
+from .matching import embedding_distance, fuse_motion, linear_assignment, iou_distance
+from .kalman_filter import KalmanFilter
+from .basetrack import BaseTrack, TrackState
+from ..utils.utils import to_torch, to_numpy
+from ..utils.linker import ctdet_post_process
+from ..models.gluon_models import TrackerModel
+from ..models.torch_models import ReIdModel
+
+GLUON_PATH = (
+    &#34;https://storage.googleapis.com/narya-bucket-1/models/player_tracker.params&#34;
+)
+GLUON_NAME = &#34;player_tracker.params&#34;
+GLUON_TOTAR = False
+
+TORCH_PATH = &#34;https://storage.googleapis.com/narya-bucket-1/models/player_reid.pth&#34;
+TORCH_NAME = &#34;player_reid.pth&#34;
+TORCH_TOTAR = False
+
+
+class STrack(BaseTrack):
+    shared_kalman = KalmanFilter()
+
+    def __init__(self, tlwh, score, temp_feat, buffer_size=30):
+
+        # wait activate
+        self._tlwh = np.asarray(tlwh, dtype=np.float)
+        self.kalman_filter = None
+        self.mean, self.covariance = None, None
+        self.is_activated = False
+
+        self.score = score
+        self.tracklet_len = 0
+
+        self.smooth_feat = None
+        self.update_features(temp_feat)
+        self.features = deque([], maxlen=buffer_size)
+        self.alpha = 0.9
+
+    def update_features(self, feat):
+        feat /= np.linalg.norm(feat)
+        self.curr_feat = feat
+        if self.smooth_feat is None:
+            self.smooth_feat = feat
+        else:
+            self.smooth_feat = self.alpha * self.smooth_feat + (1 - self.alpha) * feat
+        self.features.append(feat)
+        self.smooth_feat /= np.linalg.norm(self.smooth_feat)
+
+    def predict(self):
+        mean_state = self.mean.copy()
+        if self.state != TrackState.Tracked:
+            mean_state[7] = 0
+        self.mean, self.covariance = self.kalman_filter.predict(
+            mean_state, self.covariance
+        )
+
+    @staticmethod
+    def multi_predict(stracks):
+        if len(stracks) &gt; 0:
+            multi_mean = np.asarray([st.mean.copy() for st in stracks])
+            multi_covariance = np.asarray([st.covariance for st in stracks])
+            for i, st in enumerate(stracks):
+                if st.state != TrackState.Tracked:
+                    multi_mean[i][7] = 0
+            multi_mean, multi_covariance = STrack.shared_kalman.multi_predict(
+                multi_mean, multi_covariance
+            )
+            for i, (mean, cov) in enumerate(zip(multi_mean, multi_covariance)):
+                stracks[i].mean = mean
+                stracks[i].covariance = cov
+
+    def activate(self, kalman_filter, frame_id):
+        &#34;&#34;&#34;Start a new tracklet&#34;&#34;&#34;
+        self.kalman_filter = kalman_filter
+        self.track_id = self.next_id()
+        self.mean, self.covariance = self.kalman_filter.initiate(
+            self.tlwh_to_xyah(self._tlwh)
+        )
+
+        self.tracklet_len = 0
+        self.state = TrackState.Tracked
+        if frame_id == 1:
+            self.is_activated = True
+        # self.is_activated = True
+        self.frame_id = frame_id
+        self.start_frame = frame_id
+
+    def re_activate(self, new_track, frame_id, new_id=False):
+        self.mean, self.covariance = self.kalman_filter.update(
+            self.mean, self.covariance, self.tlwh_to_xyah(new_track.tlwh)
+        )
+
+        self.update_features(new_track.curr_feat)
+        self.tracklet_len = 0
+        self.state = TrackState.Tracked
+        self.is_activated = True
+        self.frame_id = frame_id
+        if new_id:
+            self.track_id = self.next_id()
+
+    def update(self, new_track, frame_id, update_feature=True):
+        &#34;&#34;&#34;
+        Update a matched track
+        :type new_track: STrack
+        :type frame_id: int
+        :type update_feature: bool
+        :return:
+        &#34;&#34;&#34;
+        self.frame_id = frame_id
+        self.tracklet_len += 1
+
+        new_tlwh = new_track.tlwh
+        self.mean, self.covariance = self.kalman_filter.update(
+            self.mean, self.covariance, self.tlwh_to_xyah(new_tlwh)
+        )
+        self.state = TrackState.Tracked
+        self.is_activated = True
+
+        self.score = new_track.score
+        if update_feature:
+            self.update_features(new_track.curr_feat)
+
+    @property
+    # @jit(nopython=True)
+    def tlwh(self):
+        &#34;&#34;&#34;Get current position in bounding box format `(top left x, top left y,
+                width, height)`.
+        &#34;&#34;&#34;
+        if self.mean is None:
+            return self._tlwh.copy()
+        ret = self.mean[:4].copy()
+        ret[2] *= ret[3]
+        ret[:2] -= ret[2:] / 2
+        return ret
+
+    @property
+    # @jit(nopython=True)
+    def tlbr(self):
+        &#34;&#34;&#34;Convert bounding box to format `(min x, min y, max x, max y)`, i.e.,
+        `(top left, bottom right)`.
+        &#34;&#34;&#34;
+        ret = self.tlwh.copy()
+        ret[2:] += ret[:2]
+        return ret
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlwh_to_xyah(tlwh):
+        &#34;&#34;&#34;Convert bounding box to format `(center x, center y, aspect ratio,
+        height)`, where the aspect ratio is `width / height`.
+        &#34;&#34;&#34;
+        ret = np.asarray(tlwh).copy()
+        ret[:2] += ret[2:] / 2
+        ret[2] /= ret[3]
+        return ret
+
+    def to_xyah(self):
+        return self.tlwh_to_xyah(self.tlwh)
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlbr_to_tlwh(tlbr):
+        ret = np.asarray(tlbr).copy()
+        ret[2:] -= ret[:2]
+        return ret
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlwh_to_tlbr(tlwh):
+        ret = np.asarray(tlwh).copy()
+        ret[2:] += ret[:2]
+        return ret
+
+    def __repr__(self):
+        return &#34;OT_{}_({}-{})&#34;.format(self.track_id, self.start_frame, self.end_frame)
+
+
+class JDETracker(object):
+    def __init__(
+        self, conf_thres=0.5, track_buffer=30, K=100, frame_rate=30,
+    ):
+
+        print(&#34;Creating model...&#34;)
+
+        self.tracker_model = TrackerModel(
+            pretrained=True, backbone=&#34;ssd_512_resnet50_v1_coco&#34;
+        )
+        self.reid_model = ReIdModel()
+
+        gluon_tracker_params = tf.keras.utils.get_file(
+            GLUON_NAME, GLUON_PATH, GLUON_TOTAR,
+        )
+
+        torch_reid_pth = tf.keras.utils.get_file(TORCH_NAME, TORCH_PATH, TORCH_TOTAR,)
+
+        self.tracker_model.load_weights(gluon_tracker_params)
+        self.reid_model.load_weights(torch_reid_pth)
+
+        self.tracked_stracks = []  # type: list[STrack]
+        self.lost_stracks = []  # type: list[STrack]
+        self.removed_stracks = []  # type: list[STrack]
+        self.last_ball_bbox = None
+
+        self.frame_id = 0
+        self.det_thresh = conf_thres
+        self.buffer_size = int((frame_rate / 30.0) * track_buffer)
+        self.max_time_lost = self.buffer_size
+        self.max_per_image = K
+        self.kalman_filter = KalmanFilter()
+
+    def update(self, im_blob, img0, split_size=None, verbose=True):
+        self.frame_id += 1
+        activated_starcks = []
+        refind_stracks = []
+        lost_stracks = []
+        removed_stracks = []
+
+        &#34;&#34;&#34; Step 1: Network forward, get detections &amp; embeddings&#34;&#34;&#34;
+
+        cid, score, bbox = self.tracker_model(img0, split_size=split_size)
+        if split_size is None:
+            bbox = bbox.asnumpy()
+            cid = cid.asnumpy()
+            score = score.asnumpy()
+        id_feature = self.reid_model._get_embeddings(
+            img0, bbox, score, cid, self.det_thresh, (512, 512)
+        )
+        cid = to_torch(cid)
+        score = to_torch(score)
+        bbox = to_torch(bbox)
+        id_feature = to_torch(id_feature)
+        detections = torch.cat([bbox, score, cid], dim=2)
+        detections = detections[0]
+        ball_detections = torch.cat([bbox, score, cid], dim=2)[0]
+        id_feature = id_feature[0]
+        for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+            remain_inds = detections[:, indx] &gt; tresh
+            detections = detections[remain_inds]
+            id_feature = id_feature[remain_inds]
+        dets = detections[:, :5]
+
+        cnt = 0
+        for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+            remain_inds = (
+                ball_detections[:, indx] &gt; tresh
+                if cnt == 0
+                else ball_detections[:, indx] &lt; tresh
+            )
+            ball_detections = ball_detections[remain_inds]
+            cnt += 1
+        dets_ball = ball_detections[:, :5]
+        if len(dets_ball) &gt; 0:
+            best_candidate_ball = np.argmax(dets_ball[:, 4], axis=0)
+            best_candidate_ball_bbox = STrack.tlbr_to_tlwh(
+                dets_ball[best_candidate_ball, :4]
+            )
+            self.last_ball_bbox = best_candidate_ball_bbox
+        else:
+            best_candidate_ball_bbox = None
+
+        # vis
+        &#34;&#34;&#34;
+        for i in range(0, dets.shape[0]):
+            bbox = dets[i][0:4]
+            cv2.rectangle(img0, (bbox[0], bbox[1]),
+                          (bbox[2], bbox[3]),
+                          (0, 255, 0), 2)
+        cv2.imshow(&#39;dets&#39;, img0)
+        cv2.waitKey(0)
+        id0 = id0-1
+        &#34;&#34;&#34;
+
+        if len(dets) &gt; 0:
+            &#34;&#34;&#34;Detections&#34;&#34;&#34;
+            detections = [
+                STrack(STrack.tlbr_to_tlwh(tlbrs[:4]), tlbrs[4], f, 30)
+                for (tlbrs, f) in zip(dets[:, :5], id_feature)
+            ]
+        else:
+            detections = []
+
+        &#34;&#34;&#34; Add newly detected tracklets to tracked_stracks&#34;&#34;&#34;
+        unconfirmed = []
+        tracked_stracks = []  # type: list[STrack]
+        for track in self.tracked_stracks:
+            if not track.is_activated:
+                unconfirmed.append(track)
+            else:
+                tracked_stracks.append(track)
+
+        &#34;&#34;&#34; Step 2: First association, with embedding&#34;&#34;&#34;
+        strack_pool = joint_stracks(tracked_stracks, self.lost_stracks)
+        # Predict the current location with KF
+        # for strack in strack_pool:
+        # strack.predict()
+        STrack.multi_predict(strack_pool)
+        dists = embedding_distance(strack_pool, detections)
+        dists = fuse_motion(self.kalman_filter, dists, strack_pool, detections)
+        matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+        for itracked, idet in matches:
+            track = strack_pool[itracked]
+            det = detections[idet]
+            if track.state == TrackState.Tracked:
+                track.update(detections[idet], self.frame_id)
+                activated_starcks.append(track)
+            else:
+                track.re_activate(det, self.frame_id, new_id=False)
+                refind_stracks.append(track)
+
+        &#34;&#34;&#34; Step 3: Second association, with IOU&#34;&#34;&#34;
+        detections = [detections[i] for i in u_detection]
+        r_tracked_stracks = [
+            strack_pool[i]
+            for i in u_track
+            if strack_pool[i].state == TrackState.Tracked
+        ]
+        dists = iou_distance(r_tracked_stracks, detections)
+        matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+        for itracked, idet in matches:
+            track = r_tracked_stracks[itracked]
+            det = detections[idet]
+            if track.state == TrackState.Tracked:
+                track.update(det, self.frame_id)
+                activated_starcks.append(track)
+            else:
+                track.re_activate(det, self.frame_id, new_id=False)
+                refind_stracks.append(track)
+
+        for it in u_track:
+            track = r_tracked_stracks[it]
+            if not track.state == TrackState.Lost:
+                track.mark_lost()
+                lost_stracks.append(track)
+
+        &#34;&#34;&#34;Deal with unconfirmed tracks, usually tracks with only one beginning frame&#34;&#34;&#34;
+        detections = [detections[i] for i in u_detection]
+        dists = iou_distance(unconfirmed, detections)
+        matches, u_unconfirmed, u_detection = linear_assignment(dists, thresh=0.9)
+        for itracked, idet in matches:
+            unconfirmed[itracked].update(detections[idet], self.frame_id)
+            activated_starcks.append(unconfirmed[itracked])
+
+        for it in u_unconfirmed:
+            track = unconfirmed[it]
+            track.mark_removed()
+            removed_stracks.append(track)
+
+        &#34;&#34;&#34; Step 4: Init new stracks&#34;&#34;&#34;
+        for inew in u_detection:
+            track = detections[inew]
+            if track.score &lt; self.det_thresh:
+                continue
+            track.activate(self.kalman_filter, self.frame_id)
+            activated_starcks.append(track)
+        &#34;&#34;&#34; Step 5: Update state&#34;&#34;&#34;
+
+        for track in self.lost_stracks:
+            if self.frame_id - track.end_frame &gt; self.max_time_lost:
+                track.mark_removed()
+                removed_stracks.append(track)
+
+        self.tracked_stracks = [
+            t for t in self.tracked_stracks if t.state == TrackState.Tracked
+        ]
+        self.tracked_stracks = joint_stracks(self.tracked_stracks, activated_starcks)
+        self.tracked_stracks = joint_stracks(self.tracked_stracks, refind_stracks)
+        self.lost_stracks = sub_stracks(self.lost_stracks, self.tracked_stracks)
+        self.lost_stracks.extend(lost_stracks)
+        self.lost_stracks = sub_stracks(self.lost_stracks, self.removed_stracks)
+        self.removed_stracks.extend(removed_stracks)
+        self.tracked_stracks, self.lost_stracks = remove_duplicate_stracks(
+            self.tracked_stracks, self.lost_stracks
+        )
+        # get scores of lost tracks
+        output_stracks = [track for track in self.tracked_stracks if track.is_activated]
+
+        if verbose:
+            print(&#34;===========Frame {}==========&#34;.format(self.frame_id))
+            print(
+                &#34;Activated: {}&#34;.format([track.track_id for track in activated_starcks])
+            )
+            print(&#34;Refind: {}&#34;.format([track.track_id for track in refind_stracks]))
+            print(&#34;Lost: {}&#34;.format([track.track_id for track in lost_stracks]))
+            print(&#34;Removed: {}&#34;.format([track.track_id for track in removed_stracks]))
+
+        return output_stracks, best_candidate_ball_bbox
+
+
+def joint_stracks(tlista, tlistb):
+    exists = {}
+    res = []
+    for t in tlista:
+        exists[t.track_id] = 1
+        res.append(t)
+    for t in tlistb:
+        tid = t.track_id
+        if not exists.get(tid, 0):
+            exists[tid] = 1
+            res.append(t)
+    return res
+
+
+def sub_stracks(tlista, tlistb):
+    stracks = {}
+    for t in tlista:
+        stracks[t.track_id] = t
+    for t in tlistb:
+        tid = t.track_id
+        if stracks.get(tid, 0):
+            del stracks[tid]
+    return list(stracks.values())
+
+
+def remove_duplicate_stracks(stracksa, stracksb):
+    pdist = iou_distance(stracksa, stracksb)
+    pairs = np.where(pdist &lt; 0.15)
+    dupa, dupb = list(), list()
+    for p, q in zip(*pairs):
+        timep = stracksa[p].frame_id - stracksa[p].start_frame
+        timeq = stracksb[q].frame_id - stracksb[q].start_frame
+        if timep &gt; timeq:
+            dupb.append(q)
+        else:
+            dupa.append(p)
+    resa = [t for i, t in enumerate(stracksa) if not i in dupa]
+    resb = [t for i, t in enumerate(stracksb) if not i in dupb]
+    return resa, resb</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="narya.linker.multitracker.joint_stracks"><code class="name flex">
+<span>def <span class="ident">joint_stracks</span></span>(<span>tlista, tlistb)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def joint_stracks(tlista, tlistb):
+    exists = {}
+    res = []
+    for t in tlista:
+        exists[t.track_id] = 1
+        res.append(t)
+    for t in tlistb:
+        tid = t.track_id
+        if not exists.get(tid, 0):
+            exists[tid] = 1
+            res.append(t)
+    return res</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.remove_duplicate_stracks"><code class="name flex">
+<span>def <span class="ident">remove_duplicate_stracks</span></span>(<span>stracksa, stracksb)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_duplicate_stracks(stracksa, stracksb):
+    pdist = iou_distance(stracksa, stracksb)
+    pairs = np.where(pdist &lt; 0.15)
+    dupa, dupb = list(), list()
+    for p, q in zip(*pairs):
+        timep = stracksa[p].frame_id - stracksa[p].start_frame
+        timeq = stracksb[q].frame_id - stracksb[q].start_frame
+        if timep &gt; timeq:
+            dupb.append(q)
+        else:
+            dupa.append(p)
+    resa = [t for i, t in enumerate(stracksa) if not i in dupa]
+    resb = [t for i, t in enumerate(stracksb) if not i in dupb]
+    return resa, resb</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.sub_stracks"><code class="name flex">
+<span>def <span class="ident">sub_stracks</span></span>(<span>tlista, tlistb)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sub_stracks(tlista, tlistb):
+    stracks = {}
+    for t in tlista:
+        stracks[t.track_id] = t
+    for t in tlistb:
+        tid = t.track_id
+        if stracks.get(tid, 0):
+            del stracks[tid]
+    return list(stracks.values())</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="narya.linker.multitracker.JDETracker"><code class="flex name class">
+<span>class <span class="ident">JDETracker</span></span>
+<span>(</span><span>conf_thres=0.5, track_buffer=30, K=100, frame_rate=30)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class JDETracker(object):
+    def __init__(
+        self, conf_thres=0.5, track_buffer=30, K=100, frame_rate=30,
+    ):
+
+        print(&#34;Creating model...&#34;)
+
+        self.tracker_model = TrackerModel(
+            pretrained=True, backbone=&#34;ssd_512_resnet50_v1_coco&#34;
+        )
+        self.reid_model = ReIdModel()
+
+        gluon_tracker_params = tf.keras.utils.get_file(
+            GLUON_NAME, GLUON_PATH, GLUON_TOTAR,
+        )
+
+        torch_reid_pth = tf.keras.utils.get_file(TORCH_NAME, TORCH_PATH, TORCH_TOTAR,)
+
+        self.tracker_model.load_weights(gluon_tracker_params)
+        self.reid_model.load_weights(torch_reid_pth)
+
+        self.tracked_stracks = []  # type: list[STrack]
+        self.lost_stracks = []  # type: list[STrack]
+        self.removed_stracks = []  # type: list[STrack]
+        self.last_ball_bbox = None
+
+        self.frame_id = 0
+        self.det_thresh = conf_thres
+        self.buffer_size = int((frame_rate / 30.0) * track_buffer)
+        self.max_time_lost = self.buffer_size
+        self.max_per_image = K
+        self.kalman_filter = KalmanFilter()
+
+    def update(self, im_blob, img0, split_size=None, verbose=True):
+        self.frame_id += 1
+        activated_starcks = []
+        refind_stracks = []
+        lost_stracks = []
+        removed_stracks = []
+
+        &#34;&#34;&#34; Step 1: Network forward, get detections &amp; embeddings&#34;&#34;&#34;
+
+        cid, score, bbox = self.tracker_model(img0, split_size=split_size)
+        if split_size is None:
+            bbox = bbox.asnumpy()
+            cid = cid.asnumpy()
+            score = score.asnumpy()
+        id_feature = self.reid_model._get_embeddings(
+            img0, bbox, score, cid, self.det_thresh, (512, 512)
+        )
+        cid = to_torch(cid)
+        score = to_torch(score)
+        bbox = to_torch(bbox)
+        id_feature = to_torch(id_feature)
+        detections = torch.cat([bbox, score, cid], dim=2)
+        detections = detections[0]
+        ball_detections = torch.cat([bbox, score, cid], dim=2)[0]
+        id_feature = id_feature[0]
+        for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+            remain_inds = detections[:, indx] &gt; tresh
+            detections = detections[remain_inds]
+            id_feature = id_feature[remain_inds]
+        dets = detections[:, :5]
+
+        cnt = 0
+        for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+            remain_inds = (
+                ball_detections[:, indx] &gt; tresh
+                if cnt == 0
+                else ball_detections[:, indx] &lt; tresh
+            )
+            ball_detections = ball_detections[remain_inds]
+            cnt += 1
+        dets_ball = ball_detections[:, :5]
+        if len(dets_ball) &gt; 0:
+            best_candidate_ball = np.argmax(dets_ball[:, 4], axis=0)
+            best_candidate_ball_bbox = STrack.tlbr_to_tlwh(
+                dets_ball[best_candidate_ball, :4]
+            )
+            self.last_ball_bbox = best_candidate_ball_bbox
+        else:
+            best_candidate_ball_bbox = None
+
+        # vis
+        &#34;&#34;&#34;
+        for i in range(0, dets.shape[0]):
+            bbox = dets[i][0:4]
+            cv2.rectangle(img0, (bbox[0], bbox[1]),
+                          (bbox[2], bbox[3]),
+                          (0, 255, 0), 2)
+        cv2.imshow(&#39;dets&#39;, img0)
+        cv2.waitKey(0)
+        id0 = id0-1
+        &#34;&#34;&#34;
+
+        if len(dets) &gt; 0:
+            &#34;&#34;&#34;Detections&#34;&#34;&#34;
+            detections = [
+                STrack(STrack.tlbr_to_tlwh(tlbrs[:4]), tlbrs[4], f, 30)
+                for (tlbrs, f) in zip(dets[:, :5], id_feature)
+            ]
+        else:
+            detections = []
+
+        &#34;&#34;&#34; Add newly detected tracklets to tracked_stracks&#34;&#34;&#34;
+        unconfirmed = []
+        tracked_stracks = []  # type: list[STrack]
+        for track in self.tracked_stracks:
+            if not track.is_activated:
+                unconfirmed.append(track)
+            else:
+                tracked_stracks.append(track)
+
+        &#34;&#34;&#34; Step 2: First association, with embedding&#34;&#34;&#34;
+        strack_pool = joint_stracks(tracked_stracks, self.lost_stracks)
+        # Predict the current location with KF
+        # for strack in strack_pool:
+        # strack.predict()
+        STrack.multi_predict(strack_pool)
+        dists = embedding_distance(strack_pool, detections)
+        dists = fuse_motion(self.kalman_filter, dists, strack_pool, detections)
+        matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+        for itracked, idet in matches:
+            track = strack_pool[itracked]
+            det = detections[idet]
+            if track.state == TrackState.Tracked:
+                track.update(detections[idet], self.frame_id)
+                activated_starcks.append(track)
+            else:
+                track.re_activate(det, self.frame_id, new_id=False)
+                refind_stracks.append(track)
+
+        &#34;&#34;&#34; Step 3: Second association, with IOU&#34;&#34;&#34;
+        detections = [detections[i] for i in u_detection]
+        r_tracked_stracks = [
+            strack_pool[i]
+            for i in u_track
+            if strack_pool[i].state == TrackState.Tracked
+        ]
+        dists = iou_distance(r_tracked_stracks, detections)
+        matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+        for itracked, idet in matches:
+            track = r_tracked_stracks[itracked]
+            det = detections[idet]
+            if track.state == TrackState.Tracked:
+                track.update(det, self.frame_id)
+                activated_starcks.append(track)
+            else:
+                track.re_activate(det, self.frame_id, new_id=False)
+                refind_stracks.append(track)
+
+        for it in u_track:
+            track = r_tracked_stracks[it]
+            if not track.state == TrackState.Lost:
+                track.mark_lost()
+                lost_stracks.append(track)
+
+        &#34;&#34;&#34;Deal with unconfirmed tracks, usually tracks with only one beginning frame&#34;&#34;&#34;
+        detections = [detections[i] for i in u_detection]
+        dists = iou_distance(unconfirmed, detections)
+        matches, u_unconfirmed, u_detection = linear_assignment(dists, thresh=0.9)
+        for itracked, idet in matches:
+            unconfirmed[itracked].update(detections[idet], self.frame_id)
+            activated_starcks.append(unconfirmed[itracked])
+
+        for it in u_unconfirmed:
+            track = unconfirmed[it]
+            track.mark_removed()
+            removed_stracks.append(track)
+
+        &#34;&#34;&#34; Step 4: Init new stracks&#34;&#34;&#34;
+        for inew in u_detection:
+            track = detections[inew]
+            if track.score &lt; self.det_thresh:
+                continue
+            track.activate(self.kalman_filter, self.frame_id)
+            activated_starcks.append(track)
+        &#34;&#34;&#34; Step 5: Update state&#34;&#34;&#34;
+
+        for track in self.lost_stracks:
+            if self.frame_id - track.end_frame &gt; self.max_time_lost:
+                track.mark_removed()
+                removed_stracks.append(track)
+
+        self.tracked_stracks = [
+            t for t in self.tracked_stracks if t.state == TrackState.Tracked
+        ]
+        self.tracked_stracks = joint_stracks(self.tracked_stracks, activated_starcks)
+        self.tracked_stracks = joint_stracks(self.tracked_stracks, refind_stracks)
+        self.lost_stracks = sub_stracks(self.lost_stracks, self.tracked_stracks)
+        self.lost_stracks.extend(lost_stracks)
+        self.lost_stracks = sub_stracks(self.lost_stracks, self.removed_stracks)
+        self.removed_stracks.extend(removed_stracks)
+        self.tracked_stracks, self.lost_stracks = remove_duplicate_stracks(
+            self.tracked_stracks, self.lost_stracks
+        )
+        # get scores of lost tracks
+        output_stracks = [track for track in self.tracked_stracks if track.is_activated]
+
+        if verbose:
+            print(&#34;===========Frame {}==========&#34;.format(self.frame_id))
+            print(
+                &#34;Activated: {}&#34;.format([track.track_id for track in activated_starcks])
+            )
+            print(&#34;Refind: {}&#34;.format([track.track_id for track in refind_stracks]))
+            print(&#34;Lost: {}&#34;.format([track.track_id for track in lost_stracks]))
+            print(&#34;Removed: {}&#34;.format([track.track_id for track in removed_stracks]))
+
+        return output_stracks, best_candidate_ball_bbox</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="narya.linker.multitracker.JDETracker.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>self, im_blob, img0, split_size=None, verbose=True)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update(self, im_blob, img0, split_size=None, verbose=True):
+    self.frame_id += 1
+    activated_starcks = []
+    refind_stracks = []
+    lost_stracks = []
+    removed_stracks = []
+
+    &#34;&#34;&#34; Step 1: Network forward, get detections &amp; embeddings&#34;&#34;&#34;
+
+    cid, score, bbox = self.tracker_model(img0, split_size=split_size)
+    if split_size is None:
+        bbox = bbox.asnumpy()
+        cid = cid.asnumpy()
+        score = score.asnumpy()
+    id_feature = self.reid_model._get_embeddings(
+        img0, bbox, score, cid, self.det_thresh, (512, 512)
+    )
+    cid = to_torch(cid)
+    score = to_torch(score)
+    bbox = to_torch(bbox)
+    id_feature = to_torch(id_feature)
+    detections = torch.cat([bbox, score, cid], dim=2)
+    detections = detections[0]
+    ball_detections = torch.cat([bbox, score, cid], dim=2)[0]
+    id_feature = id_feature[0]
+    for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+        remain_inds = detections[:, indx] &gt; tresh
+        detections = detections[remain_inds]
+        id_feature = id_feature[remain_inds]
+    dets = detections[:, :5]
+
+    cnt = 0
+    for indx, tresh in zip([4, 5], [self.det_thresh, 0.5]):
+        remain_inds = (
+            ball_detections[:, indx] &gt; tresh
+            if cnt == 0
+            else ball_detections[:, indx] &lt; tresh
+        )
+        ball_detections = ball_detections[remain_inds]
+        cnt += 1
+    dets_ball = ball_detections[:, :5]
+    if len(dets_ball) &gt; 0:
+        best_candidate_ball = np.argmax(dets_ball[:, 4], axis=0)
+        best_candidate_ball_bbox = STrack.tlbr_to_tlwh(
+            dets_ball[best_candidate_ball, :4]
+        )
+        self.last_ball_bbox = best_candidate_ball_bbox
+    else:
+        best_candidate_ball_bbox = None
+
+    # vis
+    &#34;&#34;&#34;
+    for i in range(0, dets.shape[0]):
+        bbox = dets[i][0:4]
+        cv2.rectangle(img0, (bbox[0], bbox[1]),
+                      (bbox[2], bbox[3]),
+                      (0, 255, 0), 2)
+    cv2.imshow(&#39;dets&#39;, img0)
+    cv2.waitKey(0)
+    id0 = id0-1
+    &#34;&#34;&#34;
+
+    if len(dets) &gt; 0:
+        &#34;&#34;&#34;Detections&#34;&#34;&#34;
+        detections = [
+            STrack(STrack.tlbr_to_tlwh(tlbrs[:4]), tlbrs[4], f, 30)
+            for (tlbrs, f) in zip(dets[:, :5], id_feature)
+        ]
+    else:
+        detections = []
+
+    &#34;&#34;&#34; Add newly detected tracklets to tracked_stracks&#34;&#34;&#34;
+    unconfirmed = []
+    tracked_stracks = []  # type: list[STrack]
+    for track in self.tracked_stracks:
+        if not track.is_activated:
+            unconfirmed.append(track)
+        else:
+            tracked_stracks.append(track)
+
+    &#34;&#34;&#34; Step 2: First association, with embedding&#34;&#34;&#34;
+    strack_pool = joint_stracks(tracked_stracks, self.lost_stracks)
+    # Predict the current location with KF
+    # for strack in strack_pool:
+    # strack.predict()
+    STrack.multi_predict(strack_pool)
+    dists = embedding_distance(strack_pool, detections)
+    dists = fuse_motion(self.kalman_filter, dists, strack_pool, detections)
+    matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+    for itracked, idet in matches:
+        track = strack_pool[itracked]
+        det = detections[idet]
+        if track.state == TrackState.Tracked:
+            track.update(detections[idet], self.frame_id)
+            activated_starcks.append(track)
+        else:
+            track.re_activate(det, self.frame_id, new_id=False)
+            refind_stracks.append(track)
+
+    &#34;&#34;&#34; Step 3: Second association, with IOU&#34;&#34;&#34;
+    detections = [detections[i] for i in u_detection]
+    r_tracked_stracks = [
+        strack_pool[i]
+        for i in u_track
+        if strack_pool[i].state == TrackState.Tracked
+    ]
+    dists = iou_distance(r_tracked_stracks, detections)
+    matches, u_track, u_detection = linear_assignment(dists, thresh=0.9)
+
+    for itracked, idet in matches:
+        track = r_tracked_stracks[itracked]
+        det = detections[idet]
+        if track.state == TrackState.Tracked:
+            track.update(det, self.frame_id)
+            activated_starcks.append(track)
+        else:
+            track.re_activate(det, self.frame_id, new_id=False)
+            refind_stracks.append(track)
+
+    for it in u_track:
+        track = r_tracked_stracks[it]
+        if not track.state == TrackState.Lost:
+            track.mark_lost()
+            lost_stracks.append(track)
+
+    &#34;&#34;&#34;Deal with unconfirmed tracks, usually tracks with only one beginning frame&#34;&#34;&#34;
+    detections = [detections[i] for i in u_detection]
+    dists = iou_distance(unconfirmed, detections)
+    matches, u_unconfirmed, u_detection = linear_assignment(dists, thresh=0.9)
+    for itracked, idet in matches:
+        unconfirmed[itracked].update(detections[idet], self.frame_id)
+        activated_starcks.append(unconfirmed[itracked])
+
+    for it in u_unconfirmed:
+        track = unconfirmed[it]
+        track.mark_removed()
+        removed_stracks.append(track)
+
+    &#34;&#34;&#34; Step 4: Init new stracks&#34;&#34;&#34;
+    for inew in u_detection:
+        track = detections[inew]
+        if track.score &lt; self.det_thresh:
+            continue
+        track.activate(self.kalman_filter, self.frame_id)
+        activated_starcks.append(track)
+    &#34;&#34;&#34; Step 5: Update state&#34;&#34;&#34;
+
+    for track in self.lost_stracks:
+        if self.frame_id - track.end_frame &gt; self.max_time_lost:
+            track.mark_removed()
+            removed_stracks.append(track)
+
+    self.tracked_stracks = [
+        t for t in self.tracked_stracks if t.state == TrackState.Tracked
+    ]
+    self.tracked_stracks = joint_stracks(self.tracked_stracks, activated_starcks)
+    self.tracked_stracks = joint_stracks(self.tracked_stracks, refind_stracks)
+    self.lost_stracks = sub_stracks(self.lost_stracks, self.tracked_stracks)
+    self.lost_stracks.extend(lost_stracks)
+    self.lost_stracks = sub_stracks(self.lost_stracks, self.removed_stracks)
+    self.removed_stracks.extend(removed_stracks)
+    self.tracked_stracks, self.lost_stracks = remove_duplicate_stracks(
+        self.tracked_stracks, self.lost_stracks
+    )
+    # get scores of lost tracks
+    output_stracks = [track for track in self.tracked_stracks if track.is_activated]
+
+    if verbose:
+        print(&#34;===========Frame {}==========&#34;.format(self.frame_id))
+        print(
+            &#34;Activated: {}&#34;.format([track.track_id for track in activated_starcks])
+        )
+        print(&#34;Refind: {}&#34;.format([track.track_id for track in refind_stracks]))
+        print(&#34;Lost: {}&#34;.format([track.track_id for track in lost_stracks]))
+        print(&#34;Removed: {}&#34;.format([track.track_id for track in removed_stracks]))
+
+    return output_stracks, best_candidate_ball_bbox</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="narya.linker.multitracker.STrack"><code class="flex name class">
+<span>class <span class="ident">STrack</span></span>
+<span>(</span><span>tlwh, score, temp_feat, buffer_size=30)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class STrack(BaseTrack):
+    shared_kalman = KalmanFilter()
+
+    def __init__(self, tlwh, score, temp_feat, buffer_size=30):
+
+        # wait activate
+        self._tlwh = np.asarray(tlwh, dtype=np.float)
+        self.kalman_filter = None
+        self.mean, self.covariance = None, None
+        self.is_activated = False
+
+        self.score = score
+        self.tracklet_len = 0
+
+        self.smooth_feat = None
+        self.update_features(temp_feat)
+        self.features = deque([], maxlen=buffer_size)
+        self.alpha = 0.9
+
+    def update_features(self, feat):
+        feat /= np.linalg.norm(feat)
+        self.curr_feat = feat
+        if self.smooth_feat is None:
+            self.smooth_feat = feat
+        else:
+            self.smooth_feat = self.alpha * self.smooth_feat + (1 - self.alpha) * feat
+        self.features.append(feat)
+        self.smooth_feat /= np.linalg.norm(self.smooth_feat)
+
+    def predict(self):
+        mean_state = self.mean.copy()
+        if self.state != TrackState.Tracked:
+            mean_state[7] = 0
+        self.mean, self.covariance = self.kalman_filter.predict(
+            mean_state, self.covariance
+        )
+
+    @staticmethod
+    def multi_predict(stracks):
+        if len(stracks) &gt; 0:
+            multi_mean = np.asarray([st.mean.copy() for st in stracks])
+            multi_covariance = np.asarray([st.covariance for st in stracks])
+            for i, st in enumerate(stracks):
+                if st.state != TrackState.Tracked:
+                    multi_mean[i][7] = 0
+            multi_mean, multi_covariance = STrack.shared_kalman.multi_predict(
+                multi_mean, multi_covariance
+            )
+            for i, (mean, cov) in enumerate(zip(multi_mean, multi_covariance)):
+                stracks[i].mean = mean
+                stracks[i].covariance = cov
+
+    def activate(self, kalman_filter, frame_id):
+        &#34;&#34;&#34;Start a new tracklet&#34;&#34;&#34;
+        self.kalman_filter = kalman_filter
+        self.track_id = self.next_id()
+        self.mean, self.covariance = self.kalman_filter.initiate(
+            self.tlwh_to_xyah(self._tlwh)
+        )
+
+        self.tracklet_len = 0
+        self.state = TrackState.Tracked
+        if frame_id == 1:
+            self.is_activated = True
+        # self.is_activated = True
+        self.frame_id = frame_id
+        self.start_frame = frame_id
+
+    def re_activate(self, new_track, frame_id, new_id=False):
+        self.mean, self.covariance = self.kalman_filter.update(
+            self.mean, self.covariance, self.tlwh_to_xyah(new_track.tlwh)
+        )
+
+        self.update_features(new_track.curr_feat)
+        self.tracklet_len = 0
+        self.state = TrackState.Tracked
+        self.is_activated = True
+        self.frame_id = frame_id
+        if new_id:
+            self.track_id = self.next_id()
+
+    def update(self, new_track, frame_id, update_feature=True):
+        &#34;&#34;&#34;
+        Update a matched track
+        :type new_track: STrack
+        :type frame_id: int
+        :type update_feature: bool
+        :return:
+        &#34;&#34;&#34;
+        self.frame_id = frame_id
+        self.tracklet_len += 1
+
+        new_tlwh = new_track.tlwh
+        self.mean, self.covariance = self.kalman_filter.update(
+            self.mean, self.covariance, self.tlwh_to_xyah(new_tlwh)
+        )
+        self.state = TrackState.Tracked
+        self.is_activated = True
+
+        self.score = new_track.score
+        if update_feature:
+            self.update_features(new_track.curr_feat)
+
+    @property
+    # @jit(nopython=True)
+    def tlwh(self):
+        &#34;&#34;&#34;Get current position in bounding box format `(top left x, top left y,
+                width, height)`.
+        &#34;&#34;&#34;
+        if self.mean is None:
+            return self._tlwh.copy()
+        ret = self.mean[:4].copy()
+        ret[2] *= ret[3]
+        ret[:2] -= ret[2:] / 2
+        return ret
+
+    @property
+    # @jit(nopython=True)
+    def tlbr(self):
+        &#34;&#34;&#34;Convert bounding box to format `(min x, min y, max x, max y)`, i.e.,
+        `(top left, bottom right)`.
+        &#34;&#34;&#34;
+        ret = self.tlwh.copy()
+        ret[2:] += ret[:2]
+        return ret
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlwh_to_xyah(tlwh):
+        &#34;&#34;&#34;Convert bounding box to format `(center x, center y, aspect ratio,
+        height)`, where the aspect ratio is `width / height`.
+        &#34;&#34;&#34;
+        ret = np.asarray(tlwh).copy()
+        ret[:2] += ret[2:] / 2
+        ret[2] /= ret[3]
+        return ret
+
+    def to_xyah(self):
+        return self.tlwh_to_xyah(self.tlwh)
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlbr_to_tlwh(tlbr):
+        ret = np.asarray(tlbr).copy()
+        ret[2:] -= ret[:2]
+        return ret
+
+    @staticmethod
+    # @jit(nopython=True)
+    def tlwh_to_tlbr(tlwh):
+        ret = np.asarray(tlwh).copy()
+        ret[2:] += ret[:2]
+        return ret
+
+    def __repr__(self):
+        return &#34;OT_{}_({}-{})&#34;.format(self.track_id, self.start_frame, self.end_frame)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="narya.linker.basetrack.BaseTrack" href="basetrack.html#narya.linker.basetrack.BaseTrack">BaseTrack</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="narya.linker.multitracker.STrack.shared_kalman"><code class="name">var <span class="ident">shared_kalman</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="narya.linker.multitracker.STrack.multi_predict"><code class="name flex">
+<span>def <span class="ident">multi_predict</span></span>(<span>stracks)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def multi_predict(stracks):
+    if len(stracks) &gt; 0:
+        multi_mean = np.asarray([st.mean.copy() for st in stracks])
+        multi_covariance = np.asarray([st.covariance for st in stracks])
+        for i, st in enumerate(stracks):
+            if st.state != TrackState.Tracked:
+                multi_mean[i][7] = 0
+        multi_mean, multi_covariance = STrack.shared_kalman.multi_predict(
+            multi_mean, multi_covariance
+        )
+        for i, (mean, cov) in enumerate(zip(multi_mean, multi_covariance)):
+            stracks[i].mean = mean
+            stracks[i].covariance = cov</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.tlbr_to_tlwh"><code class="name flex">
+<span>def <span class="ident">tlbr_to_tlwh</span></span>(<span>tlbr)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+# @jit(nopython=True)
+def tlbr_to_tlwh(tlbr):
+    ret = np.asarray(tlbr).copy()
+    ret[2:] -= ret[:2]
+    return ret</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.tlwh_to_tlbr"><code class="name flex">
+<span>def <span class="ident">tlwh_to_tlbr</span></span>(<span>tlwh)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+# @jit(nopython=True)
+def tlwh_to_tlbr(tlwh):
+    ret = np.asarray(tlwh).copy()
+    ret[2:] += ret[:2]
+    return ret</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.tlwh_to_xyah"><code class="name flex">
+<span>def <span class="ident">tlwh_to_xyah</span></span>(<span>tlwh)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert bounding box to format <code>(center x, center y, aspect ratio,
+height)&lt;code&gt;, where the aspect ratio is &lt;/code&gt;width / height</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+# @jit(nopython=True)
+def tlwh_to_xyah(tlwh):
+    &#34;&#34;&#34;Convert bounding box to format `(center x, center y, aspect ratio,
+    height)`, where the aspect ratio is `width / height`.
+    &#34;&#34;&#34;
+    ret = np.asarray(tlwh).copy()
+    ret[:2] += ret[2:] / 2
+    ret[2] /= ret[3]
+    return ret</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="narya.linker.multitracker.STrack.tlbr"><code class="name">var <span class="ident">tlbr</span></code></dt>
+<dd>
+<div class="desc"><p>Convert bounding box to format <code>(min x, min y, max x, max y)</code>, i.e.,
+<code>(top left, bottom right)</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+# @jit(nopython=True)
+def tlbr(self):
+    &#34;&#34;&#34;Convert bounding box to format `(min x, min y, max x, max y)`, i.e.,
+    `(top left, bottom right)`.
+    &#34;&#34;&#34;
+    ret = self.tlwh.copy()
+    ret[2:] += ret[:2]
+    return ret</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.tlwh"><code class="name">var <span class="ident">tlwh</span></code></dt>
+<dd>
+<div class="desc"><p>Get current position in bounding box format <code>(top left x, top left y,
+width, height)</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+# @jit(nopython=True)
+def tlwh(self):
+    &#34;&#34;&#34;Get current position in bounding box format `(top left x, top left y,
+            width, height)`.
+    &#34;&#34;&#34;
+    if self.mean is None:
+        return self._tlwh.copy()
+    ret = self.mean[:4].copy()
+    ret[2] *= ret[3]
+    ret[:2] -= ret[2:] / 2
+    return ret</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="narya.linker.multitracker.STrack.activate"><code class="name flex">
+<span>def <span class="ident">activate</span></span>(<span>self, kalman_filter, frame_id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Start a new tracklet</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def activate(self, kalman_filter, frame_id):
+    &#34;&#34;&#34;Start a new tracklet&#34;&#34;&#34;
+    self.kalman_filter = kalman_filter
+    self.track_id = self.next_id()
+    self.mean, self.covariance = self.kalman_filter.initiate(
+        self.tlwh_to_xyah(self._tlwh)
+    )
+
+    self.tracklet_len = 0
+    self.state = TrackState.Tracked
+    if frame_id == 1:
+        self.is_activated = True
+    # self.is_activated = True
+    self.frame_id = frame_id
+    self.start_frame = frame_id</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.predict"><code class="name flex">
+<span>def <span class="ident">predict</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def predict(self):
+    mean_state = self.mean.copy()
+    if self.state != TrackState.Tracked:
+        mean_state[7] = 0
+    self.mean, self.covariance = self.kalman_filter.predict(
+        mean_state, self.covariance
+    )</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.re_activate"><code class="name flex">
+<span>def <span class="ident">re_activate</span></span>(<span>self, new_track, frame_id, new_id=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def re_activate(self, new_track, frame_id, new_id=False):
+    self.mean, self.covariance = self.kalman_filter.update(
+        self.mean, self.covariance, self.tlwh_to_xyah(new_track.tlwh)
+    )
+
+    self.update_features(new_track.curr_feat)
+    self.tracklet_len = 0
+    self.state = TrackState.Tracked
+    self.is_activated = True
+    self.frame_id = frame_id
+    if new_id:
+        self.track_id = self.next_id()</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.to_xyah"><code class="name flex">
+<span>def <span class="ident">to_xyah</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_xyah(self):
+    return self.tlwh_to_xyah(self.tlwh)</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>self, new_track, frame_id, update_feature=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update a matched track
+:type new_track: STrack
+:type frame_id: int
+:type update_feature: bool
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update(self, new_track, frame_id, update_feature=True):
+    &#34;&#34;&#34;
+    Update a matched track
+    :type new_track: STrack
+    :type frame_id: int
+    :type update_feature: bool
+    :return:
+    &#34;&#34;&#34;
+    self.frame_id = frame_id
+    self.tracklet_len += 1
+
+    new_tlwh = new_track.tlwh
+    self.mean, self.covariance = self.kalman_filter.update(
+        self.mean, self.covariance, self.tlwh_to_xyah(new_tlwh)
+    )
+    self.state = TrackState.Tracked
+    self.is_activated = True
+
+    self.score = new_track.score
+    if update_feature:
+        self.update_features(new_track.curr_feat)</code></pre>
+</details>
+</dd>
+<dt id="narya.linker.multitracker.STrack.update_features"><code class="name flex">
+<span>def <span class="ident">update_features</span></span>(<span>self, feat)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_features(self, feat):
+    feat /= np.linalg.norm(feat)
+    self.curr_feat = feat
+    if self.smooth_feat is None:
+        self.smooth_feat = feat
+    else:
+        self.smooth_feat = self.alpha * self.smooth_feat + (1 - self.alpha) * feat
+    self.features.append(feat)
+    self.smooth_feat /= np.linalg.norm(self.smooth_feat)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="narya.linker" href="index.html">narya.linker</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="narya.linker.multitracker.joint_stracks" href="#narya.linker.multitracker.joint_stracks">joint_stracks</a></code></li>
+<li><code><a title="narya.linker.multitracker.remove_duplicate_stracks" href="#narya.linker.multitracker.remove_duplicate_stracks">remove_duplicate_stracks</a></code></li>
+<li><code><a title="narya.linker.multitracker.sub_stracks" href="#narya.linker.multitracker.sub_stracks">sub_stracks</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="narya.linker.multitracker.JDETracker" href="#narya.linker.multitracker.JDETracker">JDETracker</a></code></h4>
+<ul class="">
+<li><code><a title="narya.linker.multitracker.JDETracker.update" href="#narya.linker.multitracker.JDETracker.update">update</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="narya.linker.multitracker.STrack" href="#narya.linker.multitracker.STrack">STrack</a></code></h4>
+<ul class="two-column">
+<li><code><a title="narya.linker.multitracker.STrack.activate" href="#narya.linker.multitracker.STrack.activate">activate</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.multi_predict" href="#narya.linker.multitracker.STrack.multi_predict">multi_predict</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.predict" href="#narya.linker.multitracker.STrack.predict">predict</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.re_activate" href="#narya.linker.multitracker.STrack.re_activate">re_activate</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.shared_kalman" href="#narya.linker.multitracker.STrack.shared_kalman">shared_kalman</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.tlbr" href="#narya.linker.multitracker.STrack.tlbr">tlbr</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.tlbr_to_tlwh" href="#narya.linker.multitracker.STrack.tlbr_to_tlwh">tlbr_to_tlwh</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.tlwh" href="#narya.linker.multitracker.STrack.tlwh">tlwh</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.tlwh_to_tlbr" href="#narya.linker.multitracker.STrack.tlwh_to_tlbr">tlwh_to_tlbr</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.tlwh_to_xyah" href="#narya.linker.multitracker.STrack.tlwh_to_xyah">tlwh_to_xyah</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.to_xyah" href="#narya.linker.multitracker.STrack.to_xyah">to_xyah</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.update" href="#narya.linker.multitracker.STrack.update">update</a></code></li>
+<li><code><a title="narya.linker.multitracker.STrack.update_features" href="#narya.linker.multitracker.STrack.update_features">update_features</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.4</a>.</p>
+</footer>
+</body>
+</html>
