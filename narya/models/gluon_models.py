@@ -34,13 +34,14 @@ class TrackerModel:
         backbone="ssd_512_resnet50_v1_coco",
         input_shape=(512, 512),
         classes=["ball", "player"],
+        ctx = None
     ):
-
-        try:
-            _ = mx.nd.zeros((1,), ctx=mx.gpu(0))
-            ctx = [mx.gpu(0)]
-        except:
-            ctx = [mx.cpu()]
+        if ctx == None:
+            try:
+                _ = mx.nd.zeros((1,), ctx=mx.gpu(0))
+                ctx = [mx.gpu(0)]
+            except:
+                ctx = [mx.cpu()]
 
         self.pretrained = pretrained
         self.backbone = backbone

@@ -54,7 +54,7 @@ print("-" * 10)
 print("Building model")
 print("-" * 10)
 
-full_model = TrackerModel(pretrained=True, backbone=opt.backbone)
+full_model = TrackerModel(pretrained=True, backbone=opt.backbone, ctx = ctx)
 
 if opt.weights is not None:
     full_model.load_weights(opt.weights)

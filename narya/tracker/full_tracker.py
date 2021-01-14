@@ -53,10 +53,11 @@ class FootballTracker:
         track_buffer=30,
         K=100,
         frame_rate=30,
+        ctx=None
     ):
 
         self.player_ball_tracker = PlayerBallTracker(
-            conf_tresh=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate
+            conf_tresh=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate,ctx=ctx
         )
 
         self.homo_estimator = HomographyEstimator(

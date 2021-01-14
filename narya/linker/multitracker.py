@@ -198,13 +198,13 @@ class STrack(BaseTrack):
 
 class JDETracker(object):
     def __init__(
-        self, conf_thres=0.5, track_buffer=30, K=100, frame_rate=30,
+        self, conf_thres=0.5, track_buffer=30, K=100, frame_rate=30,ctx = None
     ):
 
         print("Creating model...")
 
         self.tracker_model = TrackerModel(
-            pretrained=True, backbone="ssd_512_resnet50_v1_coco"
+            pretrained=True, backbone="ssd_512_resnet50_v1_coco", ctx = ctx
         )
         self.reid_model = ReIdModel()
 

@@ -30,11 +30,11 @@ class PlayerBallTracker:
         frame_rate: -
     """
 
-    def __init__(self, conf_tresh=0.5, track_buffer=30, K=100, frame_rate=30):
+    def __init__(self, conf_tresh=0.5, track_buffer=30, K=100, frame_rate=30,ctx=None):
 
         self.frame_rate = frame_rate
         self.tracker = JDETracker(
-            conf_thres=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate
+            conf_thres=conf_tresh, track_buffer=track_buffer, K=K, frame_rate=frame_rate, ctx=ctx
         )
 
     def get_tracking(
