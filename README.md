@@ -1,6 +1,6 @@
 # Narya
 
-The Narya API allows you track soccer player from camera inputs, and evaluate them with an Expected Discounted Goal (EDG) Agent. This repository contains the implementation of the [following paper](https://). We also make available all of our pretrained agents, and the datasets we used as well. 
+The Narya API allows you track soccer player from camera inputs, and evaluate them with an Expected Discounted Goal (EDG) Agent. This repository contains the implementation of the [following paper](https://arxiv.org/abs/2101.05388). We also make available all of our pretrained agents, and the datasets we used as well. 
 
 The goal of this repository is to allow anyone without any access to soccer data to produce its own and to analyse them with powerfull tools. We also hope that by releasing our training procedures and datasets, better models will emerge and make this tool better iteratively. 
 
