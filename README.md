@@ -6,7 +6,9 @@ The goal of this repository is to allow anyone without any access to soccer data
 
 We also built 4 notebooks to explain how to use our models and a colab:
 
-- [Colab](https://colab.research.google.com/drive/1lXwZOE1z6YY3OqLtNRA5KTODo9C6WS-3?usp=sharing)
+(Some issues might exist with the Tracker at the end of the colab. I'll investigate it when I have some time)
+
+- [Colab](https://colab.research.google.com/drive/1VC3yd_M4va86N0q9NsYT0ajhCZ-k1sBO?usp=sharing)
 - [Each tracking model](https://github.com/DonsetPG/narya/blob/master/models_examples.ipynb)
 - [Complete Tracker](https://github.com/DonsetPG/narya/blob/master/full-tracking.ipynb)
 - [EDG DRL Agent](https://github.com/DonsetPG/narya/blob/master/data-analysis.ipynb)
