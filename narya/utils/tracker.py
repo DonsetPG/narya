@@ -7,7 +7,6 @@ from scipy.signal import savgol_filter
 import pandas as pd
 import numpy as np
 
-
 def add_nan_trajectories(trajectories, max_frame):
     """Add np.nan to frame where the x,y coordinates are missing
     Arguments:
@@ -39,8 +38,7 @@ def add_nan_trajectories(trajectories, max_frame):
         if last_frame < frame_range[-1]:
             for i in range(last_frame + 1, frame_range[-1] + 1):
                 full_trajectories[ids].append([np.nan, np.nan, i])
-        return full_trajectories
-
+    return full_trajectories   ## <--------- finish all the loops and return
 
 def get_trajectory_from_id(trajectories, id_):
     """Get the trajectory of an id, and map them to lastRow data format.
