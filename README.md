@@ -198,8 +198,8 @@ A special thanks to [Last Row](https://twitter.com/lastrowview), for providing s
 | Model                  | Description                               | Link                                                                        |
 |------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
 | 11_vs_11_selfplay_last | EDG agent                                 | https://storage.googleapis.com/narya-bucket-1/models/11_vs_11_selfplay_last |
-| deep_homo_model.h5     | Direct Homography estimation Architecture | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model.h5     |
-| deep_homo_model_1.h5   | Direct Homography estimation Weights      | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model_1.h5   |
+| deep_homo_model.h5     | Direct Homography estimation Weights      | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model.h5     |
+| deep_homo_model_1.h5   | Direct Homography estimation Architecture | https://storage.googleapis.com/narya-bucket-1/models/deep_homo_model_1.h5   |
 | keypoint_detector.h5   | Keypoints detection Weights               | https://storage.googleapis.com/narya-bucket-1/models/keypoint_detector.h5   |
 | player_reid.pth        | Player Embedding Weights                  | https://storage.googleapis.com/narya-bucket-1/models/player_reid.pth        |
 | player_tracker.params  | Player & Ball detection Weights           | https://storage.googleapis.com/narya-bucket-1/models/player_tracker.params  |
