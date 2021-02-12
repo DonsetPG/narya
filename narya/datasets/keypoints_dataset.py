@@ -44,10 +44,10 @@ class Dataset:
         self.ids = os.listdir(images_dir)
         self.images_fps = [os.path.join(images_dir, image_id) for image_id in self.ids]
         self.masks_fps = [
-            os.path.join(masks_dir, image_id.replace(".jpg", ".xml"))
+            os.path.join(masks_dir, os.path.splitext(image_id)[0] + ".xml")
             for image_id in self.ids
         ]
-
+                
         # convert str names to class values on masks
         self.class_values = [CLASSES.index(cls.lower()) for cls in classes]
 
