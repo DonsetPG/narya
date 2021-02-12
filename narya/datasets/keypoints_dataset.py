@@ -66,7 +66,7 @@ class Dataset:
             image = cv2.flip(image, 1)
             new_keypoints = {}
             for id_kp, v in six.iteritems(keypoints):
-                new_id_kp, x_kp, y_kp = _flip_keypoint(id_kp, min(v[0],image.shape[0]-1), min(v[1],image.shape[1]-1))
+                new_id_kp, x_kp, y_kp = _flip_keypoint(id_kp, min(v[0],image.shape[0]-1), min(v[1],image.shape[1]-1), input_shape = image.shape)
                 new_keypoints[new_id_kp] = (x_kp, y_kp)
             keypoints = new_keypoints
 

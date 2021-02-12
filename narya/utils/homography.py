@@ -244,8 +244,8 @@ def warp_point_cv(pts, homography):
     return dst[0][0]
 
 
-def warp_point_torch(pts, homography):
-    img_test = np.zeros((320, 320, 3))
+def warp_point_torch(pts, homography, input_shape = (320,320,3)):
+    img_test = np.zeros(input_shape)
     dir_ = [0, -1, 1, -2, 2, 3, -3]
     for dir_x in dir_:
         for dir_y in dir_:

@@ -42,11 +42,12 @@ class HomographyEstimator:
         weights_keypoints=None,
         shape_in=512.0,
         shape_out=320.0,
+        keypoint_model_input_shape = (320,320)
     ):
 
         self.homo_model = DeepHomoModel()
         self.keypoints_model = KeypointDetectorModel(
-            backbone="efficientnetb3", num_classes=29, input_shape=(320, 320),
+            backbone="efficientnetb3", num_classes=29, input_shape=keypoint_model_input_shape,
         )
 
         if pretrained == True:
