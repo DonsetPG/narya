@@ -70,6 +70,18 @@ print("-" * 10)
 print("Building dataset")
 print("-" * 10)
 
+"""Cleaning the dataset
+If you run into empty elements error during training, you might have to run the following commands:
+```
+rm opt.data_dir/.DS_Store
+rm opt.data_dir/test/.DS_Store
+rm opt.data_dir/test/Annotations/.DS_Store
+rm opt.data_dir/train/.DS_Store
+rm opt.data_dir/train/Annotations/.DS_Store
+rm opt.data_dir/train/JPEGImages/.DS_Store
+```
+"""
+
 x_train_dir = os.path.join(opt.data_dir, opt.x_train_dir)
 kp_train_dir = os.path.join(opt.data_dir, opt.y_train_dir)
 x_test_dir = os.path.join(opt.data_dir, opt.x_test_dir)
