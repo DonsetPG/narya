@@ -70,7 +70,7 @@ class Dataset:
                 new_keypoints[new_id_kp] = (x_kp, y_kp)
             keypoints = new_keypoints
 
-        mask = _build_mask(keypoints)
+        mask = _build_mask(keypoints, mask_shape = (image.shape[0], image.shape[1]))
 
         # extract certain classes from mask (e.g. cars)
         masks = [(mask == v) for v in self.class_values]
