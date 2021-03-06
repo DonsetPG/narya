@@ -6,8 +6,10 @@ import mxnet as mx
 import numpy as np
 import progressbar
 import six
+import math 
 
 from scipy.signal import savgol_filter
+from scipy import interpolate
 
 from .homography_estimator import HomographyEstimator
 from .player_ball_tracker import PlayerBallTracker
@@ -27,6 +29,7 @@ class FootballTracker:
         track_buffer: Number of frame to keep in memory for tracking reIdentification
         K: Number of boxes to keep at each frames
         frame_rate: -
+        
     Call arguments:
         imgs: List of np.array (images) to track
         split_size: if None, apply the tracking model to the full image. If its an int, the image shape must be divisible by this int.
@@ -41,6 +44,9 @@ class FootballTracker:
         skip_homo: List of int. e.g.: [4,10] will not compute homography for frame 4 and 10, and reuse the computed homography
                     at frame 3 and 9.
         enforce_keypoints: Bool. Force the use of the keypoints model. If we can't use it, we skip the frame instead of using the homography model.
+        homography_interpolation: Bool. If set to true, missing homography prediction will be computed with an interpolation. If set to false, we simply repeat the 
+                                last homography.
+        homography_processing: Boo. If set to true, we process the homography estimation with a laplacian filter overtime. 
     """
 
     def __init__(
@@ -79,20 +85,55 @@ class FootballTracker:
         save_tracking_folder=None,
         template=None,
         skip_homo=[],
-        enforce_keypoints = False
+        enforce_keypoints = False,
+        homography_interpolation = False,
+        homography_processing = False
     ):
+        
+        assert enforce_keypoints == homography_interpolation, "We only use homography interpolation with keypoint detection at the moment"
 
-        frame_to_homo = {}
         pred_homo, method = np.ones((3, 3)), "cv"
+        
+        points, values, methods  = [], [], []
+
         for indx, input_img in progressbar.progressbar(enumerate(imgs)):
             if indx in skip_homo:
-                frame_to_homo[indx + 1] = (pred_homo, method)
+                if homography_interpolation:
+                    continue
+                else:
+                    points.append(indx + 1)
+                    values.append(pred_homo)
+                    methods.append(method)
             else:
                 pred_homo, method = self.homo_estimator(input_img)
-                if enforce_keypoints and method == 'torch':
-                    frame_to_homo[indx + 1] = frame_to_homo[indx]
+                                    
+                if (enforce_keypoints and method == 'torch'):
+                    if homography_interpolation:
+                        continue
+                    else:
+                        points.append(indx + 1)
+                        values.append(values[-1])
+                        methods.append(methods[-1])
                 else:
-                    frame_to_homo[indx + 1] = (pred_homo, method)
+                    points.append(indx + 1)
+                    values.append(pred_homo)
+                    methods.append(method)
+    
+        points = np.array(points)
+        values = np.array(values)
+                    
+        if homography_interpolation:
+            f = interpolate.interp1d(points, values,axis=0,fill_value = 'extrapolate')
+            points = np.arange(1,len(imgs)+1)
+            values = f(points)
+            methods = ["cv" for _ in range(len(imgs))]
+            
+        if homography_processing:
+            values = savgol_filter(values,5,3,axis=0)
+                    
+        frame_to_homo = {}      
+        for indx in range(len(imgs)):
+            frame_to_homo[indx + 1] = (values[indx], methods[indx])
 
         results, frame_id = self.player_ball_tracker.get_tracking(
             imgs,
