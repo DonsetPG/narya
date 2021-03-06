@@ -40,6 +40,7 @@ class FootballTracker:
         template: Football field, to warp it with the computed homographies on to the saved images
         skip_homo: List of int. e.g.: [4,10] will not compute homography for frame 4 and 10, and reuse the computed homography
                     at frame 3 and 9.
+        enforce_keypoints: Bool. Force the use of the keypoints model. If we can't use it, we skip the frame instead of using the homography model.
     """
 
     def __init__(
@@ -78,6 +79,7 @@ class FootballTracker:
         save_tracking_folder=None,
         template=None,
         skip_homo=[],
+        enforce_keypoints = False
     ):
 
         frame_to_homo = {}
@@ -87,7 +89,10 @@ class FootballTracker:
                 frame_to_homo[indx + 1] = (pred_homo, method)
             else:
                 pred_homo, method = self.homo_estimator(input_img)
-                frame_to_homo[indx + 1] = (pred_homo, method)
+                if enforce_keypoints and method == 'torch':
+                    frame_to_homo[indx + 1] = frame_to_homo[indx]
+                else:
+                    frame_to_homo[indx + 1] = (pred_homo, method)
 
         results, frame_id = self.player_ball_tracker.get_tracking(
             imgs,
