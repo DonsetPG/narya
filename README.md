@@ -14,7 +14,7 @@ We also built 4 notebooks to explain how to use our models and a colab:
 - [EDG DRL Agent](https://github.com/DonsetPG/narya/blob/master/data-analysis.ipynb)
 - [Datasets and Training](https://github.com/DonsetPG/narya/blob/master/training.ipynb)
 
-and released of blog post version of these notebooks [here](https://donsetpg.github.io/blog/2020/08/20/Narya/).
+and released of blog post version of these notebooks [here](https://donsetpg.github.io/blog/2020/12/24/Narya/).
 
 We tried to make everything easy to reuse, we hope anyone will be able to:
 
