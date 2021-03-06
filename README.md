@@ -92,6 +92,8 @@ keypoints_masks = keypoint_model(image)
 cid, score, bbox = tracking_model(image)
 ```
 
+In the tracking class, we also process the homography we estimate with interpolation and filters. This ensure smooth estimation during the entire video.
+
 ### Processing: 
 
 We can now vizualise or use each of this predictions.
