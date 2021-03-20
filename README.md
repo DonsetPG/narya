@@ -227,5 +227,18 @@ The datasets can be downloaded at:
 | keypoints_dataset.zip  | Keypoint Dataset (image,list of mask)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/keypoints_dataset.zip  |
 | tracking_dataset.zip   | Tracking Dataset in VOC format (image, bounding boxes for players/ball) | https://storage.googleapis.com/narya-bucket-1/dataset/tracking_dataset.zip   |
 
+Experimental data for vertical pitches:
 
+| Model                                    | Description                               | Link                                                                                            |
+|------------------------------------------|-------------------------------------------|-------------------------------------------------------------------------------------------------|
+| vertical_HomographyModel_0.0001_32.h5    | Direct Homography estimation Weights      | https://storage.googleapis.com/narya-bucket-1/models/vertical_HomographyModel_0.0001_32.h5      |
+| vertical_FPN_efficientnetb3_0.0001_32.h5 | Keypoints detection Weights               | https://storage.googleapis.com/narya-bucket-1/models/vertical_FPN_efficientnetb3_0.0001_32.h5   |
 
+| Dataset                                | Description                                                             | Link                                                                                        |
+|----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| vertical_samples_direct_homography.zip | Homography Dataset (image,homography)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/vertical_samples_direct_homography.zip|
+| vertical_samples_keypoints.zip         | Keypoint Dataset (image,list of mask)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/vertical_samples_keypoints.zip        |
+
+Tool for efficient creation of training labels:
+
+https://github.com/larsmaurath/narya-label-creator
