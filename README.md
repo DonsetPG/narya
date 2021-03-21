@@ -6,8 +6,6 @@ The goal of this repository is to allow anyone without any access to soccer data
 
 We also built 4 notebooks to explain how to use our models and a colab:
 
-(Some issues might exist with the Tracker at the end of the colab. I'll investigate it when I have some time)
-
 - [Colab](https://colab.research.google.com/drive/1VC3yd_M4va86N0q9NsYT0ajhCZ-k1sBO?usp=sharing)
 - [Each tracking model](https://github.com/DonsetPG/narya/blob/master/models_examples.ipynb)
 - [Complete Tracker](https://github.com/DonsetPG/narya/blob/master/full-tracking.ipynb)
@@ -23,6 +21,8 @@ We tried to make everything easy to reuse, we hope anyone will be able to:
 * Use our trackers
 * Evaluate players with our EDG Agent
 * and much more
+
+You can find at the bottom of the readme links to our models and datasets, but also to tools and models trained by the community. 
 
 # Installation  
 
@@ -210,6 +210,8 @@ If you use Narya in your research and would like to cite it, we suggest you use 
 ```
 # Links:
 
+## Links to the models and datasets from the original Paper
+
 | Model                  | Description                               | Link                                                                        |
 |------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
 | 11_vs_11_selfplay_last | EDG agent                                 | https://storage.googleapis.com/narya-bucket-1/models/11_vs_11_selfplay_last |
@@ -227,7 +229,9 @@ The datasets can be downloaded at:
 | keypoints_dataset.zip  | Keypoint Dataset (image,list of mask)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/keypoints_dataset.zip  |
 | tracking_dataset.zip   | Tracking Dataset in VOC format (image, bounding boxes for players/ball) | https://storage.googleapis.com/narya-bucket-1/dataset/tracking_dataset.zip   |
 
-Experimental data for vertical pitches:
+## Links to models trained by the community 
+
+### Experimental data for vertical pitches:
 
 | Model                                    | Description                               | Link                                                                                            |
 |------------------------------------------|-------------------------------------------|-------------------------------------------------------------------------------------------------|
@@ -239,6 +243,8 @@ Experimental data for vertical pitches:
 | vertical_samples_direct_homography.zip | Homography Dataset (image,homography)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/vertical_samples_direct_homography.zip|
 | vertical_samples_keypoints.zip         | Keypoint Dataset (image,list of mask)                                   | https://storage.googleapis.com/narya-bucket-1/dataset/vertical_samples_keypoints.zip        |
 
-Tool for efficient creation of training labels:
+# Tools
 
-https://github.com/larsmaurath/narya-label-creator
+## Tool for efficient creation of training labels:
+
+Tool built by [@larsmaurath](https://github.com/larsmaurath) to label football images: https://github.com/larsmaurath/narya-label-creator
