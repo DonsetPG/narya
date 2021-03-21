@@ -248,3 +248,7 @@ The datasets can be downloaded at:
 ## Tool for efficient creation of training labels:
 
 Tool built by [@larsmaurath](https://github.com/larsmaurath) to label football images: https://github.com/larsmaurath/narya-label-creator
+
+## Tool for creation of keypoints datasets:
+
+Tool built by [@kkoripl](https://github.com/kkoripl) to create keypoints datasets - xml files and images resizing: https://github.com/kkoripl/NaryaKeyPointsDatasetCreator
