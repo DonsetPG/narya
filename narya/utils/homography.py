@@ -249,8 +249,8 @@ def warp_point_torch(pts, homography, input_shape = (320,320,3)):
     dir_ = [0, -1, 1, -2, 2, 3, -3]
     for dir_x in dir_:
         for dir_y in dir_:
-            to_add_x = min(max(0, pts[0] + dir_x), 319)
-            to_add_y = min(max(0, pts[1] + dir_y), 319)
+            to_add_x = min(max(0, pts[0] + dir_x), input_shape[0]-1)
+            to_add_y = min(max(0, pts[1] + dir_y), input_shape[1]-1)
             for i in range(3):
                 img_test[to_add_y, to_add_x, i] = 1.0
 
